@@ -1,0 +1,11 @@
+# IDE related
+.vscode/
+.idea/
+
+# python related
+__pycache__/
+.env
+env/
+
+# node related
+node_modules/
