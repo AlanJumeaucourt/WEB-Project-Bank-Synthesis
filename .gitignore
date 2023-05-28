@@ -9,3 +9,4 @@ env/
 
 # node related
 node_modules/
+build/
