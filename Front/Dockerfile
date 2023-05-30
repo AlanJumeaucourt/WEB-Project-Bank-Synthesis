@@ -14,6 +14,11 @@ RUN npm install
 # Copiez le reste des fichiers de l'application
 COPY . .
 
+# Installation des dependances Node.js
+RUN npm i react-router-dom --save
+RUN npm i -S bootstrap
+RUN npm install --save echarts
+
 # Construisez l'application ReactJS
 RUN npm run build
 
