@@ -6,7 +6,7 @@ class DesignSystem extends Component {
         return (
             <div>
                 <nav className='navbar navbar-dark bg-dark d-flex flex-column'>
-                    <p className="text-white text-center h2 mt-2">Bienvenu sur le pseudo design system du site</p>
+                    <p className="text-white text-center h2 mt-2">Bienvenu sur le ddd design system du site</p>
                     <p className='text-white h6 text-justify'>Ce site est principalement fait pour les développeurs et il regroupe l'ensemble de composants du site pour standardiser les développements</p>
                 </nav>
                 <ul>

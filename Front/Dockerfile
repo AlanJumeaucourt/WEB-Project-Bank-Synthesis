@@ -19,8 +19,8 @@ RUN npm i react-router-dom --save
 RUN npm i -S bootstrap
 RUN npm install --save echarts
 
-# Construisez l'application ReactJS
-RUN npm run build
+# Construisez l'application ReactJS (uniquement lorceque l'appli sera terminée)
+# RUN npm run build
 
 # Commande pour démarrer l'application
 CMD [ "npm", "start" ]
