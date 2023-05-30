@@ -21,7 +21,7 @@ services:
 
   mariadb:
     image: mariadb
-    container_name: mariadb-bdd
+    container_name: bdd-mariadb
     restart: always
     environment:
       - MYSQL_USER=user
@@ -38,7 +38,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: phpmyadmin-bdd
+    container_name: bdd-phpmyadmin
     restart: always
     environment:
       - PMA_ARBITRARY=1
