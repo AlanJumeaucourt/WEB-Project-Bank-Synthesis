@@ -1,13 +1,11 @@
-# Dockerfile pour le BackEnd (Python)
+FROM python:3.9
 
-# Répertoire de travail dans le conteneur
-WORKDIR /app
+WORKDIR /code
 
-# Installez les dépendances de l'application
-RUN pip install -r requirements.txt
+COPY ./requirements.txt /code/requirements.txt
 
-# Copiez le reste des fichiers de l'application
-COPY . .
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# Commande pour démarrer l'application
-RUN python main.py
+COPY ./app /code/app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8082"]
