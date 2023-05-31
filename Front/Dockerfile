@@ -1,3 +1,4 @@
+# Dockerfile pour le serveur ReactJS utilisant Node.js
 # Utilisez une image de base contenant Node.js
 FROM node:14-alpine
 
@@ -13,11 +14,8 @@ RUN npm install
 # Copiez le reste des fichiers de l'application
 COPY . .
 
-# Construisez l'application ReactJS
-RUN npm run build
-
-# Exposez le port 3000 pour accéder à l'application
-EXPOSE 3000
+# Construisez l'application ReactJS (uniquement lorceque l'appli sera terminée)
+# RUN npm run build
 
 # Commande pour démarrer l'application
 CMD [ "npm", "start" ]
