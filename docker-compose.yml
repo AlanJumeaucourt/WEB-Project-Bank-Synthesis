@@ -14,8 +14,12 @@ services:
     tty: true
 
   python:
-    image: python:3.12.0b1-slim-buster
     container_name: backend-python
+    build: ./Back
+    ports:
+      - '8082:8082'
+    volumes:
+      - ./Back:/app
     networks:
       - reactjs-python
     stdin_open: true
