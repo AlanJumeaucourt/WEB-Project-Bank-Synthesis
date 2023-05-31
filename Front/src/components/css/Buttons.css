@@ -1,0 +1,11 @@
+.circle-btn button {
+    margin: 10px;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+
+.rounded-btn button {
+    border-radius: 12px;
+    margin: 10px;
+}
