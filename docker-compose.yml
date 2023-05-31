@@ -1,20 +1,19 @@
 version: '3'
 
 services:
-  # reactjs:
-  #   container_name: frontend-reactjs
-  #   build: ./Front
-  #   ports: 
-  #     - '3000:3000'
-  #   volumes:
-  #     - ./Front/src/:/app/src
-  #   networks:
-  #     - reactjs-python
-  #   stdin_open: true
-  #   tty: true
+  reactjs:
+    container_name: frontend-reactjs
+    build: ./Front
+    ports: 
+      - '3000:3000'
+    volumes:
+      - ./Front/src/:/app/src
+    networks:
+      - reactjs-python
+    stdin_open: true
+    tty: true
 
   python:
-    # image: python:3.12.0b1-slim-buster
     container_name: backend-python
     build: ./Back
     ports:
@@ -26,37 +25,37 @@ services:
     stdin_open: true
     tty: true
 
-  # mariadb:
-  #   image: mariadb
-  #   container_name: bdd-mariadb
-  #   restart: always
-  #   environment:
-  #     - MYSQL_USER=user
-  #     - MYSQL_PASSWORD=userpassword
-  #     - MYSQL_DATABASE=Client
-  #     - MYSQL_ROOT_PASSWORD=rootpassword
-  #   ports:
-  #     - '3306:3306'
-  #   volumes:
-  #     - ./BDD/Save:/var/lib/mysql
-  #     - ./BDD/init-script.sql:/docker-entrypoint-initdb.d/ddl.sql
-  #   stdin_open: true
-  #   tty: true
+  mariadb:
+    image: mariadb
+    container_name: bdd-mariadb
+    restart: always
+    environment:
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=userpassword
+      - MYSQL_DATABASE=Client
+      - MYSQL_ROOT_PASSWORD=rootpassword
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./BDD/Save:/var/lib/mysql
+      - ./BDD/init-script.sql:/docker-entrypoint-initdb.d/ddl.sql
+    stdin_open: true
+    tty: true
 
-  # phpmyadmin:
-  #   image: phpmyadmin
-  #   container_name: bdd-phpmyadmin
-  #   restart: always
-  #   environment:
-  #     - PMA_ARBITRARY=1
-  #     - PMA_HOST=mariadb
-  #     - PMA_USER=root
-  #     - PMA_PASSWORD=rootpassword
-  #     - PMA_PORT=3306
-  #   ports:
-  #     - '8080:80'
-  #   stdin_open: true
-  #   tty: true
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: bdd-phpmyadmin
+    restart: always
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+      - PMA_USER=root
+      - PMA_PASSWORD=rootpassword
+      - PMA_PORT=3306
+    ports:
+      - '8080:80'
+    stdin_open: true
+    tty: true
 
 networks:
   reactjs-python:
