@@ -43,7 +43,7 @@ docker-compose up
 ## Authors
 
 - [@Zouzzou21](https://github.com/Zouzzou21)
-- [@TheBlick](https://github.com/TheBlick)
+- [@AlanJumeaucourt](https://github.com/AlanJumeaucourt)
 - [@Ryad3](https://github.com/Ryad3)
 - [@Moovaa2 ](https://github.com/Moovaa2 )
 - [@CABANENT](https://github.com/CABANENT)
