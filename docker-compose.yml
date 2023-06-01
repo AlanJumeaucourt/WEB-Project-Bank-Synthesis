@@ -57,6 +57,8 @@ services:
       - PMA_PORT=3306
     ports:
       - '8080:80'
+    networks:
+      - python-mariadb
     stdin_open: true
     tty: true
 
