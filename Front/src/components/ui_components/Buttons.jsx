@@ -12,7 +12,7 @@ class ButtonDefault extends Component {
     }
 
     render() {
-        const { color, icon, circular, rounded, style, children } = this.props
+        const { color, icon, circular, rounded, style, dataToggle, dataTarget, ariaControls, children } = this.props
 
         let btnClasses = "btn btn-plain btn-" + color
         let btnStyle = circular ? " circle-btn" : ""
@@ -20,7 +20,7 @@ class ButtonDefault extends Component {
 
         return (
             <div className={btnStyle}>
-                <button className={btnClasses} onClick={this.handleClick} style={style}>
+                <button className={btnClasses} onClick={this.handleClick} style={style} data-bs-toggle={dataToggle} data-bs-target={dataTarget} aria-controls={ariaControls}>
                     <i className={icon}></i>
                     {children}
                 </button>
@@ -41,8 +41,8 @@ export function CircularButton({ color, icon, style, children }) {
     )
 }
 
-export function RoundedButton({ color, icon, style, children }) {
+export function RoundedButton({ color, icon, style, dataToggle, dataTarget, ariaControls, children }) {
     return (
-        <ButtonDefault color={color} icon={icon} rounded={true} style={style} children={children} />
+        <ButtonDefault color={color} icon={icon} rounded={true} style={style} children={children} dataToggle={dataToggle} dataTarget={dataTarget} ariaControls={ariaControls} />
     )
 }
