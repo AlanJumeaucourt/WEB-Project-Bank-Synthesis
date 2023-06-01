@@ -41,6 +41,8 @@ services:
       - ./BDD/init-script.sql:/docker-entrypoint-initdb.d/ddl.sql
     stdin_open: true
     tty: true
+    networks:
+      - keycloak-db
 
   phpmyadmin:
     image: phpmyadmin
@@ -56,24 +58,40 @@ services:
       - '8080:80'
     stdin_open: true
     tty: true
+    networks:
+      - keycloak-db
 
   keycloak:
     image: quay.io/keycloak/keycloak:20.0.0
     ports:
       - '8081:8080'
+    restart: unless-stopped
     environment:
-      - KEYCLOAK_ADMIN=root
-      - KEYCLOAK_ADMIN_PASSWORD=rootpassword #maybe a way to mask this
-      - KEYCLOAK_LOGLEVEL=DEBUG
+      KEYCLOAK_ADMIN: root
+      KEYCLOAK_ADMIN_PASSWORD: rootpassword #maybe a way to mask this
+      KC_HEALTH_ENABLED: true
+      KC_METRICS_ENABLED: true
+      KC_DB: mariadb
+      KC_DB_URL_HOST: mariadb
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_USERNAME: user
+      KC_DB_PASSWORD: userpassword
+      KC_LOG_LEVEL: INFO,org.infinispan:DEBUG,org.jgroups:DEBUG
     command:
-      - start-dev
+      - start-dev #dev mode
       - --import-realm
     volumes:
       - ./SSO/realm-export.json:/opt/keycloak/data/import/realm.json
+    depends_on:
+      - mariadb
     networks:
       - reactjs-python
+      - keycloak-db
 
 networks:
+  keycloak-db:
+    name: backend-bdd
+    driver: bridge
   reactjs-python:
     name: frontend-backend
     driver: bridge
