@@ -1,17 +1,17 @@
 version: '3'
 
 services:
-  # reactjs:
-  #   container_name: frontend-reactjs
-  #   build: ./Front
-  #   ports: 
-  #     - '3000:3000'
-  #   volumes:
-  #     - ./Front/src/:/app/src
-  #   networks:
-  #     - reactjs-python
-  #   stdin_open: true
-  #   tty: true
+  reactjs:
+    container_name: frontend-reactjs
+    build: ./Front
+    ports: 
+      - '3000:3000'
+    volumes:
+      - ./Front/src/:/app/src
+    networks:
+      - reactjs-python
+    stdin_open: true
+    tty: true
 
   python:
     container_name: backend-python
