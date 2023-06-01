@@ -19,7 +19,7 @@ services:
     ports:
       - '8082:8082'
     volumes:
-      - ./Back:/app
+      - ./Back/app:/code/app
     networks:
       - reactjs-python
     stdin_open: true
