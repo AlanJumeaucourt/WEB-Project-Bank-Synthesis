@@ -654,7 +654,7 @@
       "clientId": "frontendReact",
       "name": "frontendReact",
       "description": "",
-      "rootUrl": "http://172.18.0.3:3000/",
+      "rootUrl": "http://localhost:3000/",
       "adminUrl": "",
       "baseUrl": "",
       "surrogateAuthRequired": false,
@@ -662,9 +662,11 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "*"
+        "http://localhost:3000/*"
       ],
-      "webOrigins": [],
+      "webOrigins": [
+        "http://localhost:3000"
+      ],
       "notBefore": 0,
       "bearerOnly": false,
       "consentRequired": false,

@@ -4,5 +4,5 @@ import { Unauthorized } from "../../views/errors/Unauthorized";
 
 export function LoginRequired({ children }) {
     const { keycloak } = useKeycloak()
-    return keycloak.authenticated ? children : <Unauthorized />
+    return keycloak.authenticated ? children : <Unauthorized keycloak={keycloak} />
 }

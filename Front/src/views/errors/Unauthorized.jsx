@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { Navigate } from "react-router-dom"
 
 export class Unauthorized extends Component {
 
@@ -8,6 +7,7 @@ export class Unauthorized extends Component {
         this.state = { timerVal: 10 } //redirection after 10 seconds
         this.timer = null
         this.tick = this.tick.bind(this)
+        this.login = this.login.bind(this)
     }
 
     componentDidMount() {
@@ -22,8 +22,13 @@ export class Unauthorized extends Component {
         this.setState((state) => ({ timerVal: state.timerVal - 1 }), () => {
             if (this.state.timerVal <= 0) {
                 window.clearInterval(this.timer);
+                this.login()
             }
         });
+    }
+
+    login() {
+        this.props.keycloak.login()
     }
 
     render() {
@@ -35,9 +40,8 @@ export class Unauthorized extends Component {
                         Mais... tu veux pas te connecter d'abord?
                     </p>
                     <p className="lead">
-                        Redirection à la page de <a href="/login" className="link-primary">login</a> dans {this.state.timerVal} seconde{this.state.timerVal > 1 && "s"}
+                        Redirection à la page de <a href="#" className="link-primary" onClick={this.login}>login</a> dans {this.state.timerVal} seconde{this.state.timerVal > 1 && "s"}
                     </p>
-                    {this.state.timerVal <= 0 ? <Navigate to="/login" /> : <></>}
                 </div>
             </div>
         )
