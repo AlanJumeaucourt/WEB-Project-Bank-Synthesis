@@ -4,14 +4,12 @@ class StatusMessage extends Component {
     render() {
         const { color, title, icon, footer, children } = this.props
         return (
-            <div>
-                <div className={"alert alert-dismissible fade show alert-" + color} role="alert">
-                    <h4 className="alert-heading"><i className={icon}></i> {title}</h4>
-                    <p>{children}</p>
-                    <hr />
-                    <p className="mb-0">{footer}</p>
-                    <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+            <div className={"alert alert-dismissible fade show alert-" + color} role="alert">
+                <h4 className="alert-heading"><i className={icon}></i> {title}</h4>
+                <p>{children}</p>
+                <hr />
+                <p className="mb-0">{footer}</p>
+                <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         )
     }

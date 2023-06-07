@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import '../css/Buttons.css'
 
 class ButtonDefault extends Component {
     constructor(props) {
@@ -15,16 +14,14 @@ class ButtonDefault extends Component {
         const { color, icon, circular, rounded, style, dataToggle, dataTarget, ariaControls, children } = this.props
 
         let btnClasses = "btn btn-plain btn-" + color
-        let btnStyle = circular ? " circle-btn" : ""
-        btnStyle += rounded ? " rounded-btn" : ""
+        btnClasses += circular ? " rounded-circle" : ""
+        btnClasses += rounded ? " rounded" : ""
 
         return (
-            <div className={btnStyle}>
-                <button className={btnClasses} onClick={this.handleClick} style={style} data-bs-toggle={dataToggle} data-bs-target={dataTarget} aria-controls={ariaControls}>
-                    <i className={icon}></i>
-                    {children}
-                </button>
-            </div>
+            <button className={btnClasses} onClick={this.handleClick} style={style} data-bs-toggle={dataToggle} data-bs-target={dataTarget} aria-controls={ariaControls}>
+                <i className={icon}></i>
+                {children}
+            </button>
         )
     }
 }
