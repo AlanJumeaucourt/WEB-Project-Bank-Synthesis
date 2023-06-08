@@ -10,6 +10,8 @@ COPY package*.json ./
 
 # Installez les dépendances de l'application
 RUN npm install
+RUN npm install echarts-for-react
+RUN npm install echarts
 
 # Copiez le reste des fichiers de l'application
 COPY . .

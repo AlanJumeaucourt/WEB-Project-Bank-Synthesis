@@ -188,7 +188,7 @@ const FetchPEA = async function()
 }
 const fetchPEA = await FetchExchange()
 
-function ActionAccessPEA() {
+function ActionAccessComptes() {
 
   const [showChartGlobal, setShowChartGlobal] = useState(true);
   const [showChartPEA, setShowChartPEA] = useState(false);
@@ -253,6 +253,52 @@ const handleLEPClick = () => {
   );
 }
 
+function CreditSimulation() {
+  const [remboursement, setRemboursement] = useState(0);
+
+  const handleChangeRemboursement = (e) => {
+    const montantRembourse = parseFloat(e.target.value);
+    setRemboursement(montantRembourse);
+  };
+
+  const maisonStyle = {
+    height: '200px',
+    width: '100%',
+    backgroundColor: 'lightblue',
+    position: 'relative',
+  };
+
+  const eauStyle = {
+    height: '100%',
+    width: `${remboursement}%`,
+    backgroundColor: 'blue',
+    transition: 'width 0.5s ease-in-out',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+  };
+
+  const montantRemboursementText = `Montant de remboursement : ${remboursement}%`;
+
+  return (
+    <div>
+      <h2>Simulateur de remboursement de crédit</h2>
+      <label>
+        Montant de remboursement (%):
+        <input type="number" min="0" max="100" value={remboursement} onChange={handleChangeRemboursement} />
+      </label>
+
+      <div style={maisonStyle}>
+        <div style={eauStyle}></div>
+      </div>
+
+      <p>{montantRemboursementText}</p>
+    </div>
+  );
+}
+
+  
+
 function App() {
   return (
     <div className="App">
@@ -265,7 +311,8 @@ function App() {
         >
         </a>   
 
-        <ActionAccessPEA />
+        <ActionAccessComptes />
+        <CreditSimulation />
 
       </header>
       <body>
@@ -275,3 +322,4 @@ function App() {
 }
 
 export default App;
+
