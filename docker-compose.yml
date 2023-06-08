@@ -75,8 +75,8 @@ services:
     environment:
       KEYCLOAK_ADMIN: root
       KEYCLOAK_ADMIN_PASSWORD: rootpassword #maybe a way to mask this
-      KC_HEALTH_ENABLED: true
-      KC_METRICS_ENABLED: true
+      KC_HEALTH_ENABLED: 'true'
+      KC_METRICS_ENABLED: 'true'
       KC_DB: mariadb
       KC_DB_URL_HOST: mariadb
       KC_DB_URL_DATABASE: keycloak
