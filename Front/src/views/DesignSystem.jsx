@@ -111,7 +111,7 @@ class DesignSystem extends Component {
                                     </Card>
                                     <Stack style={{ height: '400px', width: '500px' }}>
                                         <p>item1</p>
-                                        <p>item2 <InputCheckbox>item2</InputCheckbox></p>
+                                        <InputCheckbox>item2</InputCheckbox>
                                         <SuccessMessage title="item3" footer="item3">item3</SuccessMessage>
                                         <div>
                                             <ButtonPrimary>item4</ButtonPrimary>

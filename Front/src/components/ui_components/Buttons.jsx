@@ -7,7 +7,9 @@ class ButtonDefault extends Component {
     }
 
     handleClick(e) {
-        console.log("click")
+        if (this.props.onClick) {
+            this.props.onClick(e)
+        }
     }
 
     render() {
