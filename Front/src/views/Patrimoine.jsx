@@ -25,6 +25,7 @@ const HomePage = () => {
   
       fetchDataFromAPI();
     }, []);
+}
 
 
 class Patrimoine extends Component {

@@ -22,6 +22,7 @@ services:
       - ./Back/app:/code/app
     networks:
       - reactjs-python
+      - python-mariadb
     stdin_open: true
     tty: true
 
@@ -39,6 +40,8 @@ services:
     volumes:
       - ./BDD/Save:/var/lib/mysql
       - ./BDD/init-script.sql:/docker-entrypoint-initdb.d/ddl.sql
+    networks:
+      - python-mariadb
     stdin_open: true
     tty: true
 
@@ -54,10 +57,15 @@ services:
       - PMA_PORT=3306
     ports:
       - '8080:80'
+    networks:
+      - python-mariadb
     stdin_open: true
     tty: true
 
 networks:
   reactjs-python:
     name: frontend-backend
+    driver: bridge
+  python-mariadb:
+    name: backend
     driver: bridge
