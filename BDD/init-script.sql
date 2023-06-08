@@ -58,3 +58,7 @@ INSERT INTO `cds` (`id`, `vendeur`, `titre_album`, `interprete`, `annee`, `genre
 (22, 'Jack', 'Strange brew', 'Cream', 1983, 'Pop Rock', 7.60),
 (23, 'Jo', 'Live from central park', 'Sheryl Crow', 1999, 'Pop Rock', 8.20),
 (24, 'Tom', 'Persona non grata', 'Urban Dance Squad', 1994, 'Rap', 5.80);
+
+-- create the keycloak DB and give access to user
+CREATE DATABASE IF NOT EXISTS `keycloak`;
+GRANT ALL ON `keycloak`.* TO 'user'@'%';
