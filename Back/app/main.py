@@ -32,3 +32,4 @@ async def comptesSoldecommule(compte_id: int):
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
+
