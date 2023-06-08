@@ -4,7 +4,7 @@ import { ButtonPrimary, CircularButton, RoundedButton } from '../components/ui_c
 import { InputPassword, InputText, InputSelect, InputCheckbox } from '../components/ui_components/Inputs'
 import { SignUpForm } from '../components/ui_components/Forms'
 import { SuccessMessage, WarningMessage, ErrorMessage } from '../components/ui_components/StatusMessage'
-import { Card } from '../components/ui_components/Cards'
+import { Card, Queue, Stack } from '../components/ui_components/Containers'
 import { Drawer } from '../components/ui_components/Drawer'
 
 class DesignSystem extends Component {
@@ -93,30 +93,35 @@ class DesignSystem extends Component {
                             <span>StatusMessage</span>
                             <p>Voici les messages de status utilisables sur le site</p>
                             <div className='mt-2 d-flex flex-column justify-content-around'>
-                                <div>
-                                    <SuccessMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</SuccessMessage>
-                                </div>
-                                <div>
-                                    <WarningMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</WarningMessage>
-                                </div>
-                                <div>
-                                    <ErrorMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</ErrorMessage>
-                                </div>
+                                <SuccessMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</SuccessMessage>
+                                <WarningMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</WarningMessage>
+                                <ErrorMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</ErrorMessage>
                             </div>
                         </div>
                     </li>
                     <li>
                         <div className='mt-5'>
                             <div className='mt-2'>
-                                <span>Cards</span>
-                                <p>Voici les cartes de status utilisables sur le site</p>
-                                <div className='mt-2 d-flex flex-row justify-content-between' style={{ height: '300px' }} >
-                                    <div>
-                                        <Card title="Titre" footer="Footer" header="Header">
-                                            <p className="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, recusandae aspernatur. Doloremque, sed vero? Modi nemo illum, consectetur voluptatum quis, aspernatur delectus eligendi, deserunt praesentium suscipit dolore. Repellat, fugit non.</p>
-                                            <ButtonPrimary>Un Bouton</ButtonPrimary>
-                                        </Card>
-                                    </div>
+                                <span>Containers</span>
+                                <p>Voici les conteneurs utilisables sur le site</p>
+                                <div className='mt-2 d-flex flex-row justify-content-around' style={{ height: '300px' }}>
+                                    <Card title="Titre" footer="Footer" header="Header" style={{ height: '400px', width: '500px' }}>
+                                        <p className="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, recusandae aspernatur. Doloremque, sed vero? Modi nemo illum, consectetur voluptatum quis, aspernatur delectus eligendi, deserunt praesentium suscipit dolore. Repellat, fugit non.</p>
+                                        <ButtonPrimary>Un Bouton</ButtonPrimary>
+                                    </Card>
+                                    <Stack style={{ height: '400px', width: '500px' }}>
+                                        <p>item1</p>
+                                        <p>item2 <InputCheckbox>item2</InputCheckbox></p>
+                                        <SuccessMessage title="item3" footer="item3">item3</SuccessMessage>
+                                        <div>
+                                            <ButtonPrimary>item4</ButtonPrimary>
+                                        </div>
+                                    </Stack>
+                                    <Queue style={{ height: '50px', width: '500px' }}>
+                                        <p>item1</p>
+                                        <p>item2</p>
+                                        <p>item3</p>
+                                    </Queue>
                                 </div>
                             </div>
                         </div>
