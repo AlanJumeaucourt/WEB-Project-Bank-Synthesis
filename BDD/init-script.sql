@@ -59,8 +59,12 @@ INSERT INTO `cds` (`id`, `vendeur`, `titre_album`, `interprete`, `annee`, `genre
 (23, 'Jo', 'Live from central park', 'Sheryl Crow', 1999, 'Pop Rock', 8.20),
 (24, 'Tom', 'Persona non grata', 'Urban Dance Squad', 1994, 'Rap', 5.80);
 
+-- create the keycloak DB and give access to user
+CREATE DATABASE IF NOT EXISTS `keycloak`;
+GRANT ALL ON `keycloak`.* TO 'user'@'%';
 
-# User1 Database to test
+
+-- User1 Database to test
 CREATE SCHEMA IF NOT EXISTS  User1;
 CREATE TABLE User1.Establishments (
   id INT AUTO_INCREMENT PRIMARY KEY,
