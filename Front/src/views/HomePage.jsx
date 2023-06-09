@@ -114,7 +114,7 @@ export function HomePage() {
                         <img
                             src="INSA_Logo.png"
                             alt=""
-                            title="Amazing TCArgent logo"
+                            title="Amazing INSA logo"
                             width="443" //*4,43
                             height="100"></img>
                     </div>
@@ -126,7 +126,7 @@ export function HomePage() {
                         <img
                             src="TCA_Logo.png"
                             alt=""
-                            title="Amazing TCArgent logo"
+                            title="Amazing TCA logo"
                             width="100"
                             height="100"></img>
                     </div>
