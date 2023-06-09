@@ -12,10 +12,19 @@ class InputDefault extends Component {
     }
 
     handleChange(e) {
-        if (this.props.type === "checkbox")
+        if (this.props.type === "checkbox") {
             this.setState({ checked: e.target.checked })
-        else
+            console.log(this.props.onInputChange)
+            if (this.props.onInputChange) {
+                this.props.onInputChange(e.target.checked, e.target.id)
+            }
+        }
+        else {
             this.setState({ input: e.target.value })
+            if (this.props.onInputChange) {
+                this.props.onInputChange(e.target.value, e.target.id)
+            }
+        }
     }
 
     render() {
@@ -44,26 +53,26 @@ class InputDefault extends Component {
     }
 }
 
-export function InputText({ id, placeholder, icon, children }) {
+export function InputText({ id, placeholder, icon, children, onInputChange }) {
     return (
-        <InputDefault id={id} type="text" placeholder={placeholder} icon={icon} children={children} />
+        <InputDefault id={id} type="text" placeholder={placeholder} icon={icon} children={children} onInputChange={onInputChange} />
     )
 }
 
-export function InputPassword({ id, placeholder, children }) {
+export function InputPassword({ id, placeholder, children, onInputChange }) {
     return (
-        <InputDefault id={id} type="password" icon="fa fa-lock" placeholder={placeholder} children={children} />
+        <InputDefault id={id} type="password" icon="fa fa-lock" placeholder={placeholder} children={children} onInputChange={onInputChange} />
     )
 }
 
-export function InputCheckbox({ id, children }) {
+export function InputCheckbox({ id, children, onInputChange }) {
     return (
-        <InputDefault id={id} type="checkbox" children={children} />
+        <InputDefault id={id} type="checkbox" children={children} onInputChange={onInputChange} />
     )
 }
 
-export function InputSelect({ id, icon, options, children }) {
+export function InputSelect({ id, icon, options, children, onInputChange }) {
     return (
-        <InputDefault id={id} icon={icon} options={options} children={children} />
+        <InputDefault id={id} icon={icon} options={options} children={children} onInputChange={onInputChange} />
     )
 }
