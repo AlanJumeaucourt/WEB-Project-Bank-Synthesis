@@ -26,6 +26,47 @@ const Patrimoine = () => {
     return (
       <div>
         <h1>TCArgent HomePage</h1>
+        <Card>
+        <div class="row">
+        <div class="d-flex flex-row"></div>
+        <div class="col-sm-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Patrimoine Total</h5>
+                <p class="card-text">1</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Prévisions : 1 mois</h5>
+                <p class="card-text">2</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Prévisions : 6 mois</h5>
+                <p class="card-text">3.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Prévisions : 1 an</h5>
+                <p class="card-text">4</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            </div>
+        </div>
+        </div>
+        </Card>
         <div style={{height:'1000px', width:'750px'}}>
             <div className='h-50'>
                     <BasicLineChart title='Titre' xData={['lun', 'mar', 'mer', 'jeu', 'ven']} name="legende" yData={[10, 50, 30, 60, 40]} color='red' />
