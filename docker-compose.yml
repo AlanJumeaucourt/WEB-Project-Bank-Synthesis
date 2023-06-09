@@ -42,10 +42,9 @@ services:
       - ./BDD/init-script.sql:/docker-entrypoint-initdb.d/ddl.sql
     networks:
       - python-mariadb
+      - keycloak-db
     stdin_open: true
     tty: true
-    networks:
-      - keycloak-db
 
   phpmyadmin:
     image: phpmyadmin
@@ -61,10 +60,9 @@ services:
       - '8080:80'
     networks:
       - python-mariadb
+      - keycloak-db
     stdin_open: true
     tty: true
-    networks:
-      - keycloak-db
 
   keycloak:
     image: quay.io/keycloak/keycloak:20.0.0

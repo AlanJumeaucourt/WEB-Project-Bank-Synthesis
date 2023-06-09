@@ -1,6 +1,7 @@
 from typing import Union
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.Endpoints.hello import hello as hello_from_api
 from app.Endpoints.accounts import list_accounts
@@ -9,6 +10,13 @@ from app.Endpoints.accounts import get_account_balance_cumulative
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def read_root():
