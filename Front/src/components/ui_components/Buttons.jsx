@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class ButtonDefault extends Component {
     constructor(props) {
         super(props)
-        this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     handleClick(e) {
@@ -28,20 +28,20 @@ class ButtonDefault extends Component {
     }
 }
 
-export function ButtonPrimary({ icon, style, children }) {
+export function ButtonPrimary({ icon, style, onClick, children }) {
     return (
-        <ButtonDefault color="primary" icon={icon} style={style} children={children} />
+        <ButtonDefault color="primary" icon={icon} style={style} onClick={onClick} children={children} />
     )
 }
 
-export function CircularButton({ color, icon, style, children }) {
+export function CircularButton({ color, icon, onClick, style, children }) {
     return (
-        <ButtonDefault color={color} icon={icon} circular={true} style={style} children={children} />
+        <ButtonDefault color={color} icon={icon} circular={true} style={style} onClick={onClick} children={children} />
     )
 }
 
-export function RoundedButton({ color, icon, style, dataToggle, dataTarget, ariaControls, children }) {
+export function RoundedButton({ color, icon, onClick, style, dataToggle, dataTarget, ariaControls, children }) {
     return (
-        <ButtonDefault color={color} icon={icon} rounded={true} style={style} children={children} dataToggle={dataToggle} dataTarget={dataTarget} ariaControls={ariaControls} />
+        <ButtonDefault color={color} icon={icon} rounded={true} style={style} onClick={onClick} children={children} dataToggle={dataToggle} dataTarget={dataTarget} ariaControls={ariaControls} />
     )
 }

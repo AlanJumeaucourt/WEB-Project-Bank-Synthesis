@@ -12,7 +12,7 @@ export const Router = () => {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/design-system" element={<LoginRequired><DesignSystem /></LoginRequired>} />
-                <Route path="/imports" element={<LoginRequired><Imports /></LoginRequired>} />
+                <Route path="/imports" element={<Imports />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
         </BrowserRouter>
