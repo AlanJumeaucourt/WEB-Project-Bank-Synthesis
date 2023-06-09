@@ -57,6 +57,16 @@ export function HomePage() {
                         Nous sommes heureux de 
                     </body>
                 </div>
+                <div>
+                    <tr>
+                        <td><a href='https://github.com/Zouzzou21/WEB-Project-Bank-Synthesis/issues'>Contact US</a></td>
+                        <td><a href='https://github.com/Zouzzou21/WEB-Project-Bank-Synthesis'>GitHub</a></td>
+                        
+                    </tr>
+
+                    
+
+                </div>
             </div>
         )
 }
