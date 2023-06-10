@@ -18,7 +18,9 @@ export function HomePage() {
 
     return (
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" data-bs-theme="dark">
+            
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light" data-bs-theme="dark">
+                
                 <img
                     src="TCArgent_Logo.png"
                     alt=""
@@ -27,29 +29,6 @@ export function HomePage() {
                     height="100"></img>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
-                        </li>
-                    </ul>
-                </div>
                 <div className='mt-2 w-100'>
                     <ButtonPrimary
                         icon="fa fa-user-circle-o"
@@ -68,10 +47,10 @@ export function HomePage() {
                         style={{ width: "inherit" }}
                         onClick={logout}> Log Out</ButtonPrimary>
                 </div>
+                </div>
             </nav>
-            <tr>
-                <td className='p-2'>
-                    <Drawer id="drawer">
+            <div>
+            <Drawer id="drawer">
                         <div className='w-100'>
                             <div className='mt-2 w-100'>
                                 <ButtonPrimary
@@ -93,11 +72,16 @@ export function HomePage() {
                             </div>
                         </div>
                     </Drawer>
+            <tr>
+                <td className='p-2'>
+                    
                 </td>
                 <td>
                     <h1>TCArgent</h1>
                 </td>
             </tr>
+            </div>
+
 
             <div>
                 <h2>Bienvenue sur TCArgent</h2>
@@ -107,7 +91,6 @@ export function HomePage() {
                     Nous sommes heureux de
                 </body>
             </div>
-
 
                 <footer class="py-4 bg-dark flex-shrink-0 bottom-0">
                     <div class="position-absolute start-0 p-3">
