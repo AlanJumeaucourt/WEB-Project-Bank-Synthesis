@@ -99,7 +99,15 @@ export function PieEmptySpace({data, names}) {
    return <EchartComponent option={option}></EchartComponent>
 }
 
-export function PieHalf() {
+export function PieHalf({ data, names }) {
+  let values = [];
+  data.forEach((el, index) => {
+    values.push({
+      value: el,
+      name: names[index]
+    });
+  });
+
   const option = {
     tooltip: {
       trigger: 'item'
@@ -126,14 +134,10 @@ export function PieHalf() {
           }
         },
         data: [
-          { value: 3000, name: 'PEA' },
-          { value: 1600, name: 'Livret A' },
-          { value: 1700, name: 'Livret Jeune' },
-          { value: 1400, name: 'PEL' },
-          { value: 1200, name: 'Compte Courant' },
+          ...values,
           {
-            // make an record to fill the bottom 50%
-            value: 3000 + 1600 + 1700 + 1400 + 1200,
+            // make a record to fill the bottom 50%
+            value: values.reduce((acc, curr) => acc + curr.value, 0),
             itemStyle: {
               // stop the chart from rendering this piece
               color: 'none',
@@ -149,8 +153,8 @@ export function PieHalf() {
       }
     ]
   };
-    
- return <EchartComponent option={option}></EchartComponent>
+
+  return <EchartComponent option={option}></EchartComponent>;
 }
 
 export function PieFull({data, names}) {

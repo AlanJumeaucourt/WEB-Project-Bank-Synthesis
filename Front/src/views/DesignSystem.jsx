@@ -105,7 +105,7 @@ class DesignSystem extends Component {
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <PieHalf/>
+                                    <PieHalf data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} />
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
