@@ -96,12 +96,12 @@ class DesignSystem extends Component {
 
                             <div className='mt-2 d-flex flex-row justify-content-between' style={{ height: '300px' }}>
 
-                            <div className='h-100' style={{ width: '300px' }} >
+                                <div className='h-100' style={{ width: '300px' }} >
                                     <PieEmpty data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} />
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <PieEmptySpace/>
+                                    <PieEmptySpace data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} />
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
@@ -109,11 +109,11 @@ class DesignSystem extends Component {
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <PieFull/>
+                                    <PieFull data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} />
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <TreeMap/>
+                                    <TreeMap data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} />
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >

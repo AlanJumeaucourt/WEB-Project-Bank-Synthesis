@@ -48,7 +48,15 @@ export function PieEmpty({data, names}) {
    return <EchartComponent option={option}></EchartComponent>
 }
 
-export function PieEmptySpace() {
+export function PieEmptySpace({data, names}) {
+  let values = [] 
+  data.forEach((el, index)=>{
+    values.push({
+      value: el,
+      name: names[index]
+    })
+  })
+
   const option = {
     tooltip: {
       trigger: 'item'
@@ -59,7 +67,7 @@ export function PieEmptySpace() {
     },
     series: [
       {
-        name: 'Access From',
+        name: 'Réparition des comptes',
         type: 'pie',
         radius: ['40%', '70%'],
         avoidLabelOverlap: false,
@@ -75,25 +83,20 @@ export function PieEmptySpace() {
         emphasis: {
           label: {
             show: true,
-            fontSize: 40,
+            fontSize: 25,
             fontWeight: 'bold'
           }
         },
+      
         labelLine: {
           show: false
         },
-        data: [
-          { value: 3000, name: 'PEA' },
-          { value: 1600, name: 'Livret A' },
-          { value: 1700, name: 'Livret Jeune' },
-          { value: 1400, name: 'PEL' },
-          { value: 1200, name: 'Compte Courant' }
-        ]
+        data: values
       }
     ]
   };
-    
- return <EchartComponent option={option}></EchartComponent>
+      
+   return <EchartComponent option={option}></EchartComponent>
 }
 
 export function PieHalf() {
@@ -150,37 +153,53 @@ export function PieHalf() {
  return <EchartComponent option={option}></EchartComponent>
 }
 
-export function PieFull() {
+export function PieFull({data, names}) {
+  let values = [] 
+  data.forEach((el, index)=>{
+    values.push({
+      value: el,
+      name: names[index]
+    })
+  })
+
   const option = {
     tooltip: {
       trigger: 'item'
     },
     legend: {
       orient: 'vertical',
-      left: 'left'
+      left: 'center'
     },
     series: [
       {
-        name: 'Access From',
+        name: 'Réparition des comptes',
         type: 'pie',
         radius: '50%',
-        data: [
-          { value: 3000, name: 'PEA' },
-          { value: 1600, name: 'Livret A' },
-          { value: 1700, name: 'Livret Jeune' },
-          { value: 1400, name: 'PEL' },
-          { value: 1200, name: 'Compte Courant' }
-        ],
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 10,
+          borderColor: '#fff',
+          borderWidth: 2
+        },
+        label: {
+          show: false,
+          position: 'center'
+        },
         emphasis: {
           itemStyle: {
             shadowBlur: 10,
             shadowOffsetX: 0,
             shadowColor: 'rgba(0, 0, 0, 0.5)'
           }
-        }
+        },
+      
+        labelLine: {
+          show: false
+        },
+        data: values
       }
     ]
   };
-    
- return <EchartComponent option={option}></EchartComponent>
+      
+   return <EchartComponent option={option}></EchartComponent>
 }
