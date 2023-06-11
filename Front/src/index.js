@@ -8,7 +8,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import dotenv from 'dotenv';
 import { ReactKeycloakProvider } from '@react-keycloak/web';
-import { keycloak } from './Keycloak';
+import { keycloak } from './services/Keycloak';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 dotenv.config(); //env vars
