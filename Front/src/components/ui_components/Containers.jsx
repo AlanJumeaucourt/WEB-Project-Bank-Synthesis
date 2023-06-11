@@ -1,8 +1,18 @@
 import React, { Children } from "react";
 
-function ContainerDefault({ direction, style, children }) {
+export function Stack({ style, children }) {
     return (
-        <div className={'d-flex justify-content-around container border rounded flex-' + direction} style={style}>
+        <div className='d-flex justify-content-around container border rounded flex-column' style={style}>
+            {Children.map(children, (child) => {
+                return <div className="mt-2 bg-light border rounded">{child}</div>
+            })}
+        </div>
+    )
+}
+
+export function Queue({ style, children }) {
+    return (
+        <div className='d-flex justify-content-around container border rounded flex-row' style={style}>
             {Children.map(children, (child) => {
                 return <div className="my-auto bg-light border rounded">{child}</div>
             })}
@@ -10,32 +20,25 @@ function ContainerDefault({ direction, style, children }) {
     )
 }
 
-
-export function Stack({ style, children }) {
-    return (
-        <ContainerDefault direction="column" style={style} children={children} />
-    )
-}
-
-export function Queue({ style, children }) {
-    return (
-        <ContainerDefault direction="row" style={style} children={children} />
-    )
-}
-
 export function Card({ style, title, header, footer, children }) {
     return (
         <div className="card text-center" style={style}>
-            <div className="card-header">
-                {header}
-            </div>
+            {
+                header ?
+                    <div className="card-header">
+                        {header}
+                    </div> : <></>
+            }
             <div className="card-body">
-                <h5 className="card-title">{title}</h5>
+                {title ? <h5 className="card-title">{title}</h5> : <></>}
                 {children}
             </div>
-            <div className="card-footer text-muted">
-                {footer}
-            </div>
+            {
+                footer ?
+                    <div className="card-footer text-muted">
+                        {footer}
+                    </div> : <></>
+            }
         </div>
     )
 }

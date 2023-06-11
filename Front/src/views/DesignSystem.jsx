@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BasicLineChart, StackedAreaChart, SmoothedLineChart, SmoothedAreaChart, BasicAreaChart } from '../components/charts/Lines'
-import { ButtonPrimary, CircularButton, RoundedButton } from '../components/ui_components/Buttons'
+import { ButtonPrimary, CircularButton, RoundedButton, Tooltip } from '../components/ui_components/Buttons'
 import { InputPassword, InputText, InputSelect, InputCheckbox } from '../components/ui_components/Inputs'
 import { SignUpForm } from '../components/ui_components/Forms'
 import { SuccessMessage, WarningMessage, ErrorMessage } from '../components/ui_components/StatusMessage'
@@ -38,6 +38,9 @@ class DesignSystem extends Component {
                                 </div>
                                 <div>
                                     <CircularButton color="primary" icon="fa fa-camera fa-2x" />
+                                </div>
+                                <div>
+                                    <Tooltip title="titre de l'infobulle">ceci est une infobulle</Tooltip>
                                 </div>
                             </div>
                         </div>
