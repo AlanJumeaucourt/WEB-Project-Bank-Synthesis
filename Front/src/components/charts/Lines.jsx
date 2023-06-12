@@ -73,6 +73,11 @@ export function StackedAreaChart({ title, xData, names, yDatas, areaStyles, smoo
             }
         },
         legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            right: '10',
+            top: '20',
+            bottom: '20',
             data: []
         },
         toolbox: {
