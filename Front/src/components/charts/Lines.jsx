@@ -2,7 +2,7 @@ import React from "react"
 import { EchartComponent } from "./EchartComponent."
 
 
-export function BasicLineChart({ title, xData, name, yData, color, style }) {
+export function BasicLineChart({ title, xData, name, yData, color, features, style }) {
     title = title ? title : 'Basic Line Chart'
     return StackedAreaChart({
         title: title,
@@ -12,11 +12,12 @@ export function BasicLineChart({ title, xData, name, yData, color, style }) {
         smooths: false,
         areaStyles: false,
         colors: [color],
-        style: style
+        style: style,
+        features: features
     })
 }
 
-export function SmoothedLineChart({ title, xData, name, yData, color, style }) {
+export function SmoothedLineChart({ title, xData, name, yData, color, features, style }) {
     title = title ? title : 'Smoothed Line Chart'
     return StackedAreaChart({
         title: title,
@@ -26,11 +27,12 @@ export function SmoothedLineChart({ title, xData, name, yData, color, style }) {
         smooths: true,
         areaStyles: false,
         colors: [color],
-        style: style
+        style: style,
+        features: features
     })
 }
 
-export function BasicAreaChart({ title, xData, name, yData, color, style }) {
+export function BasicAreaChart({ title, xData, name, yData, color, features, style }) {
     title = title ? title : 'Basic Area Chart'
     return StackedAreaChart({
         title: title,
@@ -40,11 +42,12 @@ export function BasicAreaChart({ title, xData, name, yData, color, style }) {
         smooths: false,
         areaStyles: true,
         colors: [color],
-        style: style
+        style: style,
+        features: features
     })
 }
 
-export function SmoothedAreaChart({ title, xData, name, yData, color, style }) {
+export function SmoothedAreaChart({ title, xData, name, yData, color, features, style }) {
     title = title ? title : 'Smoothed Area Chart'
     return StackedAreaChart({
         title: title,
@@ -54,11 +57,12 @@ export function SmoothedAreaChart({ title, xData, name, yData, color, style }) {
         smooths: true,
         areaStyles: true,
         colors: [color],
-        style: style
+        style: style,
+        features: features
     })
 }
 
-export function StackedAreaChart({ title, xData, names, yDatas, areaStyles, smooths, colors, style }) {
+export function StackedAreaChart({ title, xData, names, yDatas, areaStyles, smooths, colors, features, style }) {
     let option = {
         title: {
             text: 'Stacked Area Chart'
@@ -82,7 +86,11 @@ export function StackedAreaChart({ title, xData, names, yDatas, areaStyles, smoo
         },
         toolbox: {
             feature: {
-                saveAsImage: {}
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                restore: null,
+                saveAsImage: null
             }
         },
         grid: {
@@ -103,6 +111,14 @@ export function StackedAreaChart({ title, xData, names, yDatas, areaStyles, smoo
                 type: 'value'
             }
         ],
+        dataZoom: [
+            {
+                type: 'inside',
+                start: 0,
+                end: 50
+            },
+            {}
+        ],
         series: [],
     }
 
@@ -112,6 +128,11 @@ export function StackedAreaChart({ title, xData, names, yDatas, areaStyles, smoo
     option.title.text = title ? title : option.title.text
     option.legend.data = names
     option.xAxis[0].data = xData
+
+    if (features) {
+        option.toolbox.feature.restore = features.restore ? features.restore : null
+        option.toolbox.feature.saveAsImage = features.saveAsImage ? features.saveAsImage : null
+    }
 
     yDatas.forEach((element, index) => {
         option.series.push(

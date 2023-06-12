@@ -6,7 +6,8 @@ class InputDefault extends Component {
         super(props)
         this.state = {
             input: '',
-            checked: false
+            checked: false,
+            file: null
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -14,9 +15,13 @@ class InputDefault extends Component {
     handleChange(e) {
         if (this.props.type === "checkbox") {
             this.setState({ checked: e.target.checked })
-            console.log(this.props.onInputChange)
             if (this.props.onInputChange) {
                 this.props.onInputChange(e.target.checked, e.target.id)
+            }
+        } else if (this.props.type === "file") {
+            this.setState({ file: e.target.files[0] })
+            if (this.props.onInputChange) {
+                this.props.onInputChange(e.target.files[0], e.target.id)
             }
         }
         else {
@@ -37,7 +42,7 @@ class InputDefault extends Component {
                     {
                         !options ?
                             type !== "checkbox" ?
-                                <input value={this.state.text} id={id} name={id} className="form-control" placeholder={placeholder} type={type} onChange={this.handleChange} />
+                                <input value={this.state.text} id={id} name={id} className="form-control" placeholder={placeholder} type={type} onChange={this.handleChange} accept={type === "file" ? ".csv" : ""} />
                                 : <input value={this.state.checked} id={id} name={id} className="form-check-input" type="checkbox" onChange={this.handleChange} />
                             : <select onChange={this.handleChange}>
                                 {options.map((el) => {
@@ -74,5 +79,11 @@ export function InputCheckbox({ id, children, onInputChange }) {
 export function InputSelect({ id, icon, options, children, onInputChange }) {
     return (
         <InputDefault id={id} icon={icon} options={options} children={children} onInputChange={onInputChange} />
+    )
+}
+
+export function InputFile({ id, children, onInputChange }) {
+    return (
+        <InputDefault id={id} type="file" icon="fa fa-file" children={children} onInputChange={onInputChange} />
     )
 }

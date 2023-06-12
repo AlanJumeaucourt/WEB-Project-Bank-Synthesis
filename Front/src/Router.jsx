@@ -6,6 +6,7 @@ import { DesignSystem } from './views/DesignSystem'
 import { Patrimoine } from './views/Patrimoine'
 
 import { LoginRequired } from './components/auth/LoginRequired'
+import { Imports } from './views/Imports'
 
 export const Router = () => {
     return (
@@ -15,6 +16,7 @@ export const Router = () => {
                 <Route path="/design-system" element={<DesignSystem />} />
                 <Route path="/Patrimoine" element={<Patrimoine />} />
                 <Route path="/design-system" element={<LoginRequired><DesignSystem /></LoginRequired>} />
+                <Route path="/imports" element={<LoginRequired><Imports /></LoginRequired>} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
         </BrowserRouter>
