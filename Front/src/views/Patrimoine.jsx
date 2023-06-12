@@ -29,8 +29,47 @@ const Patrimoine = () => {
       <div>
         <h1>TCArgent Patrimoine</h1>
         <p className='p-3'>Voici votre page resumant votre patrimoine au fil du temps</p>
-
-
+        <Card>
+        <div class="row">
+        <div class="d-flex flex-row"></div>
+        <div class="col-sm-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Patrimoine Total</h5>
+                <p class="card-text">1</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Prévisions : 1 mois</h5>
+                <p class="card-text">2</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Prévisions : 6 mois</h5>
+                <p class="card-text">3.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Prévisions : 1 an</h5>
+                <p class="card-text">4</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            </div>
+        </div>
+        </div>
+        </Card>
 
         <div style={{height: "500px", width: "100%"}} className='d-flex flex-row justify-content-between'>
           <StackedAreaChart title='Graph patrimoine tout compte' xData={['lun', 'mar', 'mer', 'jeu', 'ven']} names={['legende1', 'legende2', 'legende3', 'legende4']}
