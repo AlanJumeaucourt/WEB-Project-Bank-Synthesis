@@ -24,7 +24,26 @@ const getHello = () => {
     instanceAxios.get("/").then((r) => { console.log(r) }).catch((e) => { console.log(e) })
 }
 
+const getSoldePeriode = () => {
+  return instanceAxios.get("/comptes/1/soldeperiode")
+    .then((response) => {
+      // Récupérez les données de la réponse
+      const data = response.data;
+
+      // Traitez les données si nécessaire
+      // ...
+
+      // Retournez les données
+      return data;
+    })
+    .catch((error) => {
+      console.log(error);
+      return null; // Retournez null ou une valeur par défaut en cas d'erreur
+    });
+};
 export const Axios = {
     init,
-    getHello
+    getHello,
+    getSoldePeriode
+
 }

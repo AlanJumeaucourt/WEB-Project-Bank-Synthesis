@@ -4,27 +4,34 @@ import { useEffect, useState } from "react";
 import { Card, Stack } from '../components/ui_components/Containers';
 import { Queue } from '../components/ui_components/Containers';
 import { ButtonPrimary, CircularButton, RoundedButton } from '../components/ui_components/Buttons'
+import { Axios } from '../services/Axios'
 
 const Patrimoine = () => {
-    const [priceData, setPriceData] = useState(null);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch('http://localhost:8082/comptes/1/soldeperiode');
-          const data = await response.json();
-          console.log(data)
-          const priceUsd = Object.keys(data)
-          const dates = Object.values(data)
-          setPriceData({ priceUsd, dates });
-        } catch (error) {
-          console.log('Erreur :', error);
-        }
-      };
-  
-      fetchData();
-    }, []);
-  
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    Axios.getSoldePeriode()
+      .then((response) => {
+        setData(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const prepareChartData = () => {
+    // Traitez les données pour les préparer au format du graphique
+    // Assurez-vous d'adapter ces étapes en fonction de la structure des données retournées par l'API
+    const xData = Object.keys(data);
+    const yData = Object.values(data);
+
+    return { xData, yData };
+  };
+
+  const { xData, yData } = prepareChartData();
+
+
+
     return (
       <div>
         <h1>TCArgent Patrimoine</h1>
@@ -79,7 +86,7 @@ const Patrimoine = () => {
         <div style={{height: "500px", width: "100%"}} className='d-flex flex-row justify-content-between'>
             <div className='h-100 w-75 p-3'>
                 <div className='h-100 w-100'>
-                    <BasicLineChart title='1 compte' xData={['lun', 'mar', 'mer', 'jeu', 'ven']} name="legende" yData={[10, 50, 30, 60, 40]} color='red' />
+                  <BasicLineChart title='Titre' xData={xData} name="legende" yData={yData} color='red' />
                 </div>
             </div>
             <div className='w-25 h-100 p-2' >
