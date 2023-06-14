@@ -34,13 +34,22 @@ const Patrimoine = () => {
   const prepareChartData = () => {
     // Traitez les données pour les préparer au format du graphique
     // Assurez-vous d'adapter ces étapes en fonction de la structure des données retournées par l'API
-    const xData = Object.keys(data);
-    const yData = Object.values(data);
+    //const xData = Object.keys(data);
+    //const yData = Object.values(data);
 
     return { xData, yData };
   };
 
   const { xData, yData } = prepareChartData();
+  
+  const CardData = ({ number }) => {
+    const n = parseInt(number)
+    return (
+      <div className="card">
+        <h2 className={"text-" + (n > 0 ? "success" : "danger")}>{number}</h2>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -52,23 +61,23 @@ const Patrimoine = () => {
         <div class="row">
           <div class="d-flex flex-row"></div>
           <div class="col-sm-3">
-            <Card title="Patrimoine Total">
-              <p class="card-text">1</p>
+            <Card title="Patrimoine Total ">
+            <CardData number={42000} />
             </Card>
           </div>
           <div class="col-sm-3">
             <Card title="Prévisions : 1 mois">
-              <p class="card-text">2</p>
+            <CardData number={420} />
             </Card>
           </div>
           <div class="col-sm-3">
             <Card title="Prévisions : 6 mois">
-              <p class="card-text">3</p>
+            <CardData number={-1000} />
             </Card>
           </div>
           <div class="col-sm-3">
             <Card title="Prévisions : 12 mois">
-              <p class="card-text">4</p>
+            <CardData number={1800} />
             </Card>
           </div>
         </div>
