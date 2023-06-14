@@ -35,8 +35,8 @@ const Patrimoine = () => {
   const prepareChartData = () => {
     // Traitez les données pour les préparer au format du graphique
     // Assurez-vous d'adapter ces étapes en fonction de la structure des données retournées par l'API
-    //const xData = Object.keys(data);
-    //const yData = Object.values(data);
+    const xData = Object.keys(data);
+    const yData = Object.values(data);
 
     return { xData, yData };
   };
