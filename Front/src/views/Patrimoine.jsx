@@ -96,8 +96,8 @@ const Patrimoine = () => {
       <div style={{ height: "500px", width: "100%" }}>
         Affichage d'un compte courant :
         <Grid container spacing={1}>
-          <Grid xs={10} md={10}>
-            Mon jolie graphique
+          <Grid xs={12} md={10}>
+            <h2>Mon jolie graphique</h2>
             <BasicLineChart
               title="Titre"
               xData={xData}
@@ -106,7 +106,7 @@ const Patrimoine = () => {
               color="red"
             />
           </Grid>
-          <Grid xs={2} md={2}>
+          <Grid xs={12} md={2}>
             <Card
               title="Comptes à afficher :"
               className="p-2"
@@ -138,14 +138,14 @@ const Patrimoine = () => {
                 </div>
               </Stack>
 
+              <br></br>
               <div
                 className="rounded p-1"
                 style={{
                   position: "relative",
                   bottom: "1%",
                   background: "#D3D3D3",
-                  width: "150px",
-                  float: "right",
+                  float: "center",
                 }}
               >
                 Type de graphique :
