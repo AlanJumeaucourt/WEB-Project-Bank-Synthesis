@@ -2,26 +2,36 @@ import React from "react";
 import { EchartComponent } from "./EchartComponent.";
 
 //just a function because we will just do a render 
-export function PieEmpty({data, names}) {
-  let values = [] 
-  data.forEach((el, index)=>{
+
+export function prepareData(data, names) {
+  let values = [];
+  data.forEach((el, index) => {
     values.push({
       value: el,
       name: names[index]
-    })
-  })
+    });
+  });
+  return values;
+}
+
+export function PieEmpty({data, names, titre, subtitle}) {
+  const values = prepareData(data, names);
 
   const option = {
+    title: {
+      text: titre,
+      left: 'center'
+    }, 
     tooltip: {
       trigger: 'item'
     },
     legend: {
-      top: '5%',
+      top: '10%',
       left: 'center'
     },
     series: [
       {
-        name: 'Réparition des comptes',
+        name: subtitle,
         type: 'pie',
         radius: ['40%', '70%'],
         avoidLabelOverlap: false,
@@ -48,26 +58,24 @@ export function PieEmpty({data, names}) {
    return <EchartComponent option={option}></EchartComponent>
 }
 
-export function PieEmptySpace({data, names}) {
-  let values = [] 
-  data.forEach((el, index)=>{
-    values.push({
-      value: el,
-      name: names[index]
-    })
-  })
+export function PieEmptySpace({data, names, titre, subtitle}) {
+  const values = prepareData(data, names);
 
   const option = {
+    title: {
+      text: titre,
+      left: 'center'
+    },
     tooltip: {
       trigger: 'item'
     },
     legend: {
-      top: '5%',
+      top: '10%',
       left: 'center'
     },
     series: [
       {
-        name: 'Réparition des comptes',
+        name: subtitle,
         type: 'pie',
         radius: ['40%', '70%'],
         avoidLabelOverlap: false,
@@ -99,28 +107,24 @@ export function PieEmptySpace({data, names}) {
    return <EchartComponent option={option}></EchartComponent>
 }
 
-export function PieHalf({ data, names }) {
-  let values = [];
-  data.forEach((el, index) => {
-    values.push({
-      value: el,
-      name: names[index]
-    });
-  });
+export function PieHalf({ data, names, titre, subtitle}) {
+  const values = prepareData(data, names);
 
   const option = {
+    title: {
+      text: titre,
+      left: 'center'
+    },
     tooltip: {
       trigger: 'item'
     },
     legend: {
-      top: '5%',
+      top: '10%',
       left: 'center',
-      // doesn't perfectly work with our tricks, disable it
-      selectedMode: false
     },
     series: [
       {
-        name: 'Access From',
+        name: subtitle,
         type: 'pie',
         radius: ['40%', '70%'],
         center: ['50%', '70%'],
@@ -157,26 +161,25 @@ export function PieHalf({ data, names }) {
   return <EchartComponent option={option}></EchartComponent>;
 }
 
-export function PieFull({data, names}) {
-  let values = [] 
-  data.forEach((el, index)=>{
-    values.push({
-      value: el,
-      name: names[index]
-    })
-  })
+export function PieFull({data, names, titre, subtitle}) {
+  const values = prepareData(data, names);
 
   const option = {
+    title: {
+      text: titre,
+      left: 'center',
+    },
     tooltip: {
       trigger: 'item'
     },
     legend: {
-      orient: 'vertical',
-      left: 'center'
+      top: '10%',
+      left: 'center',
+      // doesn't perfectly work with our tricks, disable it
     },
     series: [
       {
-        name: 'Réparition des comptes',
+        name: subtitle,
         type: 'pie',
         radius: '50%',
         avoidLabelOverlap: false,

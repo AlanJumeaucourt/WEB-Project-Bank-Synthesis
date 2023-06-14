@@ -11,8 +11,6 @@ import { PieEmpty, PieEmptySpace, PieHalf, PieFull } from '../components/charts/
 import { TreeMap } from '../components/charts/TreeMap'
 import { CreditSimulation } from '../components/charts/CreditSimulation'
 
-
-
 class DesignSystem extends Component {
     render() {
         return (
@@ -97,23 +95,23 @@ class DesignSystem extends Component {
                             <div className='mt-2 d-flex flex-row justify-content-between' style={{ height: '300px' }}>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <PieEmpty data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} />
+                                    <PieEmpty data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai' />
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <PieEmptySpace data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} />
+                                    <PieEmptySpace data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai' />
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <PieHalf data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} />
+                                    <PieHalf data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai'/>
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <PieFull data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} />
+                                    <PieFull data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai'/>
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <TreeMap data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} />
+                                    <TreeMap data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='essai'/>
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
