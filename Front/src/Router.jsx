@@ -10,7 +10,7 @@ export const Router = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/design-system" element={<DesignSystem />} />
+                <Route path="/design-system" element={<LoginRequired><DesignSystem /></LoginRequired>} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
         </BrowserRouter>
