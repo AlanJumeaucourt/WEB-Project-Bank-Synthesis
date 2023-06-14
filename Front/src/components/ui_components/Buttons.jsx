@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, useRef, useEffect } from "react";
+import { Tooltip as BsToolTip } from "bootstrap";
 
 class ButtonDefault extends Component {
     constructor(props) {
@@ -43,5 +44,29 @@ export function CircularButton({ color, icon, onClick, style, children }) {
 export function RoundedButton({ color, icon, onClick, style, dataToggle, dataTarget, ariaControls, children }) {
     return (
         <ButtonDefault color={color} icon={icon} rounded={true} style={style} onClick={onClick} children={children} dataToggle={dataToggle} dataTarget={dataTarget} ariaControls={ariaControls} />
+    )
+}
+
+export function Tooltip({ title, placement, children }) {
+
+    let content = title ? `<h5>${title}</h5>` : ""
+    content += `<p>${children}</p>`
+
+    const tooltipRef = useRef()
+
+    useEffect(() => {
+        new BsToolTip(tooltipRef.current, {
+            title: content,
+            placement: placement ? placement : 'top',
+            trigger: 'hover',
+            html: true
+        })
+    })
+
+    return (
+        <button type="button" ref={tooltipRef}>
+            <i class="fa fa-question-circle" aria-hidden="true"></i>
+            <span class="sr-only">Aide</span>
+        </button>
     )
 }
