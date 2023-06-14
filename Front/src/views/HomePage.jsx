@@ -1,18 +1,13 @@
 import React, { Children, Component } from 'react'
 // import './asset/HomePage.css'
 import { useKeycloak } from "@react-keycloak/web";
-import { NavBar, HomeNavBar } from '../components/bars/NavBar'
+import { HomeNavBar } from '../components/bars/NavBar'
 import { Footer } from '../components/bars/Footer'
-import '../components/bars/Bars.css'
 
 export function HomePage() {
-
     return (
-
-        <div>
-            {/* <HomeNavBar></HomeNavBar> */}
-
-            <NavBar></NavBar>
+        <div
+            <HomeNavBar/>
 
             <div class="container">
                 {/*<div class="row">
@@ -75,8 +70,7 @@ export function HomePage() {
 
             </div>
 
-            <Footer></Footer>
-
+            <Footer/>
         </div >
     )
 }
