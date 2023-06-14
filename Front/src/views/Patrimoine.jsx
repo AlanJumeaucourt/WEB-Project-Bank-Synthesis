@@ -6,6 +6,7 @@ import {
   SmoothedAreaChart,
   BasicAreaChart,
 } from "../components/charts/Lines";
+import { TreeMap } from "../components/charts/TreeMap";
 import { useEffect, useState } from "react";
 import { Card, Stack } from "../components/ui_components/Containers";
 import { Queue } from "../components/ui_components/Containers";
@@ -171,7 +172,27 @@ const Patrimoine = () => {
             </Card>
           </Grid>
         </Grid>
+
+        
+        <div style={{ height: "500px", width: "100%" }}>
+        Affichage d'un compte courant :
+        <Grid container spacing={1}>
+          <Grid xs={12} md={10}>
+            <h2>Mon jolie graphique</h2>
+            <TreeMap
+          data={[1500, 2000, 1000]}
+          names={["PEA", "LEP", "Livret A"]}
+          titre="essai"
+        />
+          </Grid>
+          
+          </Grid>
+          </div>
+                <div className="h-100" style={{ width: "300px" }}>
+
       </div>
+      </div>
+    
     </div>
   );
 };
