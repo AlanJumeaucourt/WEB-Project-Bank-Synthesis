@@ -10,6 +10,8 @@ services:
       - ./Front/src/:/app/src
     networks:
       - reactjs-python
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     stdin_open: true
     tty: true
 
@@ -43,10 +45,9 @@ services:
       - ./BDD/init-script.sql:/docker-entrypoint-initdb.d/ddl.sql
     networks:
       - python-mariadb
+      - keycloak-db
     stdin_open: true
     tty: true
-    networks:
-      - keycloak-db
 
   phpmyadmin:
     image: phpmyadmin
@@ -62,10 +63,9 @@ services:
       - '8080:80'
     networks:
       - python-mariadb
+      - keycloak-db
     stdin_open: true
     tty: true
-    networks:
-      - keycloak-db
 
   keycloak:
     image: quay.io/keycloak/keycloak:20.0.0
@@ -76,8 +76,8 @@ services:
     environment:
       KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
       KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
-      KC_HEALTH_ENABLED: true
-      KC_METRICS_ENABLED: true
+      KC_HEALTH_ENABLED: 'true'
+      KC_METRICS_ENABLED: 'true'
       KC_DB: mariadb
       KC_DB_URL_HOST: mariadb
       KC_DB_URL_DATABASE: keycloak

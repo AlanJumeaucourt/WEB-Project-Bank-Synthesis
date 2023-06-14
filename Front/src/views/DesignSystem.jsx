@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { BasicLineChart, StackedAreaChart, SmoothedLineChart, SmoothedAreaChart, BasicAreaChart } from '../components/charts/Lines'
-import { ButtonPrimary, CircularButton, RoundedButton } from '../components/ui_components/Buttons'
+import { ButtonPrimary, CircularButton, RoundedButton, Tooltip } from '../components/ui_components/Buttons'
 import { InputPassword, InputText, InputSelect, InputCheckbox } from '../components/ui_components/Inputs'
 import { SignUpForm } from '../components/ui_components/Forms'
 import { SuccessMessage, WarningMessage, ErrorMessage } from '../components/ui_components/StatusMessage'
-import { Card } from '../components/ui_components/Cards'
+import { Card, Queue, Stack } from '../components/ui_components/Containers'
 import { Drawer } from '../components/ui_components/Drawer'
+
+import { PieEmpty, PieEmptySpace, PieHalf, PieFull } from '../components/charts/Pie'
+import { TreeMap } from '../components/charts/TreeMap'
+import { CreditSimulation } from '../components/charts/CreditSimulation'
 
 class DesignSystem extends Component {
     render() {
@@ -38,6 +42,9 @@ class DesignSystem extends Component {
                                 </div>
                                 <div>
                                     <CircularButton color="primary" icon="fa fa-camera fa-2x" />
+                                </div>
+                                <div>
+                                    <Tooltip title="titre de l'infobulle">ceci est une infobulle</Tooltip>
                                 </div>
                             </div>
                         </div>
@@ -85,6 +92,35 @@ class DesignSystem extends Component {
                                     <StackedAreaChart title='Titre' xData={['lun', 'mar', 'mer', 'jeu', 'ven']} names={['legende1', 'legende2', 'legende3', 'legende4']}
                                         yDatas={[[10, 20, 30, 10, 0], [100, 10, 30, 15, 22], [10, 50, 30, 60, 40], [11, 3, 10, 5, 40]]} areaStyles={true} smooths={true} />
                                 </div>
+
+                            </div>
+
+                            <div className='mt-2 d-flex flex-row justify-content-between' style={{ height: '300px' }}>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <PieEmpty data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai' />
+                                </div>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <PieEmptySpace data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai' />
+                                </div>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <PieHalf data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai'/>
+                                </div>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <PieFull data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai'/>
+                                </div>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <TreeMap data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='essai'/>
+                                </div>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <CreditSimulation/>
+                                </div>
+
                             </div>
                         </div>
                     </li>
@@ -93,30 +129,35 @@ class DesignSystem extends Component {
                             <span>StatusMessage</span>
                             <p>Voici les messages de status utilisables sur le site</p>
                             <div className='mt-2 d-flex flex-column justify-content-around'>
-                                <div>
-                                    <SuccessMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</SuccessMessage>
-                                </div>
-                                <div>
-                                    <WarningMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</WarningMessage>
-                                </div>
-                                <div>
-                                    <ErrorMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</ErrorMessage>
-                                </div>
+                                <SuccessMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</SuccessMessage>
+                                <WarningMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</WarningMessage>
+                                <ErrorMessage title="Titre" footer="footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam consectetur cum sunt quis veniam itaque hic reiciendis. Sunt, numquam consequuntur ipsum asperiores perspiciatis magni vero commodi, esse impedit, provident eligendi?</ErrorMessage>
                             </div>
                         </div>
                     </li>
                     <li>
                         <div className='mt-5'>
                             <div className='mt-2'>
-                                <span>Cards</span>
-                                <p>Voici les cartes de status utilisables sur le site</p>
-                                <div className='mt-2 d-flex flex-row justify-content-between' style={{ height: '300px' }} >
-                                    <div>
-                                        <Card title="Titre" footer="Footer" header="Header">
-                                            <p className="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, recusandae aspernatur. Doloremque, sed vero? Modi nemo illum, consectetur voluptatum quis, aspernatur delectus eligendi, deserunt praesentium suscipit dolore. Repellat, fugit non.</p>
-                                            <ButtonPrimary>Un Bouton</ButtonPrimary>
-                                        </Card>
-                                    </div>
+                                <span>Containers</span>
+                                <p>Voici les conteneurs utilisables sur le site</p>
+                                <div className='mt-2 d-flex flex-row justify-content-around' style={{ height: '300px' }}>
+                                    <Card title="Titre" footer="Footer" header="Header" style={{ height: '400px', width: '500px' }}>
+                                        <p className="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, recusandae aspernatur. Doloremque, sed vero? Modi nemo illum, consectetur voluptatum quis, aspernatur delectus eligendi, deserunt praesentium suscipit dolore. Repellat, fugit non.</p>
+                                        <ButtonPrimary>Un Bouton</ButtonPrimary>
+                                    </Card>
+                                    <Stack style={{ height: '400px', width: '500px' }}>
+                                        <p>item1</p>
+                                        <InputCheckbox>item2</InputCheckbox>
+                                        <SuccessMessage title="item3" footer="item3">item3</SuccessMessage>
+                                        <div>
+                                            <ButtonPrimary>item4</ButtonPrimary>
+                                        </div>
+                                    </Stack>
+                                    <Queue style={{ height: '50px', width: '500px' }}>
+                                        <p>item1</p>
+                                        <p>item2</p>
+                                        <p>item3</p>
+                                    </Queue>
                                 </div>
                             </div>
                         </div>
