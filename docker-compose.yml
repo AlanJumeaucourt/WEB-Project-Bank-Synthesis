@@ -31,10 +31,11 @@ services:
     container_name: bdd-mariadb
     restart: always
     environment:
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=userpassword
-      - MYSQL_DATABASE=Client
-      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - KEYCLOACK_IP_backend_bdd=$(KEYCLOACK_IP_backend_bdd)
     ports:
       - '3306:3306'
     volumes:
@@ -55,7 +56,7 @@ services:
       - PMA_ARBITRARY=1
       - PMA_HOST=mariadb
       - PMA_USER=root
-      - PMA_PASSWORD=rootpassword
+      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - PMA_PORT=3306
     ports:
       - '8080:80'
@@ -73,15 +74,15 @@ services:
       - '8081:8080'
     restart: unless-stopped
     environment:
-      KEYCLOAK_ADMIN: root
-      KEYCLOAK_ADMIN_PASSWORD: rootpassword #maybe a way to mask this
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
       KC_HEALTH_ENABLED: true
       KC_METRICS_ENABLED: true
       KC_DB: mariadb
       KC_DB_URL_HOST: mariadb
       KC_DB_URL_DATABASE: keycloak
-      KC_DB_USERNAME: user
-      KC_DB_PASSWORD: userpassword
+      KC_DB_USERNAME: ${MYSQL_USER}
+      KC_DB_PASSWORD: ${MYSQL_PASSWORD}
       KC_LOG_LEVEL: INFO,org.infinispan:DEBUG,org.jgroups:DEBUG
     command:
       - start-dev #dev mode
