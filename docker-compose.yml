@@ -4,20 +4,27 @@ services:
   reactjs:
     container_name: frontend-reactjs
     build: ./Front
-    ports: 
+    ports:
       - '3000:3000'
     volumes:
       - ./Front/src/:/app/src
     networks:
       - reactjs-python
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     stdin_open: true
     tty: true
 
   python:
-    image: python:3.12.0b1-slim-buster
     container_name: backend-python
+    build: ./Back
+    ports:
+      - '8082:8082'
+    volumes:
+      - ./Back/app:/code/app
     networks:
       - reactjs-python
+      - python-mariadb
     stdin_open: true
     tty: true
 
@@ -35,6 +42,9 @@ services:
     volumes:
       - ./BDD/Save:/var/lib/mysql
       - ./BDD/init-script.sql:/docker-entrypoint-initdb.d/ddl.sql
+    networks:
+      - python-mariadb
+      - keycloak-db
     stdin_open: true
     tty: true
 
@@ -50,10 +60,47 @@ services:
       - PMA_PORT=3306
     ports:
       - '8080:80'
+    networks:
+      - python-mariadb
+      - keycloak-db
     stdin_open: true
     tty: true
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:20.0.0
+    container_name: sso-keycloak
+    ports:
+      - '8081:8080'
+    restart: unless-stopped
+    environment:
+      KEYCLOAK_ADMIN: root
+      KEYCLOAK_ADMIN_PASSWORD: rootpassword #maybe a way to mask this
+      KC_HEALTH_ENABLED: 'true'
+      KC_METRICS_ENABLED: 'true'
+      KC_DB: mariadb
+      KC_DB_URL_HOST: mariadb
+      KC_DB_URL_DATABASE: keycloak
+      KC_DB_USERNAME: user
+      KC_DB_PASSWORD: userpassword
+      KC_LOG_LEVEL: INFO,org.infinispan:DEBUG,org.jgroups:DEBUG
+    command:
+      - start-dev #dev mode
+      - --import-realm
+    volumes:
+      - ./SSO/realm-export.json:/opt/keycloak/data/import/realm.json
+    depends_on:
+      - mariadb
+    networks:
+      - reactjs-python
+      - keycloak-db
+
 networks:
+  keycloak-db:
+    name: backend-bdd
+    driver: bridge
   reactjs-python:
     name: frontend-backend
+    driver: bridge
+  python-mariadb:
+    name: backend
     driver: bridge
