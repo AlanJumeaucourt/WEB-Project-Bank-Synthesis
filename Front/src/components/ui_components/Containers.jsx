@@ -29,8 +29,10 @@ export function Card({ style, title, header, footer, children }) {
                         {header}
                     </div> : <></>
             }
+            {title ? <div className="card-title">
+                <h5 className="card-title">{title}</h5>
+            </div> : <></>}
             <div className="card-body">
-                {title ? <h5 className="card-title">{title}</h5> : <></>}
                 {children}
             </div>
             {

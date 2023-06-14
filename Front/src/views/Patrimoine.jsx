@@ -22,8 +22,8 @@ const Patrimoine = () => {
   const prepareChartData = () => {
     // Traitez les données pour les préparer au format du graphique
     // Assurez-vous d'adapter ces étapes en fonction de la structure des données retournées par l'API
-    const xData = Object.keys(data);
-    const yData = Object.values(data);
+    //const xData = Object.keys(data);
+    //const yData = Object.values(data);
 
     return { xData, yData };
   };
@@ -40,40 +40,24 @@ const Patrimoine = () => {
         <div class="row">
         <div class="d-flex flex-row"></div>
         <div class="col-sm-3">
-            <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Patrimoine Total</h5>
-                <p class="card-text">1</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-            </div>
+            <Card title="Patrimoine Total">
+            <p class="card-text">1</p>
+            </Card>
         </div>
         <div class="col-sm-3">
-            <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Prévisions : 1 mois</h5>
-                <p class="card-text">2</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-            </div>
+            <Card title="Prévisions : 1 mois">
+            <p class="card-text">2</p>
+            </Card>
         </div>
         <div class="col-sm-3">
-            <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Prévisions : 6 mois</h5>
-                <p class="card-text">3.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-            </div>
+            <Card title="Prévisions : 6 mois">
+            <p class="card-text">3</p>
+            </Card>
         </div>
         <div class="col-sm-3">
-            <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Prévisions : 1 an</h5>
-                <p class="card-text">4</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-            </div>
+            <Card title="Prévisions : 12 mois">
+            <p class="card-text">4</p>
+            </Card>
         </div>
         </div>
         </Card>
