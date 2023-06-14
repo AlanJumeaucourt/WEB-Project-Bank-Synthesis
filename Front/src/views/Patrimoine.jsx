@@ -5,6 +5,8 @@ import { Card, Stack } from '../components/ui_components/Containers';
 import { Queue } from '../components/ui_components/Containers';
 import { ButtonPrimary, CircularButton, RoundedButton } from '../components/ui_components/Buttons'
 import { Axios } from '../services/Axios'
+import Grid from '@mui/system/Unstable_Grid';
+import styled from '@mui/system/styled';
 
 const Patrimoine = () => {
   const [data, setData] = useState([]);
@@ -100,10 +102,17 @@ const Patrimoine = () => {
 
 
                     </Stack>
-                    <div className='rounded p-1' style = {{position:'absolute', right:'10px', bottom :'1%', background:'#D3D3D3', width:'150px'}}>
+                    <div><br></br></div>
+                    <div className='rounded p-1' style = {{position:'relative', bottom :'1%', background:'#D3D3D3', width:'150px', float:'right' }}>
                           Type de graphique :
-                          <RoundedButton color={'light'} style={{padding:'5%', margin: '5px'}}>Line</RoundedButton>
-                          <RoundedButton color={'light'} style={{padding:'5%'}}>Bar</RoundedButton>
+                          <Grid container spacing={1}>
+                            <Grid xs={6} md={6}>
+                          <RoundedButton color={'light'} style={{padding:'5%', margin: '5px', height:'75%'}}>Line</RoundedButton>
+                            </Grid>
+                            <Grid xs={6} md={6}>
+                              <RoundedButton color={'light'} style={{padding:'5%', margin: '5px', height:'75%'}}>Bar</RoundedButton>
+                            </Grid>
+                          </Grid>
                     </div>
                 </Card>
             </div>
@@ -114,4 +123,13 @@ const Patrimoine = () => {
     );
   };
   
+  const Item = styled('div')(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    border: '1px solid',
+    borderColor: theme.palette.mode === 'dark' ? '#444d58' : '#ced7e0',
+    padding: theme.spacing(1),
+    borderRadius: '4px',
+    textAlign: 'center',
+  }));
+
 export { Patrimoine }
