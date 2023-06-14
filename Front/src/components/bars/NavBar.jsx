@@ -17,25 +17,25 @@ export function HomeNavBar() {
     const login = () => {
         keycloak.login()
     }
-    const logout = () => {
-        keycloak.logout()
-    }
+
     const register = () => {
         keycloak.register()
     }
+
     return (
-        <div>
+        <div class="position-sticky fixed-top">
             <Nav>
+                
                 <Bars />
                 <NavMenu>
                     <NavLink to='' activeStyle>
                         <img src="TCArgent_Logo.png" height="50hv" alt="Logo" loading="lazy" />
                     </NavLink>
-
-                    <NavLink to='' activeStyle>
-                        Home
-                    </NavLink>
                 </NavMenu>
+
+                <Drawer id="drawer">
+                    <p>Bonsoir </p>
+                </Drawer>
                 <NavMenu>
                     <NavBtn>
                         <NavBtnLink onClick={login}>Login</NavBtnLink>
@@ -52,31 +52,59 @@ export function HomeNavBar() {
 export function NavBar() {
     const { keycloak } = useKeycloak()
 
-    const login = () => {
-        keycloak.login()
-    }
     const logout = () => {
         keycloak.logout()
     }
-    const register = () => {
-        keycloak.register()
+
+    const account = () => {
+        keycloak.accountManagement()
     }
+
     return (
-        <div>
+        <div  class="position-sticky fixed-top">
             <Nav>
+                
                 <Bars />
-                {/* <img src="TCArgent_Logo.png"/> */}
+                
                 <NavMenu>
-                    <NavLink to='/Dashboard' activeStyle>
+                    <img src="TCArgent_Logo.png" height="50hv" alt="Logo" loading="lazy"/>
+                    <NavLink to='/dashboard' activeStyle>
                         Dashboard
                     </NavLink>
-                    <NavLink to='/Patrimoin' activeStyle>
+                    <NavLink to='/patrimoine' activeStyle>
                         Patrimoine
                     </NavLink>
                 </NavMenu>
+                <Drawer id="drawer">
+                    <p>Bonsoir </p>
+                    <div className='mt-2 w-100'>
+                        <ButtonPrimary
+                            icon="fa fa-address-card"
+                            style={{ width: "inherit" }}
+                            href="/dashboard"> DashBoard </ButtonPrimary>
+                    </div>
+                    <div className='mt-2 w-100'>
+                        <ButtonPrimary
+                            icon="fa fa-university"
+                            style={{ width: "inherit" }}
+                            href="/patrimoine"> Patrimoine </ButtonPrimary>
+                    </div>
+                    <div className='mt-2 w-100'>
+                        <ButtonPrimary
+                            icon="fa fa-user-circle-o"
+                            style={{ width: "inherit" }}
+                            onClick={account}> Account </ButtonPrimary>
+                    </div>
+                    <div className='mt-2 w-100'>
+                        <ButtonPrimary
+                            icon="fa fa-sign-out"
+                            style={{ width: "inherit" }}
+                            onClick={logout}> LogOut </ButtonPrimary>
+                    </div>
+                </Drawer>
                 <NavMenu>
                     <NavBtn>
-                        <NavBtnLink to='/account'>Account</NavBtnLink>
+                        <NavBtnLink onClick={account}>Account</NavBtnLink>
                     </NavBtn>
                     <NavBtn>
                         <NavBtnLink onClick={logout}>Logout</NavBtnLink>

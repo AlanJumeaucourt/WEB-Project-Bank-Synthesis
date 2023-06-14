@@ -12,65 +12,26 @@ export function Footer() {
     return (
         <Box>
             <h1 style={{
-                color: "black",
+                color: "white",
                 textAlign: "center",
                 marginTop: "-50px"
             }}>
-                GeeksforGeeks: A Computer Science Portal for Geeks
+                TCArgent toujours là pour votre argent
             </h1>
+            <br />
             <Container>
                 <Row>
+                    <a href="https://www.insa-lyon.fr">
+                        <img src="TCA_Logo.png" height="50hv" alt="Logo" loading="lazy" />
+                    </a>
                     <Column>
                         <Heading>About Us</Heading>
-                        <FooterLink href="#">Aim</FooterLink>
-                        <FooterLink href="#">Vision</FooterLink>
-                        <FooterLink href="#">Testimonials</FooterLink>
+                        <FooterLink href="https://github.com/Zouzzou21/WEB-Project-Bank-Synthesis/">GitHub</FooterLink>
+                        <FooterLink href="https://github.com/Zouzzou21/WEB-Project-Bank-Synthesis/issues">Contact Us</FooterLink>
                     </Column>
-                    <Column>
-                        <Heading>Services</Heading>
-                        <FooterLink href="#">Writing</FooterLink>
-                        <FooterLink href="#">Internships</FooterLink>
-                        <FooterLink href="#">Coding</FooterLink>
-                        <FooterLink href="#">Teaching</FooterLink>
-                    </Column>
-                    <Column>
-                        <Heading>Contact Us</Heading>
-                        <FooterLink href="#">Uttar Pradesh</FooterLink>
-                        <FooterLink href="#">Ahemdabad</FooterLink>
-                        <FooterLink href="#">Indore</FooterLink>
-                        <FooterLink href="#">Mumbai</FooterLink>
-                    </Column>
-                    <Column>
-                        <Heading>Social Media</Heading>
-                        <FooterLink href="#">
-                            <i className="fab fa-facebook-f">
-                                <span style={{ marginLeft: "10px" }}>
-                                    Facebook
-                                </span>
-                            </i>
-                        </FooterLink>
-                        <FooterLink href="#">
-                            <i className="fab fa-instagram">
-                                <span style={{ marginLeft: "10px" }}>
-                                    Instagram
-                                </span>
-                            </i>
-                        </FooterLink>
-                        <FooterLink href="#">
-                            <i className="fab fa-twitter">
-                                <span style={{ marginLeft: "10px" }}>
-                                    Twitter
-                                </span>
-                            </i>
-                        </FooterLink>
-                        <FooterLink href="#">
-                            <i className="fab fa-youtube">
-                                <span style={{ marginLeft: "10px" }}>
-                                    Youtube
-                                </span>
-                            </i>
-                        </FooterLink>
-                    </Column>
+                    <a href="https://www.insa-lyon.fr/fr/content/télécommunications-services-usages">
+                        <img src="INSA_Logo.png" height="50hv" alt="Logo" loading="lazy" />
+                    </a>
                 </Row>
             </Container>
         </Box>
