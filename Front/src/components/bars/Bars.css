@@ -27,13 +27,13 @@
 /* Style the navbar */
 #navbar {
     top: 0;
-    height: 10%;
-    width: 100%;
     overflow: hidden;
-    background-color: #0070cc;
     position: sticky;
     display: inline-flex;
     list-style: none;
+    height: 10%;
+    width: 100%;
+    background-color: #0070cc;
 }
 
 /* Navbar links */
@@ -56,6 +56,7 @@
     justify-content: center !important;
     text-align: center !important;
     display: flex;
+    background-color: #0070cc;
 }
 
 .logo{

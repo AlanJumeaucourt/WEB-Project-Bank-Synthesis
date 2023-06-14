@@ -2,8 +2,16 @@ import React from 'react';
 import { useKeycloak } from "@react-keycloak/web";
 import { ButtonPrimary } from '../ui_components/Buttons'
 import { Drawer } from '../ui_components/Drawer'
+import {
+    Nav,
+    NavLink,
+    Bars,
+    NavMenu,
+    NavBtn,
+    NavBtnLink,
+} from './NavbarElements';
 
-export function HomeNavBar({bg}) {
+export function HomeNavBar() {
     const { keycloak } = useKeycloak()
 
     const login = () => {
@@ -16,53 +24,27 @@ export function HomeNavBar({bg}) {
         keycloak.register()
     }
     return (
-        <div id="navbar">
-            <div class="drawer">
-                <Drawer id="drawer">
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-user-circle-o"
-                            style={{ width: "inherit" }}
-                            onClick={login}> Log In </ButtonPrimary>
-                    </div>
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-sign-in"
-                            style={{ width: "inherit" }}
-                            onClick={register}> Register </ButtonPrimary>
-                    </div>
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-sign-out"
-                            style={{ width: "inherit" }}
-                            onClick={logout}> Log Out</ButtonPrimary>
-                    </div>
-                </Drawer>
-            </div>
+        <div>
+            <Nav>
+                <Bars />
+                <NavMenu>
+                    <NavLink to='' activeStyle>
+                        <img src="TCArgent_Logo.png" height="50hv" alt="Logo" loading="lazy" />
+                    </NavLink>
 
-            <li><a href=""><img
-                src="TCArgent_Logo.png"
-                class="logo"
-                alt="Responsive image"
-                title="Amazing TCArgent logo"></img></a>
-            </li>
-
-            <li>
-                <a href="/design-system">Design Syteme</a>
-            </li>
-
-            <li>
-                <a href="/imports">Imports</a>
-            </li>
-
-            <li>
-                <a onClick={login}>Log In</a>
-            </li>
-
-            <li>
-                <a onClick={register}>Sign In</a>
-            </li>
-
+                    <NavLink to='' activeStyle>
+                        Home
+                    </NavLink>
+                </NavMenu>
+                <NavMenu>
+                    <NavBtn>
+                        <NavBtnLink onClick={login}>Login</NavBtnLink>
+                    </NavBtn>
+                    <NavBtn class="fixed-end">
+                        <NavBtnLink onClick={register}>Register</NavBtnLink>
+                    </NavBtn>
+                </NavMenu>
+            </Nav>
         </div>
     )
 }
@@ -80,42 +62,27 @@ export function NavBar() {
         keycloak.register()
     }
     return (
-        <div id="navbar" >
-            <div class="drawer">
-                <Drawer id="drawer">
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-user-circle-o"
-                            style={{ width: "inherit" }}
-                            onClick={login}> Log In </ButtonPrimary>
-                    </div>
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-sign-in"
-                            style={{ width: "inherit" }}
-                            onClick={register}> Register </ButtonPrimary>
-                    </div>
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-sign-out"
-                            style={{ width: "inherit" }}
-                            onClick={logout}> Log Out</ButtonPrimary>
-                    </div>
-                </Drawer>
-            </div>
-            <li><a href=""><img
-                src="TCArgent_Logo.png"
-                class="logo"
-                alt="Responsive image"
-                title="Amazing TCArgent logo"></img></a>
-            </li>
-
-            <li>
-                <a href="/Patrimoine">Patrimoine</a>
-            </li>
-            <li>
-                <a onClick={logout}>Log Out</a>
-            </li>
+        <div>
+            <Nav>
+                <Bars />
+                {/* <img src="TCArgent_Logo.png"/> */}
+                <NavMenu>
+                    <NavLink to='/Dashboard' activeStyle>
+                        Dashboard
+                    </NavLink>
+                    <NavLink to='/Patrimoin' activeStyle>
+                        Patrimoine
+                    </NavLink>
+                </NavMenu>
+                <NavMenu>
+                    <NavBtn>
+                        <NavBtnLink to='/account'>Account</NavBtnLink>
+                    </NavBtn>
+                    <NavBtn>
+                        <NavBtnLink onClick={logout}>Logout</NavBtnLink>
+                    </NavBtn>
+                </NavMenu>
+            </Nav>
         </div>
     )
 }
