@@ -6,9 +6,12 @@ import { SignUpForm } from '../components/ui_components/Forms'
 import { SuccessMessage, WarningMessage, ErrorMessage } from '../components/ui_components/StatusMessage'
 import { Card, Queue, Stack } from '../components/ui_components/Containers'
 import { Drawer } from '../components/ui_components/Drawer'
+import { Axios } from '../services/Axios'
+import { keycloak } from '../services/Keycloak'
 
 class DesignSystem extends Component {
     render() {
+        Axios.getHello()
         return (
             <div>
                 <nav className='navbar navbar-dark bg-dark d-flex flex-column'>

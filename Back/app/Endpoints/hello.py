@@ -1,2 +1,2 @@
-def hello():
-    return {"message": "Hello, World!"}
+def hello(user):
+    return {"message": "Hello "+str(user)}
