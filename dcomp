@@ -1,0 +1,33 @@
+#!/bin/bash
+
+update_env_file() {
+  # Récupérer l'adresse IP du conteneur python
+  PYTHON_IP=$(docker inspect -f '{{range $network, $config := .NetworkSettings.Networks}}{{if eq $network "frontend-backend"}}{{$config.IPAddress}}{{end}}{{end}}' backend-python)
+  
+  # Récupérer l'adresse IP du conteneur reactjs
+  REACTJS_IP=$(docker inspect -f '{{range $network, $config := .NetworkSettings.Networks}}{{if eq $network "frontend-backend"}}{{$config.IPAddress}}{{end}}{{end}}' frontend-reactjs)
+  
+  # Récupérer l'adresse IP du conteneur mariadb
+  MARIADB_IP=$(docker inspect -f '{{range $network, $config := .NetworkSettings.Networks}}{{if eq $network "backend-bdd"}}{{$config.IPAddress}}{{end}}{{end}}' bdd-mariadb)
+  
+  # Récupérer l'adresse IP du conteneur phpmyadmin
+  PMA_IP=$(docker inspect -f '{{range $network, $config := .NetworkSettings.Networks}}{{if eq $network "backend-bdd"}}{{$config.IPAddress}}{{end}}{{end}}' bdd-phpmyadmin)
+  
+  # Récupérer l'adresse IP du conteneur frontend-backend de sso-keycloak
+  KEYCLOACK_IP_frontend_backend=$(docker inspect -f '{{range $network, $config := .NetworkSettings.Networks}}{{if eq $network "frontend-backend"}}{{$config.IPAddress}}{{end}}{{end}}' sso-keycloak)
+  
+  # Récupérer l'adresse IP du conteneur backend-bdd de sso-keycloak
+  KEYCLOACK_IP_backend_bdd=$(docker inspect -f '{{range $network, $config := .NetworkSettings.Networks}}{{if eq $network "backend-bdd"}}{{$config.IPAddress}}{{end}}{{end}}' sso-keycloak)
+  
+  # Mettre à jour les variables dans le fichier .env
+  sed -i "s|PYTHON_IP=.*|PYTHON_IP=$PYTHON_IP|" .env
+  sed -i "s|REACTJS_IP=.*|REACTJS_IP=$REACTJS_IP|" .env
+  sed -i "s|MARIADB_IP=.*|MARIADB_IP=$MARIADB_IP|" .env
+  sed -i "s|PMA_IP=.*|PMA_IP=$PMA_IP|" .env
+  sed -i "s|KEYCLOACK_IP_frontend_backend=.*|KEYCLOACK_IP_frontend_backend=$KEYCLOACK_IP_frontend_backend|" .env
+  sed -i "s|KEYCLOACK_IP_backend_bdd=.*|KEYCLOACK_IP_backend_bdd=$KEYCLOACK_IP_backend_bdd|" .env
+}
+
+update_env_file
+
+docker-compose --env-file "${PWD}/.env" "$@"  
