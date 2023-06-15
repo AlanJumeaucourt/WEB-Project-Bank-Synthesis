@@ -6,6 +6,8 @@ import { SignUpForm } from '../components/ui_components/Forms'
 import { SuccessMessage, WarningMessage, ErrorMessage } from '../components/ui_components/StatusMessage'
 import { Card, Queue, Stack } from '../components/ui_components/Containers'
 import { Drawer } from '../components/ui_components/Drawer'
+import { Axios } from '../services/Axios'
+import { keycloak } from '../services/Keycloak'
 
 import { PieEmpty, PieEmptySpace, PieHalf, PieFull } from '../components/charts/Pie'
 import { TreeMap } from '../components/charts/TreeMap'
@@ -13,6 +15,7 @@ import { CreditSimulation } from '../components/charts/CreditSimulation'
 
 class DesignSystem extends Component {
     render() {
+        Axios.getHello()
         return (
             <div>
                 <nav className='navbar navbar-dark bg-dark d-flex flex-column'>

@@ -36,7 +36,6 @@ export function HomePage() {
                             width="100%"
                             height="auto" />
             </div>
-
             <div>
                 <body>
                     <div class="container">

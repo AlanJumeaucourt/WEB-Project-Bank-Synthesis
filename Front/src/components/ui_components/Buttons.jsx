@@ -65,8 +65,8 @@ export function Tooltip({ title, placement, children }) {
 
     return (
         <button type="button" ref={tooltipRef}>
-            <i class="fa fa-question-circle" aria-hidden="true"></i>
-            <span class="sr-only">Aide</span>
+            <i className="fa fa-question-circle" aria-hidden="true"></i>
+            <span className="sr-only">Aide</span>
         </button>
     )
 }
