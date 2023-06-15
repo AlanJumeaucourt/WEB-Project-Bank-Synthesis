@@ -37,7 +37,6 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - KEYCLOACK_IP_backend_bdd=$(KEYCLOACK_IP_backend_bdd)
     ports:
       - '3306:3306'
     volumes:
