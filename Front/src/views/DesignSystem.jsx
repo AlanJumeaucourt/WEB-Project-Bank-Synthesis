@@ -9,6 +9,10 @@ import { Drawer } from '../components/ui_components/Drawer'
 import { Axios } from '../services/Axios'
 import { keycloak } from '../services/Keycloak'
 
+import { PieEmpty, PieEmptySpace, PieHalf, PieFull } from '../components/charts/Pie'
+import { TreeMap } from '../components/charts/TreeMap'
+import { CreditSimulation } from '../components/charts/CreditSimulation'
+
 class DesignSystem extends Component {
     render() {
         Axios.getHello()
@@ -91,6 +95,35 @@ class DesignSystem extends Component {
                                     <StackedAreaChart title='Titre' xData={['lun', 'mar', 'mer', 'jeu', 'ven']} names={['legende1', 'legende2', 'legende3', 'legende4']}
                                         yDatas={[[10, 20, 30, 10, 0], [100, 10, 30, 15, 22], [10, 50, 30, 60, 40], [11, 3, 10, 5, 40]]} areaStyles={true} smooths={true} />
                                 </div>
+
+                            </div>
+
+                            <div className='mt-2 d-flex flex-row justify-content-between' style={{ height: '300px' }}>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <PieEmpty data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai' />
+                                </div>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <PieEmptySpace data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai' />
+                                </div>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <PieHalf data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai'/>
+                                </div>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <PieFull data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai'/>
+                                </div>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <TreeMap data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='essai'/>
+                                </div>
+
+                                <div className='h-100' style={{ width: '300px' }} >
+                                    <CreditSimulation/>
+                                </div>
+
                             </div>
                         </div>
                     </li>

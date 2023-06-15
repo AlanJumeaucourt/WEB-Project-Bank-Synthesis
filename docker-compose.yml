@@ -10,6 +10,8 @@ services:
       - ./Front/src/:/app/src
     networks:
       - reactjs-python
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     stdin_open: true
     tty: true
 
