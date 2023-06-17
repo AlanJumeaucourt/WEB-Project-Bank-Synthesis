@@ -4,8 +4,8 @@ import styled, { css } from 'styled-components';
 
 export const Nav = styled.nav`
 position: sticky;
-background: #3e8bca;
-height: 7vh;
+background: #1B6796;
+height: 8vh;
 overflow: auto;
 display: flex;
 justify-content: space-between;

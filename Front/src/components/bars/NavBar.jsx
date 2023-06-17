@@ -34,7 +34,24 @@ export function HomeNavBar() {
                 </NavMenu>
 
                 <Drawer id="drawer">
-                    <p>Bonsoir </p>
+                <div className='mt-2 w-100'>
+                        <ButtonPrimary
+                            icon="fa fa-home"
+                            style={{ width: "inherit" }}
+                            href="/"> Home </ButtonPrimary>
+                    </div>
+                    <div className='mt-2 w-100'>
+                        <ButtonPrimary
+                            icon="fa fa-user-circle-o"
+                            style={{ width: "inherit" }}
+                            onClick={login}> Login </ButtonPrimary>
+                    </div>
+                    <div className='mt-2 w-100'>
+                        <ButtonPrimary
+                            icon="fa fa-sign-out"
+                            style={{ width: "inherit" }}
+                            onClick={register}> Register </ButtonPrimary>
+                    </div>
                 </Drawer>
                 <NavMenu>
                     <NavBtn>
@@ -76,7 +93,6 @@ export function NavBar() {
                     </NavLink>
                 </NavMenu>
                 <Drawer id="drawer">
-                    <p>Bonsoir </p>
                     <div className='mt-2 w-100'>
                         <ButtonPrimary
                             icon="fa fa-address-card"

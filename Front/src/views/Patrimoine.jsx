@@ -6,7 +6,7 @@ import {
   SmoothedAreaChart,
   BasicAreaChart,
 } from "../components/charts/Lines";
-import { HomeNavBar } from "../components/bars/NavBar";
+import { NavBar } from "../components/bars/NavBar";
 import { Footer } from "../components/bars/Footer";
 
 import { TreeMap } from "../components/charts/TreeMap";
@@ -87,8 +87,8 @@ const Patrimoine = () => {
 
   return (
     <div>
-      <HomeNavBar />
-
+      <NavBar />
+<div>
       <h1>TCArgent Patrimoine</h1>
       <p className="p-3">
         Voici votre page resumant votre patrimoine au fil du temps
@@ -226,6 +226,7 @@ const Patrimoine = () => {
         </div>
         <div className="h-100" style={{ width: "300px" }}></div>
         Fin de page
+      </div>
       </div>
       <Footer />
     </div>
