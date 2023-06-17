@@ -6,6 +6,9 @@ import {
   SmoothedAreaChart,
   BasicAreaChart,
 } from "../components/charts/Lines";
+import { HomeNavBar } from "../components/bars/NavBar";
+import { Footer } from "../components/bars/Footer";
+
 import { TreeMap } from "../components/charts/TreeMap";
 import { useEffect, useState } from "react";
 import { Card, Stack } from "../components/ui_components/Containers";
@@ -42,9 +45,9 @@ const Patrimoine = () => {
   };
 
   const { xData, yData } = prepareChartData();
-  
+
   const CardData = ({ number }) => {
-    const n = parseInt(number)
+    const n = parseInt(number);
     return (
       <div className="card">
         <h2 className={"text-" + (n > 0 ? "success" : "danger")}>{number}</h2>
@@ -52,8 +55,40 @@ const Patrimoine = () => {
     );
   };
 
+  function sayHello() {
+    alert("Hello!");
+  }
+
+  function monGraphique(props) {
+    return (
+      <>
+        Bonjours
+        <BasicLineChart
+          title="Titre"
+          xData={xData}
+          name="legende"
+          yData={yData}
+          color="red"
+        />
+        <BasicAreaChart
+          title="Titre"
+          xData={["lun", "mar", "mer", "jeu", "ven"]}
+          name="legende"
+          yData={[10, 50, 30, 60, 40]}
+          color="black"
+        />
+      </>
+    );
+  }
+
+  function Welcome(props) {
+    return <h1>Hello, {props.name}</h1>;
+  }
+
   return (
     <div>
+      <HomeNavBar />
+
       <h1>TCArgent Patrimoine</h1>
       <p className="p-3">
         Voici votre page resumant votre patrimoine au fil du temps
@@ -63,22 +98,22 @@ const Patrimoine = () => {
           <div class="d-flex flex-row"></div>
           <div class="col-sm-3">
             <Card title="Patrimoine Total ">
-            <CardData number={42000} />
+              <CardData number={42000} />
             </Card>
           </div>
           <div class="col-sm-3">
             <Card title="Prévisions : 1 mois">
-            <CardData number={420} />
+              <CardData number={420} />
             </Card>
           </div>
           <div class="col-sm-3">
             <Card title="Prévisions : 6 mois">
-            <CardData number={-1000} />
+              <CardData number={-1000} />
             </Card>
           </div>
           <div class="col-sm-3">
             <Card title="Prévisions : 12 mois">
-            <CardData number={1800} />
+              <CardData number={1800} />
             </Card>
           </div>
         </div>
@@ -108,13 +143,7 @@ const Patrimoine = () => {
         <Grid container spacing={1}>
           <Grid xs={12} md={10}>
             <h2>Mon jolie graphique</h2>
-            <BasicLineChart
-              title="Titre"
-              xData={xData}
-              name="legende"
-              yData={yData}
-              color="red"
-            />
+            <monGraphique />
           </Grid>
           <Grid xs={12} md={2}>
             <Card
@@ -162,6 +191,7 @@ const Patrimoine = () => {
                 <Grid container spacing={1}>
                   <Grid xs={6} md={6}>
                     <RoundedButton
+                      onClick={sayHello}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
@@ -181,27 +211,23 @@ const Patrimoine = () => {
             </Card>
           </Grid>
         </Grid>
-
-        
         <div style={{ height: "500px", width: "100%" }}>
-        Affichage d'un compte courant :
-        <Grid container spacing={1}>
-          <Grid xs={12} md={10}>
-            <h2>Mon jolie graphique</h2>
-            <TreeMap
-          data={[1500, 2000, 1000]}
-          names={["PEA", "LEP", "Livret A"]}
-          titre="essai"
-        />
+          Affichage d'un compte courant :
+          <Grid container spacing={1}>
+            <Grid xs={12} md={10}>
+              <h2>Mon jolie graphique</h2>
+              <TreeMap
+                data={[1500, 2000, 1000]}
+                names={["PEA", "LEP", "Livret A"]}
+                titre="essai"
+              />
+            </Grid>
           </Grid>
-          
-          </Grid>
-          </div>
-                <div className="h-100" style={{ width: "300px" }}>
-
+        </div>
+        <div className="h-100" style={{ width: "300px" }}></div>
+        Fin de page
       </div>
-      </div>
-    
+      <Footer />
     </div>
   );
 };
