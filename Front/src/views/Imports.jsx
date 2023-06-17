@@ -9,6 +9,7 @@ export function Imports() {
     const [array, setArray] = useState([]);
     const [warning, setWarning] = useState()
     const [csvDivider, setDivider] = useState(";")
+    //accounts type, tag, establishments, acceptation des CGU, new account
 
     const fileReader = new FileReader();
 
