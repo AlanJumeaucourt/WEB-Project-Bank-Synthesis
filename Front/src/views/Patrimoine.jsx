@@ -8,7 +8,6 @@ import {
 } from "../components/charts/Lines";
 import { HomeNavBar } from "../components/bars/NavBar";
 import { Footer } from "../components/bars/Footer";
-
 import { TreeMap } from "../components/charts/TreeMap";
 import { useEffect, useState } from "react";
 import { Card, Stack } from "../components/ui_components/Containers";
@@ -23,7 +22,12 @@ import Grid from "@mui/system/Unstable_Grid";
 import styled from "@mui/system/styled";
 
 const Patrimoine = () => {
+  const [chartType, setChartType] = useState("line"); // 'line' par défaut
   const [data, setData] = useState([]);
+
+  const handleChartTypeChange = () => {
+    setChartType("area");
+  };
 
   useEffect(() => {
     Axios.getSoldePeriode()
@@ -55,35 +59,7 @@ const Patrimoine = () => {
     );
   };
 
-  function sayHello() {
-    alert("Hello!");
-  }
 
-  function monGraphique(props) {
-    return (
-      <>
-        Bonjours
-        <BasicLineChart
-          title="Titre"
-          xData={xData}
-          name="legende"
-          yData={yData}
-          color="red"
-        />
-        <BasicAreaChart
-          title="Titre"
-          xData={["lun", "mar", "mer", "jeu", "ven"]}
-          name="legende"
-          yData={[10, 50, 30, 60, 40]}
-          color="black"
-        />
-      </>
-    );
-  }
-
-  function Welcome(props) {
-    return <h1>Hello, {props.name}</h1>;
-  }
 
   return (
     <div>
@@ -143,7 +119,23 @@ const Patrimoine = () => {
         <Grid container spacing={1}>
           <Grid xs={12} md={10}>
             <h2>Mon jolie graphique</h2>
-            <monGraphique />
+            {chartType === "line" ? (
+              <BasicLineChart
+                title="Titre"
+                xData={xData}
+                name="legende"
+                yData={yData}
+                color="red"
+              />
+            ) : (
+              <BasicAreaChart
+                title="Titre"
+                xData={xData}
+                name="legende"
+                yData={yData}
+                color="red"
+              />
+            )}
           </Grid>
           <Grid xs={12} md={2}>
             <Card
@@ -191,7 +183,7 @@ const Patrimoine = () => {
                 <Grid container spacing={1}>
                   <Grid xs={6} md={6}>
                     <RoundedButton
-                      onClick={sayHello}
+                      onClick={handleChartTypeChange}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
