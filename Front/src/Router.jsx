@@ -4,7 +4,7 @@ import { HomePage } from './views/HomePage'
 import { PageNotFound } from './views/errors/PageNotFound'
 
 import { DesignSystem } from './views/DesignSystem'
-import { DesignInvestment } from './views/DesignInvestment'
+import { Investissement } from './views/Investissement'
 import { Patrimoine } from './views/Patrimoine'
 
 import { LoginRequired } from './components/auth/LoginRequired'
@@ -19,7 +19,7 @@ export const Router = () => {
                 {Axios.init(keycloak)}
                 <Route path="/" element={<HomePage />} />
                 <Route path="/design-system" element={<DesignSystem />} />
-                <Route path="/design-investment" element={< DesignInvestment />} />
+                <Route path="/Investissement" element={< Investissement />} />
                 <Route path="/Patrimoine" element={<Patrimoine />} />
                 <Route path="/design-system" element={<LoginRequired><DesignSystem /></LoginRequired>} />
                 <Route path="/imports" element={<LoginRequired><Imports /></LoginRequired>} />
