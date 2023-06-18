@@ -1,0 +1,29 @@
+name: Build and Run Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout du code
+      uses: actions/checkout@v2
+      
+    - name: Build les containers
+      run: ./dcomp build
+      
+    - name: Run le projet
+      run: ./dcomp up -d
+      
+    - name: Attendre que le projet démarre
+      run: sleep 15s
+      
+    - name: Vérifier l'application
+      run: |
+        while ! curl -s http://localhost:3000; do
+          sleep 5s
+        done
