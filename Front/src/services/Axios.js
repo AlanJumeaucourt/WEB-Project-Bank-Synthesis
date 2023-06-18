@@ -24,8 +24,8 @@ const getHello = () => {
     instanceAxios.get("/").then((r) => { console.log(r) }).catch((e) => { console.log(e) })
 }
 
-const getSoldePeriode = () => {
-  return instanceAxios.get("/comptes/1/soldeperiode")
+const getSoldePeriode = (accountId) => {
+  return instanceAxios.get(`/comptes/${accountId}/soldeperiode`)
     .then((response) => {
       // Récupérez les données de la réponse
       const data = response.data;
@@ -41,6 +41,7 @@ const getSoldePeriode = () => {
       return null; // Retournez null ou une valeur par défaut en cas d'erreur
     });
 };
+
 
 const getListeComptes = () => {
     return instanceAxios.get("/comptes")
