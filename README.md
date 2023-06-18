@@ -20,12 +20,20 @@ Go to the project directory
   cd WEB-Project-Bank-Synthesis
 ```
 
-Run and build the containers
+Build the containers
 
 ```
-  docker-compose up -d
+  ./dcomp build
 ```
 
+Run the project when it's finish to build
+
+```
+  ./dcomp up -d
+```
+
+
+When it's finish 
 The application is avaible at http://localhost:3000
 
 
@@ -36,7 +44,7 @@ After adding new module on your node app, you need to rebuild the container :
 ```
 docker-compose stop
 docker image rm web-project-bank-synthesis-reactjs
-docker-compose up
+./dcomp up -d
 ```
 
 
