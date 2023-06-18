@@ -66,14 +66,14 @@ const Patrimoine = () => {
   }, []);
 
   const compteButtons = dataListeCompte
-  .filter((compte) => compte.type === "Compte courant")
-  .map((compte) => (
-    <div className="p-2" key={compte.id}>
-      <RoundedButton style={{ width: "100%" }}>
-        {compte.account_name}
-      </RoundedButton>
-    </div>
-  ));
+    .filter((compte) => compte.type === "Compte courant")
+    .map((compte) => (
+      <div className="p-2" key={compte.id}>
+        <RoundedButton style={{ width: "100%" }}>
+          {compte.account_name}
+        </RoundedButton>
+      </div>
+    ));
 
 
 
@@ -141,9 +141,9 @@ const Patrimoine = () => {
         />
       </div>
 
-      <div style={{ height: "500px", width: "100%" }}>
+      <div style={{ width: "100%" }}>
         Affichage d'un compte courant :
-        <Grid container spacing={1}>
+        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px" }}>
           <Grid xs={12} md={10}>
             <h2>Mon jolie graphique</h2>
             {chartType === "line" ? (
@@ -173,7 +173,7 @@ const Patrimoine = () => {
               <p class="card-text">
                 Selectionner le compte à afficher sur le graphique
               </p>
-              <Stack style={{ height: "inherit" }}>{compteButtons}</Stack>;
+              <Stack style={{ height: "inherit" }}>{compteButtons}</Stack>
 
               <br></br>
               <div
