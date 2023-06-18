@@ -1,14 +1,18 @@
 from typing import Union
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-from app.Endpoints.hello import hello as hello_from_api
+from app.Endpoints.hello import hello
 from app.Endpoints.accounts import list_accounts
 from app.Endpoints.accounts import get_account_balance
 from app.Endpoints.accounts import get_account_balance_cumulative
 
+from app.utils.sso_utils import retrieve_username
+
 app = FastAPI()
+security = HTTPBearer()
 
 #CORS configuration
 app.add_middleware(
@@ -22,8 +26,11 @@ app.add_middleware(
 
 #test endpoint
 @app.get("/")
-def read_root():
-    return hello_from_api()
+def read_root(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    if not credentials:
+        raise HTTPException(status_code=401, detail="Non Connecté")
+    user = retrieve_username(credentials.credentials)
+    return hello(user)
 
 #accounts endpoints
 @app.get("/comptes")

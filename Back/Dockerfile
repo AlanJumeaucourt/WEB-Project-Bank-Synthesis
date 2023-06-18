@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.9.17-bullseye
 
 # Needed for mariaDB connector for python
 RUN apt-get update \
