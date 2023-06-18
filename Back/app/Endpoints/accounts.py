@@ -17,12 +17,20 @@ def list_accounts():
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM Accounts")
         accounts = cursor.fetchall()
+
+        # Récupération des noms de colonnes
+        column_names = [desc[0] for desc in cursor.description]
+
         cursor.close()
+        conn.close()
 
-        # Conversion des résultats en format JSON
-        encoded_accounts = jsonable_encoder(accounts)
+        # Conversion des résultats en format clé-valeur
+        formatted_accounts = []
+        for account in accounts:
+            formatted_account = dict(zip(column_names, account))
+            formatted_accounts.append(formatted_account)
 
-        return JSONResponse(content=encoded_accounts)
+        return formatted_accounts
     except mariadb.Error as e:
         print(f"Erreur lors de la récupération des comptes : {e}")
         return JSONResponse(content={"message": "Erreur lors de la récupération des comptes"}, status_code=500)

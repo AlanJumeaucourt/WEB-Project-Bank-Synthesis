@@ -41,9 +41,29 @@ const getSoldePeriode = () => {
       return null; // Retournez null ou une valeur par défaut en cas d'erreur
     });
 };
+
+const getListeComptes = () => {
+    return instanceAxios.get("/comptes")
+      .then((response) => {
+        // Récupérez les données de la réponse
+        const data = response.data;
+  
+        // Traitez les données si nécessaire
+        // ...
+  
+        // Retournez les données
+        return data;
+      })
+      .catch((error) => {
+        console.log(error);
+        return null; // Retournez null ou une valeur par défaut en cas d'erreur
+      });
+  };
+
 export const Axios = {
     init,
     getHello,
-    getSoldePeriode
+    getSoldePeriode,
+    getListeComptes
 
 }

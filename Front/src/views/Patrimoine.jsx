@@ -24,9 +24,14 @@ import styled from "@mui/system/styled";
 const Patrimoine = () => {
   const [chartType, setChartType] = useState("line"); // 'line' par défaut
   const [data, setData] = useState([]);
+  const [dataListeCompte, setDataListeCompte] = useState([]);
 
-  const handleChartTypeChange = () => {
+  const handleChartTypeArea = () => {
     setChartType("area");
+  };
+
+  const handleChartTypeLine = () => {
+    setChartType("line");
   };
 
   useEffect(() => {
@@ -49,6 +54,28 @@ const Patrimoine = () => {
   };
 
   const { xData, yData } = prepareChartData();
+
+  useEffect(() => {
+    Axios.getListeComptes()
+      .then((response) => {
+        setDataListeCompte(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const compteButtons = dataListeCompte
+  .filter((compte) => compte.type === "Compte courant")
+  .map((compte) => (
+    <div className="p-2" key={compte.id}>
+      <RoundedButton style={{ width: "100%" }}>
+        {compte.account_name}
+      </RoundedButton>
+    </div>
+  ));
+
+
 
   const CardData = ({ number }) => {
     const n = parseInt(number);
@@ -146,28 +173,7 @@ const Patrimoine = () => {
               <p class="card-text">
                 Selectionner le compte à afficher sur le graphique
               </p>
-              <Stack style={{ height: "inherit" }}>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 1
-                  </RoundedButton>
-                </div>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 2
-                  </RoundedButton>
-                </div>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 3
-                  </RoundedButton>
-                </div>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 4
-                  </RoundedButton>
-                </div>
-              </Stack>
+              <Stack style={{ height: "inherit" }}>{compteButtons}</Stack>;
 
               <br></br>
               <div
@@ -183,7 +189,7 @@ const Patrimoine = () => {
                 <Grid container spacing={1}>
                   <Grid xs={6} md={6}>
                     <RoundedButton
-                      onClick={handleChartTypeChange}
+                      onClick={handleChartTypeLine}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
@@ -192,6 +198,7 @@ const Patrimoine = () => {
                   </Grid>
                   <Grid xs={6} md={6}>
                     <RoundedButton
+                      onClick={handleChartTypeArea}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >

@@ -48,51 +48,51 @@ services:
     stdin_open: true
     tty: true
 
-  phpmyadmin:
-    image: phpmyadmin
-    container_name: bdd-phpmyadmin
-    restart: always
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=mariadb
-      - PMA_USER=root
-      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - PMA_PORT=3306
-    ports:
-      - '8080:80'
-    networks:
-      - python-mariadb
-      - keycloak-db
-    stdin_open: true
-    tty: true
+  # phpmyadmin:
+  #   image: phpmyadmin
+  #   container_name: bdd-phpmyadmin
+  #   restart: always
+  #   environment:
+  #     - PMA_ARBITRARY=1
+  #     - PMA_HOST=mariadb
+  #     - PMA_USER=root
+  #     - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  #     - PMA_PORT=3306
+  #   ports:
+  #     - '8080:80'
+  #   networks:
+  #     - python-mariadb
+  #     - keycloak-db
+  #   stdin_open: true
+  #   tty: true
 
-  keycloak:
-    image: quay.io/keycloak/keycloak:20.0.0
-    container_name: sso-keycloak
-    ports:
-      - '8081:8080'
-    restart: unless-stopped
-    environment:
-      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
-      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
-      KC_HEALTH_ENABLED: 'true'
-      KC_METRICS_ENABLED: 'true'
-      KC_DB: mariadb
-      KC_DB_URL_HOST: mariadb
-      KC_DB_URL_DATABASE: keycloak
-      KC_DB_USERNAME: ${MYSQL_USER}
-      KC_DB_PASSWORD: ${MYSQL_PASSWORD}
-      KC_LOG_LEVEL: INFO,org.infinispan:DEBUG,org.jgroups:DEBUG
-    command:
-      - start-dev #dev mode
-      - --import-realm
-    volumes:
-      - ./SSO/realm-export.json:/opt/keycloak/data/import/realm.json
-    depends_on:
-      - mariadb
-    networks:
-      - reactjs-python
-      - keycloak-db
+  # keycloak:
+  #   image: quay.io/keycloak/keycloak:20.0.0
+  #   container_name: sso-keycloak
+  #   ports:
+  #     - '8081:8080'
+  #   restart: unless-stopped
+  #   environment:
+  #     KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+  #     KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+  #     KC_HEALTH_ENABLED: 'true'
+  #     KC_METRICS_ENABLED: 'true'
+  #     KC_DB: mariadb
+  #     KC_DB_URL_HOST: mariadb
+  #     KC_DB_URL_DATABASE: keycloak
+  #     KC_DB_USERNAME: ${MYSQL_USER}
+  #     KC_DB_PASSWORD: ${MYSQL_PASSWORD}
+  #     KC_LOG_LEVEL: INFO,org.infinispan:DEBUG,org.jgroups:DEBUG
+  #   command:
+  #     - start-dev #dev mode
+  #     - --import-realm
+  #   volumes:
+  #     - ./SSO/realm-export.json:/opt/keycloak/data/import/realm.json
+  #   depends_on:
+  #     - mariadb
+  #   networks:
+  #     - reactjs-python
+  #     - keycloak-db
 
 networks:
   keycloak-db:
