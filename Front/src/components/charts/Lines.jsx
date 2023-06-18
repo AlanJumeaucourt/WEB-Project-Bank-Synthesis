@@ -2,10 +2,11 @@ import React from "react"
 import { EchartComponent } from "./EchartComponent."
 
 
-export function BasicLineChart({ title, xData, name, yData, color, features, style }) {
+export function BasicLineChart({ title, dispositionTitre, xData, name, yData, color, features, style }) {
     title = title ? title : 'Basic Line Chart'
     return StackedAreaChart({
         title: title,
+        left: dispositionTitre,
         xData: xData,
         names: [name],
         yDatas: [yData],
@@ -17,10 +18,11 @@ export function BasicLineChart({ title, xData, name, yData, color, features, sty
     })
 }
 
-export function SmoothedLineChart({ title, xData, name, yData, color, features, style }) {
+export function SmoothedLineChart({ title, dispositionTitre, xData, name, yData, color, features, style }) {
     title = title ? title : 'Smoothed Line Chart'
     return StackedAreaChart({
         title: title,
+        left: dispositionTitre,
         xData: xData,
         names: [name],
         yDatas: [yData],
@@ -32,10 +34,11 @@ export function SmoothedLineChart({ title, xData, name, yData, color, features, 
     })
 }
 
-export function BasicAreaChart({ title, xData, name, yData, color, features, style }) {
+export function BasicAreaChart({ title, dispositionTitre, xData, name, yData, color, features, style }) {
     title = title ? title : 'Basic Area Chart'
     return StackedAreaChart({
         title: title,
+        left: dispositionTitre,
         xData: xData,
         names: [name],
         yDatas: [yData],
@@ -47,10 +50,11 @@ export function BasicAreaChart({ title, xData, name, yData, color, features, sty
     })
 }
 
-export function SmoothedAreaChart({ title, xData, name, yData, color, features, style }) {
+export function SmoothedAreaChart({ title, dispositionTitre, xData, name, yData, color, features, style }) {
     title = title ? title : 'Smoothed Area Chart'
     return StackedAreaChart({
         title: title,
+        left: dispositionTitre,
         xData: xData,
         names: [name],
         yDatas: [yData],
@@ -62,10 +66,11 @@ export function SmoothedAreaChart({ title, xData, name, yData, color, features, 
     })
 }
 
-export function StackedAreaChart({ title, xData, names, yDatas, areaStyles, smooths, colors, features, style }) {
+export function StackedAreaChart({ title, dispositionTitre, xData, names, yDatas, areaStyles, smooths, colors, features, style }) {
     let option = {
         title: {
-            text: 'Stacked Area Chart'
+            text: 'Stacked Area Chart',
+            left: dispositionTitre
         },
         tooltip: {
             trigger: 'axis',

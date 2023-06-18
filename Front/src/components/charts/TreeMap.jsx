@@ -2,7 +2,7 @@ import React from "react";
 import { EchartComponent } from "./EchartComponent.";
 
 //just a function because we will just do a render 
-export function TreeMap({data, names, titre}) {
+export function TreeMap({data, names, titre, dispositionTitre}) {
   let values = [] 
   data.forEach((el, index)=>{
     values.push({
@@ -14,7 +14,7 @@ export function TreeMap({data, names, titre}) {
   const option = {
     title: {
       text: titre,
-      left: 'center'
+      left: dispositionTitre
     },
     tooltip: {
       trigger: 'item'
