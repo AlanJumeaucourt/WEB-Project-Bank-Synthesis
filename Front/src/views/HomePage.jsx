@@ -7,7 +7,6 @@ export function HomePage() {
     return (
         <div>
             <HomeNavBar />
-
             <div class="container">
                 {/*<div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">a

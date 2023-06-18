@@ -9,7 +9,7 @@ from app.Endpoints.accounts import list_accounts
 from app.Endpoints.accounts import get_account_balance
 from app.Endpoints.accounts import get_account_balance_cumulative
 
-from app.sso_utils import retrieve_username
+from app.utils.sso_utils import retrieve_username
 
 app = FastAPI()
 security = HTTPBearer()
