@@ -1,28 +1,10 @@
 import React, { Children, Component } from 'react'
-import { useKeycloak } from "@react-keycloak/web";
 import { HomeNavBar } from '../components/bars/NavBar'
-import { Footer } from '../components/bars/Footer'
 
 export function HomePage() {
     return (
         <div>
-            <HomeNavBar />
             <div class="container">
-                {/*<div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">a
-                        <div class="row">
-                            <div class="col">1</div>
-                            <div class="col">2</div>
-                            <div class="col">3</div>
-                            <div class="col">4</div>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">b</div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">c</div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">d</div>
-                </div>*/}
-
                 <header>
                     <h1 style={{
                         marginBottom: '20px',
@@ -94,11 +76,7 @@ export function HomePage() {
                     <p>Notre objectif est de rendre la gestion financière accessible à tous. Avec notre site web open source, nous encourageons la collaboration et l'évolution continue de nos fonctionnalités. Nous sommes fiers de fournir un produit de qualité, soutenu par une équipe talentueuse et soucieuse de votre satisfaction.</p>
                     <p>Rejoignez-nous dès aujourd'hui et prenez le contrôle de vos finances avec TCArgent. Simplifiez votre vie financière et contribuez à un écosystème financier plus ouvert et transparent.</p>
                 </div>
-
-
             </div>
-
-            <Footer />
         </div >
     )
 }
