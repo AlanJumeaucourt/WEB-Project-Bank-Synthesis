@@ -1,11 +1,9 @@
 import React, { useEffet, useState, Component } from 'react'
-import { ButtonPrimary, CircularButton, RoundedButton, Tooltip } from '../components/ui_components/Buttons'
-import { InputPassword, InputText, InputSelect, InputCheckbox } from '../components/ui_components/Inputs'
-import { SignUpForm } from '../components/ui_components/Forms'
+import { ButtonPrimary } from '../components/ui_components/Buttons'
 import { SuccessMessage, WarningMessage, ErrorMessage } from '../components/ui_components/StatusMessage'
 import { Card, Queue, Stack } from '../components/ui_components/Containers'
 
-import { BasicLineChart, StackedAreaChart, SmoothedLineChart, SmoothedAreaChart, BasicAreaChart } from '../components/charts/Lines'
+import { StackedAreaChart, SmoothedLineChart, SmoothedAreaChart } from '../components/charts/Lines'
 import { PieEmpty, PieEmptySpace, PieHalf, PieFull } from '../components/charts/Pie'
 import { TreeMap } from '../components/charts/TreeMap'
 import { CreditSimulation } from '../components/charts/CreditSimulation'
@@ -93,7 +91,7 @@ function Investissement() {
         {showChartGlobal && (
           <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <div style={{ height: "500px", width: "100%", padding: "3em" }}>
-              <PieEmpty data={[1500, 2000, 1000]} names={['PEA', 'Assurance Vie', 'CTO']} titre='Répartition des investissements' dispositionTitre='center' subtitle='essai' />
+              <PieEmptySpace data={[1500, 2000, 1000]} names={['PEA', 'Assurance Vie', 'CTO']} titre='Répartition des investissements' dispositionTitre='center' subtitle='Détails des comptes' />
             </div>
             <div style={{ height: "500px", width: "100%", padding: "3em" }}>
               <TreeMap data={[1500, 2000, 1000]} names={['PEA', 'Assurance Vie', 'CTO']} titre='Répartition des investissements' dispositionTitre='center' />
@@ -109,7 +107,7 @@ function Investissement() {
 
         {showChartAV && (
           <div style={{ height: "500px", width: "100%", padding: "3em" }} className='d-flex flex-row justify-content-between'>
-            <PieEmpty data={[400, 600, 1000]} names={['Actions', 'Fonds', 'Obligations']} titre='Répartition des investissements' dispositionTitre='center' subtitle='essai' />
+            <PieEmpty data={[400, 600, 1000]} names={['Actions', 'Fonds', 'Obligations']} titre='Répartition des investissements' dispositionTitre='center' subtitle='Détails des placements' />
           </div>
         )}
 
@@ -122,7 +120,7 @@ function Investissement() {
         {showChartPEA && (
           <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <div style={{ height: "500px", width: "100%", padding: "3em" }}>
-              <PieEmpty data={[200, 100, 400, 100, 200, 120, 130, 250]} names={['Orange', 'Air Luiquid', 'Alstom', 'BNP Paribas', 'Crédit Agricole', 'Société Générale', 'SFR', 'Totale Energies']} titre='Répartition des investissements' dispositionTitre='center' subtitle='essai' />
+              <PieFull data={[200, 100, 400, 100, 200, 120, 130, 250]} names={['Orange', 'Air Luiquid', 'Alstom', 'BNP Paribas', 'Crédit Agricole', 'Société Générale', 'SFR', 'Totale Energies']} titre='Répartition des investissements' dispositionTitre='center' subtitle='Détails des actions' />
             </div>
             <div style={{ height: "500px", width: "100%", padding: "3em" }}>
               <SmoothedAreaChart title='Développement des dividendes' dispositionTitre='center' xData={['2019', '2020', '2021', '2022', '2023']} name="Évolution des dividendes" yData={[18, 35, 40, 40, 17]} />
@@ -139,7 +137,7 @@ function Investissement() {
         {showChartCTO && (
           <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <div style={{ height: "500px", width: "100%", padding: "3em" }}>
-              <PieEmpty data={[250, 400, 350]} names={['S&P500', 'NASDAQ', 'MSCI World']} titre='Répartition des investissements' dispositionTitre='center' subtitle='essai' />
+              <PieHalf data={[250, 400, 350]} names={['S&P500', 'NASDAQ', 'MSCI World']} titre='Répartition des investissements' dispositionTitre='center' subtitle='Détails des fonds' />
             </div>
             <div style={{ height: "500px", width: "100%", padding: "3em" }}>
               <SmoothedAreaChart title='Développement des dividendes' dispositionTitre='center' xData={['2019', '2020', '2021', '2022', '2023']} name="Évolution des dividendes" yData={[14, 20, 16, 14, 30]} />
