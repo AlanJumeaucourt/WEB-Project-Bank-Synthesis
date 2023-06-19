@@ -36,27 +36,18 @@ def read_root(credentials: HTTPAuthorizationCredentials = Depends(security)):
 
 # accounts endpoints
 @app.get("/comptes")
-async def get_accounts(credentials: HTTPAuthorizationCredentials = Depends(security)):
-    if not credentials:
-        raise HTTPException(status_code=401, detail="Non Connecté")
-    username = retrieve_username(credentials.credentials)
-    return list_accounts(username)
+async def get_accounts():
+    return list_accounts()
 
 
 @app.get("/comptes/{compte_id}/solde")
-async def comptesSolde(compte_id: int, credentials: HTTPAuthorizationCredentials = Depends(security)):
-    if not credentials:
-        raise HTTPException(status_code=401, detail="Non Connecté")
-    username = retrieve_username(credentials.credentials)
-    return get_account_balance(compte_id, username)
+async def comptesSolde(compte_id: int):
+    return get_account_balance(compte_id)
 
 
 @app.get("/comptes/{compte_id}/soldeperiode")
-async def comptesSoldecommule(compte_id: int, credentials: HTTPAuthorizationCredentials = Depends(security)):
-    if not credentials:
-        raise HTTPException(status_code=401, detail="Non Connecté")
-    username = retrieve_username(credentials.credentials)
-    return get_account_balance_cumulative(compte_id, username)
+async def comptesSoldecommule(compte_id: int):
+    return get_account_balance_cumulative(compte_id)
 
 
 @app.get("/imports")
