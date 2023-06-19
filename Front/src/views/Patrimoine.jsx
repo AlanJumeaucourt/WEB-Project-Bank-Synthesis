@@ -6,8 +6,6 @@ import {
   SmoothedAreaChart,
   BasicAreaChart,
 } from "../components/charts/Lines";
-import { HomeNavBar } from "../components/bars/NavBar";
-import { Footer } from "../components/bars/Footer";
 import { TreeMap } from "../components/charts/TreeMap";
 import { useEffect, useState } from "react";
 import { Card, Stack } from "../components/ui_components/Containers";
@@ -109,9 +107,8 @@ const Patrimoine = () => {
 
 
   return (
-    <div>
-      <HomeNavBar />
-
+    <div style={{padding: "10px 50px 20px" }}>
+      
       <h1>TCArgent Patrimoine</h1>
       <p className="p-3">
         Voici votre page resumant votre patrimoine au fil du temps
@@ -163,7 +160,7 @@ const Patrimoine = () => {
 
       <div style={{ width: "100%" }}>
         Affichage d'un compte courant :
-        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px" }}>
+        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px", padding: "5%" }}>
           <Grid xs={12} md={10}>
             <h2>Mon jolie graphique</h2>
             {chartType === "line" ? (
@@ -260,7 +257,6 @@ const Patrimoine = () => {
         <div className="h-100" style={{ width: "300px" }}></div>
         Fin de page
       </div>
-      <Footer />
     </div>
   );
 };
