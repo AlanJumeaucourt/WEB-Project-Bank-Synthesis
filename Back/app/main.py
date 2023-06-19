@@ -1,4 +1,5 @@
 from typing import Union
+import os
 
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,7 +18,7 @@ security = HTTPBearer()
 #CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[os.environ.get("HOST_URL")],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
