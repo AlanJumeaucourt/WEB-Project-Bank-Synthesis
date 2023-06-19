@@ -9,6 +9,17 @@ export function HomePage() {
                 <p>Notre objectif est de rendre la gestion financière accessible à tous. Avec notre site web open source, nous encourageons la collaboration et l'évolution continue de nos fonctionnalités. Nous sommes fiers de fournir un produit de qualité, soutenu par une équipe talentueuse et soucieuse de votre satisfaction.</p>
                 <p>Rejoignez-nous dès aujourd'hui et prenez le contrôle de vos finances avec TCArgent. Simplifiez votre vie financière et contribuez à un écosystème financier plus ouvert et transparent.</p>
             </div>
+            <div class="container">
+                <h2>Co-Founder du projet :</h2>
+                <ul>
+                    <li>Harittane Ryadou <a href="https://github.com/Ryad3">@Ryad3</a></li>
+                    <li>Jumeaucourt Dictateur <a href="https://github.com/AlanJumeaucourt">@AlanJumeaucourt</a></li>
+                    <li>Landy Lulu <a href="https://github.com/Zouzzou21">@Zouzzou21</a></li>
+                    <li>Beaufour Mathou <a href="https://github.com/CABANENT">@CABANENT</a></li>
+                    <li>Cambray L'homo <a href="https://github.com/Moovaa2">@Moovaa2</a></li>
+                    <li>Dongmo la MACHINE <a href="https://github.com/dkgmgo">@dkgmgo</a></li>
+                </ul>
+            </div>
         </div>
     )
 }
