@@ -27,7 +27,7 @@ const Patrimoine = () => {
   
     return (
       <div>
-        <h1>TCArgent Patrimoine</h1>
+        <h1>TCArgent - Patrimoine</h1>
         <p className='p-3'>Voici votre page qui résume votre patrimoine au fil du temps !</p>
         <Card>
         <div class="row">

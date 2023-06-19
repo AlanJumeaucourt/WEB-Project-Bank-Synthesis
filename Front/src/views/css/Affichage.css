@@ -1,0 +1,29 @@
+h1,
+p,
+div {
+    text-align: center;
+    color: black;
+}
+
+h1 {
+    font-size: 50em;
+}
+
+h1,
+p,
+div {
+    font-family: Calibri;
+}
+
+body.background {
+    background-color: rgba(237, 237, 237, 0.573);
+}
+
+div.background {
+    background-color: white;
+    border-radius: 10px;
+}
+
+div.background:hover {
+    transform: scale(1.08);
+}
