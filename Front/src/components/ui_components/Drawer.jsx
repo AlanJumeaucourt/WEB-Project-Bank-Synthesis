@@ -1,6 +1,6 @@
 import React from "react";
 import { RoundedButton } from "./Buttons";
-import './Drawer.css';
+import './css/Drawer.css';
 
 export function Drawer({ id, title, children }) {
     return (

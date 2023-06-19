@@ -120,7 +120,7 @@ export function StackedAreaChart({ title, dispositionTitre, xData, names, yDatas
             {
                 type: 'inside',
                 start: 0,
-                end: 50
+                end: 100
             },
             {}
         ],
