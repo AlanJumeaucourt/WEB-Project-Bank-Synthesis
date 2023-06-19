@@ -2,7 +2,7 @@ import React from "react";
 import { EchartComponent } from "./EchartComponent.";
 
 //just a function because we will just do a render 
-export function TreeMap({data, names, titre, dispositionTitre}) {
+export function TreeMap({data, names, titre, dispositionTitre, style}) {
   let values = [] 
   data.forEach((el, index)=>{
     values.push({
@@ -38,5 +38,5 @@ export function TreeMap({data, names, titre, dispositionTitre}) {
     ]
   };
       
-   return <EchartComponent option={option}></EchartComponent>
+   return <EchartComponent option={option} style={style}></EchartComponent>
 }

@@ -42,7 +42,6 @@ const Patrimoine = () => {
           console.log(dataListeCompte);
           setSelectedAccount(dataListeCompte[0].id);
         }
-
       })
       .catch((error) => {
         console.log(error);
@@ -62,9 +61,7 @@ const Patrimoine = () => {
           setData(null);
         });
     }
-
   }, [selectedAccount]);
-
 
   const prepareChartData = () => {
     // Traitez les données pour les préparer au format du graphique
@@ -104,17 +101,14 @@ const Patrimoine = () => {
     );
   };
 
-
-
   return (
     <div style={{ padding: "10px 50px 20px" }}>
-
       <Card style={{ fontSize: '40px' }}>
         <p className="p-3">
           Page Patrimoine
         </p>
       </Card>
-      <Card style={{ backgroundColor: 'lightblue' }}>
+      <Card style={{ backgroundColor: "lightblue" }}>
         <div class="row">
           <div class="d-flex flex-row"></div>
           <div class="col-sm-3">
@@ -159,7 +153,12 @@ const Patrimoine = () => {
       </div>
 
       <div style={{ width: "100%" }}>
-        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px" }}>
+        Affichage d'un compte courant :
+        <Grid
+          container
+          spacing={1}
+          style={{ height: "100%", minHeight: "500px" }}
+        >
           <Grid xs={12} md={10}>
             {chartType === "line" ? (
               <SmoothedLineChart
@@ -201,9 +200,6 @@ const Patrimoine = () => {
                 ))}
               </Stack>
 
-
-
-
               <br></br>
               <div
                 className="rounded p-1"
@@ -240,30 +236,35 @@ const Patrimoine = () => {
           </Grid>
         </Grid>
         <div style={{ height: "500px", width: "100%" }}>
-          <Grid container spacing={1}>
-            <Grid xs={12} md={10}>
-              <h2>Répartition du Patrimoine</h2>
-              <TreeMap
-                data={[1500, 2000, 1000]}
-                names={["PEA", "LEP", "Livret A"]}
-              />
+          <div>
+            <Grid container spacing={1}>
+              <Grid
+                xs={12}
+                md={10}
+                style={{ height: "100%", minHeight: "500px" }}
+              >
+                <h2>Répartition du patrimoine</h2>
+                <TreeMap
+                  style={{ height: "100%" }}
+                  data={[1500, 2000, 1000]}
+                  names={["PEA", "LEP", "Livret A"]}
+                />
+              </Grid>
             </Grid>
-          </Grid>
+          </div>
+          <div className="h-100" style={{ width: "300px" }}></div>
         </div>
-        <div className="h-100" style={{ width: "300px" }}></div>
-        Fin de page
       </div>
-    </div>
-  );
+      );
 };
 
-const Item = styled("div")(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  border: "1px solid",
-  borderColor: theme.palette.mode === "dark" ? "#444d58" : "#ced7e0",
-  padding: theme.spacing(1),
-  borderRadius: "4px",
-  textAlign: "center",
+      const Item = styled("div")(({theme}) => ({
+        backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+      border: "1px solid",
+      borderColor: theme.palette.mode === "dark" ? "#444d58" : "#ced7e0",
+      padding: theme.spacing(1),
+      borderRadius: "4px",
+      textAlign: "center",
 }));
 
-export { Patrimoine };
+      export {Patrimoine};
