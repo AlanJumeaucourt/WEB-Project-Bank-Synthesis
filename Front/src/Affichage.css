@@ -1,6 +1,0 @@
-.boutons-container button {
-    display: inline-block;
-    text-align: center;
-    justify-content: space-between;
-    flex-grow: 1;
-}
