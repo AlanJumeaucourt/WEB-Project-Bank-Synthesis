@@ -160,7 +160,7 @@ const Patrimoine = () => {
 
       <div style={{ width: "100%" }}>
         Affichage d'un compte courant :
-        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px", padding: "5%" }}>
+        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px"}}>
           <Grid xs={12} md={10}>
             <h2>Mon jolie graphique</h2>
             {chartType === "line" ? (
