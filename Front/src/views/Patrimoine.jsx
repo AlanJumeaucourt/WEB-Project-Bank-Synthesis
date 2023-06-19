@@ -109,9 +109,9 @@ const Patrimoine = () => {
   return (
     <div style={{ padding: "10px 50px 20px" }}>
 
-      <Card title="Page Patrimoine">
+      <Card style={{ fontSize: '40px' }}>
         <p className="p-3">
-          Voici la page résumant votre patrimoine au fil du temps
+          Page Patrimoine
         </p>
       </Card>
       <Card style={{ backgroundColor: 'lightblue' }}>
