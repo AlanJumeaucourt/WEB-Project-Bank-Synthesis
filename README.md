@@ -20,6 +20,12 @@ Go to the project directory
   cd WEB-Project-Bank-Synthesis
 ```
 
+Change the HOST_URL to your IP address
+```
+HOST_URL=http://192.168.32.1
+
+```
+
 Build the containers
 
 ```
@@ -34,7 +40,7 @@ Run the project when it's finish to build
 
 
 When it's finish 
-The application is avaible at http://localhost:3000
+The application is avaible at <YOUR_IP>:3000
 
 
 ## Known issue
