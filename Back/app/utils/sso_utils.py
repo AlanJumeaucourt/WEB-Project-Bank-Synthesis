@@ -5,11 +5,10 @@ import os
 keycloak_openid = None
 
 def check_user_token(token):
-    keycloak_openid = KeycloakOpenID(server_url=os.environ.get('KEYCLOAK_BASE_URL'),
-                                 client_id="frontendReact",
-                                 realm_name="TCArgent",
+    keycloak_openid = KeycloakOpenID(server_url=os.environ.get('REACT_APP_KEYCLOAK_BASE_URLS'),
+                                 client_id=os.environ.get('REACT_APP_KEYCLOAK_CLIENTID'),
+                                 realm_name=os.environ.get('REACT_APP_KEYCLOAK_REALM'),
                                  client_secret_key="")
-    
     user_info = keycloak_openid.userinfo(token)
     try:
         user_info = keycloak_openid.userinfo(token)
