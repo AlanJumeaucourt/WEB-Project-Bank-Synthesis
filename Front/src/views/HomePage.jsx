@@ -1,4 +1,3 @@
-
 import React, { Children, Component } from 'react'
 import { HomeNavBar } from '../components/bars/NavBar'
 import { Footer } from '../components/bars/Footer'

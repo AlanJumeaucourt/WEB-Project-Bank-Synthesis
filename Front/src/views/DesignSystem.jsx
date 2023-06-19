@@ -17,7 +17,7 @@ class DesignSystem extends Component {
         Axios.getHello()
         return (
             <div>
-                <nav className='navbar navbar-dark bg-dark d-flex flex-column'>
+                <nav className='mt-2 navbar navbar-dark bg-dark d-flex flex-column'>
                     <p className="text-white text-center h2 mt-2">Bienvenue sur le pseudo design system du site</p>
                     <p className='text-white h6 text-justify'>Ce site est principalement fait pour les développeurs et il regroupe l'ensemble de composants du site pour standardiser les développements</p>
                 </nav>
