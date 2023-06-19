@@ -14,19 +14,19 @@ export function prepareData(data, names) {
   return values;
 }
 
-export function PieEmpty({data, names, titre, subtitle}) {
+export function PieEmpty({ data, names, titre, dispositionTitre, subtitle }) {
   const values = prepareData(data, names);
 
   const option = {
     title: {
       text: titre,
-      left: 'center'
-    }, 
+      left: dispositionTitre
+    },
     tooltip: {
       trigger: 'item'
     },
     legend: {
-      top: '10%',
+      top: '7.5%',
       left: 'center'
     },
     series: [
@@ -46,7 +46,7 @@ export function PieEmpty({data, names, titre, subtitle}) {
             fontWeight: 'bold'
           }
         },
-        
+
         labelLine: {
           show: false
         },
@@ -54,23 +54,23 @@ export function PieEmpty({data, names, titre, subtitle}) {
       }
     ]
   };
-      
-   return <EchartComponent option={option}></EchartComponent>
+
+  return <EchartComponent option={option}></EchartComponent>
 }
 
-export function PieEmptySpace({data, names, titre, subtitle}) {
+export function PieEmptySpace({ data, names, titre, dispositionTitre, subtitle }) {
   const values = prepareData(data, names);
 
   const option = {
     title: {
       text: titre,
-      left: 'center'
+      left: dispositionTitre
     },
     tooltip: {
       trigger: 'item'
     },
     legend: {
-      top: '10%',
+      top: '7.5%',
       left: 'center'
     },
     series: [
@@ -95,7 +95,7 @@ export function PieEmptySpace({data, names, titre, subtitle}) {
             fontWeight: 'bold'
           }
         },
-      
+
         labelLine: {
           show: false
         },
@@ -103,23 +103,23 @@ export function PieEmptySpace({data, names, titre, subtitle}) {
       }
     ]
   };
-      
-   return <EchartComponent option={option}></EchartComponent>
+
+  return <EchartComponent option={option}></EchartComponent>
 }
 
-export function PieHalf({ data, names, titre, subtitle}) {
+export function PieHalf({ data, names, titre, dispositionTitre, subtitle }) {
   const values = prepareData(data, names);
 
   const option = {
     title: {
       text: titre,
-      left: 'center'
+      left: dispositionTitre
     },
     tooltip: {
       trigger: 'item'
     },
     legend: {
-      top: '10%',
+      top: '7.5%',
       left: 'center',
     },
     series: [
@@ -161,19 +161,19 @@ export function PieHalf({ data, names, titre, subtitle}) {
   return <EchartComponent option={option}></EchartComponent>;
 }
 
-export function PieFull({data, names, titre, subtitle}) {
+export function PieFull({ data, names, titre, dispositionTitre, subtitle }) {
   const values = prepareData(data, names);
 
   const option = {
     title: {
       text: titre,
-      left: 'center',
+      left: dispositionTitre,
     },
     tooltip: {
       trigger: 'item'
     },
     legend: {
-      top: '10%',
+      top: '7.5%',
       left: 'center',
       // doesn't perfectly work with our tricks, disable it
     },
@@ -199,7 +199,7 @@ export function PieFull({data, names, titre, subtitle}) {
             shadowColor: 'rgba(0, 0, 0, 0.5)'
           }
         },
-      
+
         labelLine: {
           show: false
         },
@@ -207,6 +207,6 @@ export function PieFull({data, names, titre, subtitle}) {
       }
     ]
   };
-      
-   return <EchartComponent option={option}></EchartComponent>
+
+  return <EchartComponent option={option}></EchartComponent>
 }

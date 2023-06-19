@@ -12,6 +12,11 @@ services:
       - reactjs-python
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_KEYCLOAK_BASE_URL=${REACT_APP_KEYCLOAK_BASE_URL}
+      - REACT_APP_KEYCLOAK_REALM=${REACT_APP_KEYCLOAK_REALM}
+      - REACT_APP_KEYCLOAK_CLIENTID=${REACT_APP_KEYCLOAK_CLIENTID}
+      - REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL}
+
     stdin_open: true
     tty: true
 
@@ -25,6 +30,11 @@ services:
     networks:
       - reactjs-python
       - python-mariadb
+    environment:
+      - REACT_APP_KEYCLOAK_BASE_URL=${REACT_APP_KEYCLOAK_BASE_URL}
+      - REACT_APP_KEYCLOAK_REALM=${REACT_APP_KEYCLOAK_REALM}
+      - REACT_APP_KEYCLOAK_CLIENTID=${REACT_APP_KEYCLOAK_CLIENTID}
+      - HOST_URL=${HOST_URL} 
     stdin_open: true
     tty: true
 

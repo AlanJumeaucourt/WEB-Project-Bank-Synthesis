@@ -6,9 +6,6 @@ import {
   SmoothedAreaChart,
   BasicAreaChart,
 } from "../components/charts/Lines";
-import { NavBar } from "../components/bars/NavBar";
-import { Footer } from "../components/bars/Footer";
-
 import { TreeMap } from "../components/charts/TreeMap";
 import { useEffect, useState } from "react";
 import { Card, Stack } from "../components/ui_components/Containers";
@@ -23,28 +20,80 @@ import Grid from "@mui/system/Unstable_Grid";
 import styled from "@mui/system/styled";
 
 const Patrimoine = () => {
+  const [chartType, setChartType] = useState("line"); // 'line' par défaut
   const [data, setData] = useState([]);
+  const [dataListeCompte, setDataListeCompte] = useState([]);
+  const [selectedAccount, setSelectedAccount] = useState(null);
+
+  const handleChartTypeArea = () => {
+    setChartType("area");
+  };
+
+  const handleChartTypeLine = () => {
+    setChartType("line");
+  };
 
   useEffect(() => {
-    Axios.getSoldePeriode()
+    Axios.getListeComptes()
       .then((response) => {
-        setData(response);
+        setDataListeCompte(response);
+        if (!selectedAccount && dataListeCompte.length > 0) {
+          // Si aucun compte n'est sélectionné, sélectionnez le premier compte par défaut
+          console.log(dataListeCompte);
+          setSelectedAccount(dataListeCompte[0].id);
+        }
+
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
+  useEffect(() => {
+    if (selectedAccount) {
+      Axios.getSoldePeriode(selectedAccount)
+        .then((response) => {
+          console.log(response);
+          setData(response);
+        })
+        .catch((error) => {
+          console.log(error);
+          // Remettez les données du graphique à null ou une valeur par défaut en cas d'erreur
+          setData(null);
+        });
+    }
+
+  }, [selectedAccount]);
+
+
   const prepareChartData = () => {
     // Traitez les données pour les préparer au format du graphique
     // Assurez-vous d'adapter ces étapes en fonction de la structure des données retournées par l'API
-    const xData = Object.keys(data);
-    const yData = Object.values(data);
+    if (data) {
+      const xData = Object.keys(data);
+      const yData = Object.values(data);
 
-    return { xData, yData };
+      return { xData, yData };
+    }
+
+    return { xData: [], yData: [] };
   };
 
   const { xData, yData } = prepareChartData();
+
+  const handleAccountButtonClick = (accountId) => {
+    setSelectedAccount(accountId);
+  };
+
+  useEffect(() => {
+    Axios.getListeComptes()
+      .then((response) => {
+        setDataListeCompte(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const CardData = ({ number }) => {
     const n = parseInt(number);
@@ -55,45 +104,17 @@ const Patrimoine = () => {
     );
   };
 
-  function sayHello() {
-    alert("Hello!");
-  }
 
-  function monGraphique(props) {
-    return (
-      <>
-        Bonjours
-        <BasicLineChart
-          title="Titre"
-          xData={xData}
-          name="legende"
-          yData={yData}
-          color="red"
-        />
-        <BasicAreaChart
-          title="Titre"
-          xData={["lun", "mar", "mer", "jeu", "ven"]}
-          name="legende"
-          yData={[10, 50, 30, 60, 40]}
-          color="black"
-        />
-      </>
-    );
-  }
-
-  function Welcome(props) {
-    return <h1>Hello, {props.name}</h1>;
-  }
 
   return (
-    <div>
-      <NavBar />
-<div>
-      <h1>TCArgent Patrimoine</h1>
-      <p className="p-3">
-        Voici votre page resumant votre patrimoine au fil du temps
-      </p>
-      <Card>
+    <div style={{ padding: "10px 50px 20px" }}>
+
+      <Card title="Page Patrimoine">
+        <p className="p-3">
+        Voici votre page qui résume votre patrimoine au fil du temps !
+        </p>
+      </Card>
+      <Card style={{ backgroundColor: 'lightblue' }}>
         <div class="row">
           <div class="d-flex flex-row"></div>
           <div class="col-sm-3">
@@ -126,24 +147,39 @@ const Patrimoine = () => {
         <StackedAreaChart
           title="Graph patrimoine tout compte"
           xData={["lun", "mar", "mer", "jeu", "ven"]}
-          names={["legende1", "legende2", "legende3", "legende4"]}
+          names={["LEP", "PEA", "Livret A"]}
           yDatas={[
             [10, 20, 30, 10, 0],
             [100, 10, 30, 15, 22],
             [10, 50, 30, 60, 40],
-            [11, 3, 10, 5, 40],
           ]}
           areaStyles={true}
           smooths={true}
         />
       </div>
 
-      <div style={{ height: "500px", width: "100%" }}>
+      <div style={{ width: "100%" }}>
         Affichage d'un compte courant :
-        <Grid container spacing={1}>
+        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px" }}>
           <Grid xs={12} md={10}>
-            <h2>Mon jolie graphique</h2>
-            <monGraphique />
+            <h2>Historique du compte</h2>
+            {chartType === "line" ? (
+              <SmoothedLineChart
+                title="Titre"
+                xData={xData}
+                name="legende"
+                yData={yData}
+                color="red"
+              />
+            ) : (
+              <SmoothedAreaChart
+                title="Titre"
+                xData={xData}
+                name="legende"
+                yData={yData}
+                color="red"
+              />
+            )}
           </Grid>
           <Grid xs={12} md={2}>
             <Card
@@ -155,27 +191,20 @@ const Patrimoine = () => {
                 Selectionner le compte à afficher sur le graphique
               </p>
               <Stack style={{ height: "inherit" }}>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 1
-                  </RoundedButton>
-                </div>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 2
-                  </RoundedButton>
-                </div>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 3
-                  </RoundedButton>
-                </div>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 4
-                  </RoundedButton>
-                </div>
+                {dataListeCompte.map((compte) => (
+                  <div className="p-2" key={compte.id}>
+                    <RoundedButton
+                      style={{ width: "100%" }}
+                      onClick={() => handleAccountButtonClick(compte.id)}
+                    >
+                      {compte.account_name}
+                    </RoundedButton>
+                  </div>
+                ))}
               </Stack>
+
+
+
 
               <br></br>
               <div
@@ -191,7 +220,7 @@ const Patrimoine = () => {
                 <Grid container spacing={1}>
                   <Grid xs={6} md={6}>
                     <RoundedButton
-                      onClick={sayHello}
+                      onClick={handleChartTypeLine}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
@@ -200,6 +229,7 @@ const Patrimoine = () => {
                   </Grid>
                   <Grid xs={6} md={6}>
                     <RoundedButton
+                      onClick={handleChartTypeArea}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
@@ -215,7 +245,7 @@ const Patrimoine = () => {
           Affichage d'un compte courant :
           <Grid container spacing={1}>
             <Grid xs={12} md={10}>
-              <h2>Mon jolie graphique</h2>
+              <h2>Répartition du patrimoine</h2>
               <TreeMap
                 data={[1500, 2000, 1000]}
                 names={["PEA", "LEP", "Livret A"]}
@@ -227,8 +257,6 @@ const Patrimoine = () => {
         <div className="h-100" style={{ width: "300px" }}></div>
         Fin de page
       </div>
-      </div>
-      <Footer />
     </div>
   );
 };

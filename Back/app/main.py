@@ -1,4 +1,5 @@
 from typing import Union
+import os
 
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,7 +10,7 @@ from app.Endpoints.accounts import list_accounts
 from app.Endpoints.accounts import get_account_balance
 from app.Endpoints.accounts import get_account_balance_cumulative
 
-from app.sso_utils import retrieve_username
+from app.utils.sso_utils import retrieve_username
 
 app = FastAPI()
 security = HTTPBearer()
@@ -17,7 +18,7 @@ security = HTTPBearer()
 #CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
