@@ -42,7 +42,7 @@ const Patrimoine = () => {
           console.log(dataListeCompte);
           setSelectedAccount(dataListeCompte[0].id);
         }
-    
+
       })
       .catch((error) => {
         console.log(error);
@@ -107,13 +107,14 @@ const Patrimoine = () => {
 
 
   return (
-    <div style={{padding: "10px 50px 20px" }}>
-      
-      <h1>TCArgent Patrimoine</h1>
-      <p className="p-3">
-        Voici votre page resumant votre patrimoine au fil du temps
-      </p>
-      <Card>
+    <div style={{ padding: "10px 50px 20px" }}>
+
+      <Card title="Page Patrimoine">
+        <p className="p-3">
+          Voici la page résumant votre patrimoine au fil du temps
+        </p>
+      </Card>
+      <Card style={{ backgroundColor: 'lightblue' }}>
         <div class="row">
           <div class="d-flex flex-row"></div>
           <div class="col-sm-3">
@@ -146,12 +147,11 @@ const Patrimoine = () => {
         <StackedAreaChart
           title="Graph patrimoine tout compte"
           xData={["lun", "mar", "mer", "jeu", "ven"]}
-          names={["legende1", "legende2", "legende3", "legende4"]}
+          names={["LEP", "PEA", "Livret A"]}
           yDatas={[
             [10, 20, 30, 10, 0],
             [100, 10, 30, 15, 22],
             [10, 50, 30, 60, 40],
-            [11, 3, 10, 5, 40],
           ]}
           areaStyles={true}
           smooths={true}
@@ -160,11 +160,11 @@ const Patrimoine = () => {
 
       <div style={{ width: "100%" }}>
         Affichage d'un compte courant :
-        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px"}}>
+        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px" }}>
           <Grid xs={12} md={10}>
-            <h2>Mon jolie graphique</h2>
+            <h2>Historique du compte</h2>
             {chartType === "line" ? (
-              <BasicLineChart
+              <SmoothedLineChart
                 title="Titre"
                 xData={xData}
                 name="legende"
@@ -172,7 +172,7 @@ const Patrimoine = () => {
                 color="red"
               />
             ) : (
-              <BasicAreaChart
+              <SmoothedAreaChart
                 title="Titre"
                 xData={xData}
                 name="legende"
@@ -245,7 +245,7 @@ const Patrimoine = () => {
           Affichage d'un compte courant :
           <Grid container spacing={1}>
             <Grid xs={12} md={10}>
-              <h2>Mon jolie graphique</h2>
+              <h2>Répartition du patrimoine</h2>
               <TreeMap
                 data={[1500, 2000, 1000]}
                 names={["PEA", "LEP", "Livret A"]}
