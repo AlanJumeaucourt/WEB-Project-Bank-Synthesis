@@ -111,7 +111,7 @@ const Patrimoine = () => {
 
       <Card title="Page Patrimoine">
         <p className="p-3">
-          Voici la page résumant votre patrimoine au fil du temps
+        Voici votre page qui résume votre patrimoine au fil du temps !
         </p>
       </Card>
       <Card style={{ backgroundColor: 'lightblue' }}>

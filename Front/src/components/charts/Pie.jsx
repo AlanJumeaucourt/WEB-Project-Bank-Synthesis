@@ -26,7 +26,7 @@ export function PieEmpty({ data, names, titre, dispositionTitre, subtitle }) {
       trigger: 'item'
     },
     legend: {
-      top: '5%',
+      top: '7.5%',
       left: 'center'
     },
     series: [
@@ -70,7 +70,7 @@ export function PieEmptySpace({ data, names, titre, dispositionTitre, subtitle }
       trigger: 'item'
     },
     legend: {
-      top: '5%',
+      top: '7.5%',
       left: 'center'
     },
     series: [
@@ -119,7 +119,7 @@ export function PieHalf({ data, names, titre, dispositionTitre, subtitle }) {
       trigger: 'item'
     },
     legend: {
-      top: '5%',
+      top: '7.5%',
       left: 'center',
     },
     series: [
@@ -173,7 +173,7 @@ export function PieFull({ data, names, titre, dispositionTitre, subtitle }) {
       trigger: 'item'
     },
     legend: {
-      top: '5%',
+      top: '7.5%',
       left: 'center',
       // doesn't perfectly work with our tricks, disable it
     },
