@@ -60,11 +60,15 @@ const getListeComptes = () => {
         return null; // Retournez null ou une valeur par défaut en cas d'erreur
       });
   };
+const importsCsv = (payload) => {
+    instanceAxios.post("/imports", payload).then((r) => { console.log(r) }).catch((e) => { console.log(e) })
+}
 
 export const Axios = {
     init,
     getHello,
     getSoldePeriode,
-    getListeComptes
+    getListeComptes,
+    importsCsv
 
 }

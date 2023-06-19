@@ -2,7 +2,7 @@ import React from "react"
 
 export const PageNotFound = () => {
     return (
-        <div className="d-flex align-items-center justify-content-center vh-100">
+        <div className="d-flex align-items-center justify-content-center my-5">
             <div className="text-center">
                 <h1 className="display-1 fw-bold text-danger">404</h1>
                 <p className="fs-3">

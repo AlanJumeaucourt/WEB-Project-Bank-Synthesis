@@ -32,3 +32,9 @@ export function WarningMessage({ title, footer, notDismissible, children }) {
         <StatusMessage color="warning" icon="fa fa-exclamation-triangle" title={title} notDismissible={notDismissible} footer={footer} children={children} />
     )
 }
+
+export function InfoMessage({ title, footer, notDismissible, children }) {
+    return (
+        <StatusMessage color="info" icon="fa fa-info-circle" title={title} notDismissible={notDismissible} footer={footer} children={children} />
+    )
+}
