@@ -15,6 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ListItemText from '@mui/material/ListItemText';
 
 const homepages = ['Home', 'Zeub', 'Blog'];
 const pages = ['Home', 'Patrimoine', 'Import', 'Investissement'];
@@ -174,9 +175,10 @@ export function HomeNavBar() {
               }}
             >
 
-              <MenuItem key="Home">
+              {/* <MenuItem key="Home">
+                <ListItemText>Bonsoir</ListItemText>
                 <Typography textAlign="center">Home</Typography>
-              </MenuItem>
+              </MenuItem> */}
             </Menu>
           </Box>
           <img src="TCArgent_Logo.png" height="50hv" alt="Logo" />

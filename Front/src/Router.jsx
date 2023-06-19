@@ -4,6 +4,7 @@ import { HomePage } from './views/HomePage'
 import { PageNotFound } from './views/errors/PageNotFound'
 import { DesignSystem } from './views/DesignSystem'
 import { Patrimoine } from './views/Patrimoine'
+import { AboutUs } from './views/AboutUs'
 
 import { LoginRequired } from './components/auth/LoginRequired'
 import { Imports } from './views/Imports'
@@ -19,6 +20,7 @@ export const Router = () => {
                 <Route path="/patrimoine" element={<Patrimoine />} />
                 <Route path="/design-system" element={<LoginRequired><DesignSystem /></LoginRequired>} />
                 <Route path="/imports" element={<LoginRequired><Imports /></LoginRequired>} />
+                <Route path="/about-us" element={<AboutUs />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
         </BrowserRouter>
