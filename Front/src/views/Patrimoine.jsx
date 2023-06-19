@@ -103,10 +103,8 @@ const Patrimoine = () => {
 
   return (
     <div style={{ padding: "10px 50px 20px" }}>
-      <Card style={{ fontSize: '40px' }}>
-        <p className="p-3">
-          Page Patrimoine
-        </p>
+      <Card style={{ fontSize: "40px" }}>
+        <p className="p-3">Page Patrimoine</p>
       </Card>
       <Card style={{ backgroundColor: "lightblue" }}>
         <div class="row">
@@ -183,9 +181,7 @@ const Patrimoine = () => {
               className="p-2"
               style={{ height: "100%" }}
             >
-              <p class="card-text">
-                Selectionner le compte à afficher
-              </p>
+              <p class="card-text">Selectionner le compte à afficher</p>
               <Stack style={{ height: "inherit" }}>
                 {dataListeCompte.map((compte) => (
                   <div className="p-2" key={compte.id}>
@@ -254,17 +250,17 @@ const Patrimoine = () => {
           <div className="h-100" style={{ width: "300px" }}></div>
         </div>
       </div>
-      </div>
-      );
+    </div>
+  );
 };
 
-      const Item = styled("div")(({theme}) => ({
-        backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-      border: "1px solid",
-      borderColor: theme.palette.mode === "dark" ? "#444d58" : "#ced7e0",
-      padding: theme.spacing(1),
-      borderRadius: "4px",
-      textAlign: "center",
+const Item = styled("div")(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  border: "1px solid",
+  borderColor: theme.palette.mode === "dark" ? "#444d58" : "#ced7e0",
+  padding: theme.spacing(1),
+  borderRadius: "4px",
+  textAlign: "center",
 }));
 
-      export {Patrimoine};
+export { Patrimoine };
