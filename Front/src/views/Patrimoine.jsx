@@ -159,13 +159,11 @@ const Patrimoine = () => {
       </div>
 
       <div style={{ width: "100%" }}>
-        Affichage d'un compte courant :
         <Grid container spacing={1} style={{ height: "100%", minHeight: "500px" }}>
           <Grid xs={12} md={10}>
-            <h2>Historique du compte</h2>
             {chartType === "line" ? (
               <SmoothedLineChart
-                title="Titre"
+                title="Historique du compte"
                 xData={xData}
                 name="legende"
                 yData={yData}
@@ -173,7 +171,7 @@ const Patrimoine = () => {
               />
             ) : (
               <SmoothedAreaChart
-                title="Titre"
+                title="Historique du compte"
                 xData={xData}
                 name="legende"
                 yData={yData}
@@ -188,7 +186,7 @@ const Patrimoine = () => {
               style={{ height: "100%" }}
             >
               <p class="card-text">
-                Selectionner le compte à afficher sur le graphique
+                Selectionner le compte à afficher
               </p>
               <Stack style={{ height: "inherit" }}>
                 {dataListeCompte.map((compte) => (
@@ -242,14 +240,12 @@ const Patrimoine = () => {
           </Grid>
         </Grid>
         <div style={{ height: "500px", width: "100%" }}>
-          Affichage d'un compte courant :
           <Grid container spacing={1}>
             <Grid xs={12} md={10}>
-              <h2>Répartition du patrimoine</h2>
+              <h2>Répartition du Patrimoine</h2>
               <TreeMap
                 data={[1500, 2000, 1000]}
                 names={["PEA", "LEP", "Livret A"]}
-                titre="essai"
               />
             </Grid>
           </Grid>
