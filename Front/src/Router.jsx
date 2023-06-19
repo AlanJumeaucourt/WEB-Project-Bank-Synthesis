@@ -6,6 +6,7 @@ import { PageNotFound } from './views/errors/PageNotFound'
 import { DesignSystem } from './views/DesignSystem'
 import { Investissement } from './views/Investissement'
 import { Patrimoine } from './views/Patrimoine'
+import { AboutUs } from './views/AboutUs'
 import { LoginRequired } from './components/auth/LoginRequired'
 import { Imports } from './views/Imports'
 import { keycloak } from './services/Keycloak'
@@ -22,7 +23,8 @@ export const Router = () => {
                 <Route path="/Investissement" element={< Investissement />} />
                 <Route path="/Patrimoine" element={<Patrimoine />} />
                 <Route path="/design-system" element={<LoginRequired><DesignSystem /></LoginRequired>} />
-                <Route path="/imports" element={<Imports />} />
+                <Route path="/imports" element={<LoginRequired><Imports /></LoginRequired>} />
+                <Route path="/about-us" element={<AboutUs />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
             <Footer />
