@@ -15,13 +15,11 @@ import MenuItem from '@mui/material/MenuItem';
 import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import ListItemText from '@mui/material/ListItemText';
-
-const homepages = ['Home', 'Zeub', 'Blog'];
-const pages = ['Home', 'Patrimoine', 'Import', 'Investissement'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import Drawer from '@mui/material/Drawer';
 
 export function NavBar() {
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
+
   const { keycloak } = useKeycloak()
 
   const logout = () => {
@@ -43,9 +41,96 @@ export function NavBar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               color="inherit"
+              onClick={() => setIsDrawerOpen(true)}
             >
               <MenuIcon />
             </IconButton>
+            <Drawer
+              anchor='left'
+              open={isDrawerOpen}
+              onClose={() => setIsDrawerOpen(false)}
+              PaperProps={{
+                sx: {
+                  background: '#1976d2'
+                }
+              }}>
+              <Box p={2} width='250px' textAlign='center' role='presentation'>
+                <Typography textAlign="center" variant="h5">
+                  TCArgent
+                </Typography>
+              </Box>
+
+              <Box p={2}
+                width='250px'
+                textAlign='center'
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                role='presentation'>
+                <Tooltip title="Open settings">
+                  <Avatar alt="Remy Sharp" src="PP.png" onClick={account} />
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                >
+                  <MenuItem key="Account">
+                    <Typography textAlign="center">Account</Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
+
+              <Box p={2} width='250px' textAlign='center' role='presentation'>
+                <Box>
+                  <Button
+                    fullWidth={true}
+                    key="HomePage"
+                    sx={{ my: 2, color: 'black', background: '#1051a5', display: 'block' }}
+                    href="/">
+                    Homepage
+                  </Button>
+                  <Button
+                    fullWidth={true}
+                    key="Patrimoine"
+                    sx={{ my: 2, color: 'black', background: '#1051a5', display: 'block' }}
+                    href="/patrimoine">
+                    Patrimoine
+                  </Button>
+                  <Button
+                    fullWidth={true}
+                    key="Investissement"
+                    sx={{ my: 2, color: 'black', background: '#1051a5', display: 'block' }}
+                    href="/investissement">
+                    Investissement
+                  </Button>
+                  <Button
+                    fullWidth={true}
+                    key="Imports"
+                    sx={{ my: 2, color: 'black', background: '#1051a5', display: 'block' }}
+                    href="/imports">
+                    Imports
+                  </Button>
+                  <Button
+                    fullWidth={true}
+                    color="inherit"
+                    variant="outlined"
+                    startIcon={<ExitToAppIcon />}
+                    onClick={logout}
+                    sx={{ my: 2 }}>
+                    Deconnexion
+                  </Button>
+                </Box>
+              </Box>
+            </Drawer>
             <Menu
               id="menu-appbar"
               anchorOrigin={{
@@ -61,12 +146,11 @@ export function NavBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <MenuItem key="Home">
-                <Typography textAlign="center">Home</Typography>
-              </MenuItem>
             </Menu>
           </Box>
-          <img src="TCArgent_Logo.png" height="50hv" alt="Logo" />
+          <a href="/">
+            <img src="TCArgent_Logo.png" height="50hv" alt="Logo" />
+          </a>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
             <Button
@@ -80,7 +164,7 @@ export function NavBar() {
             <Button
               key="Patrimoine"
               sx={{ my: 2, color: 'white', display: 'block' }}
-              href="/Patrimoine"
+              href="/patrimoine"
             >
               Patrimoine
             </Button>
@@ -88,7 +172,7 @@ export function NavBar() {
             <Button
               key="Investissement"
               sx={{ my: 2, color: 'white', display: 'block' }}
-              href="/Investissement"
+              href="/investissement"
             >
               Investissement
             </Button>
@@ -96,38 +180,57 @@ export function NavBar() {
             <Button
               key="Imports"
               sx={{ my: 2, color: 'white', display: 'block' }}
-              href="/Import"
+              href="/imports"
             >
               Imports
             </Button>
 
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" onClick={account} />
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-            >
-              <MenuItem key="Account">
-                <Typography textAlign="center">Account</Typography>
-              </MenuItem>
-            </Menu>
+          <Box
+            sx={{
+              flexGrow: 10,
+              display: { xs: 'none', md: 'flex' }
+            }}
+            container
+            justifyContent="flex-end">
+
+            <Box
+              sx={{
+                flexGrow: 0,
+              }}>
+              <Tooltip title="Open settings">
+                <Avatar alt="Remy Sharp" src="PP.png" onClick={account} />
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
+                <MenuItem key="Account">
+                  <Typography textAlign="center">Account</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+            <span className='mx-2'/>
+            <Button
+              color="inherit"
+              variant="outlined"
+              startIcon={<ExitToAppIcon />}
+              onClick={logout}>
+              Deconnexion
+            </Button>
+
           </Box>
-          <Button color="inherit" variant="outlined" startIcon={<ExitToAppIcon />}
-            onClick={logout}>
-            Log out</Button>
+
         </Toolbar>
       </Container>
     </AppBar>
@@ -135,6 +238,8 @@ export function NavBar() {
 }
 
 export function HomeNavBar() {
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
+
   const { keycloak } = useKeycloak()
 
   const login = () => {
@@ -144,21 +249,73 @@ export function HomeNavBar() {
   const register = () => {
     keycloak.register()
   }
+
   return (
     <AppBar position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: {
+                xs: 'flex',
+                md: 'none'
+              }
+            }}>
             <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               color="inherit"
+              onClick={() => setIsDrawerOpen(true)}
             >
               <MenuIcon />
             </IconButton>
+            <Drawer
+              anchor='left'
+              open={isDrawerOpen}
+              onClose={() => setIsDrawerOpen(false)}
+              PaperProps={{
+                sx: {
+                  background: '#1976d2'
+                }
+              }}>
+              <Box p={2} width='250px' textAlign='center' role='presentation'>
+                <Typography textAlign="center" variant="h5">
+                  TCArgent
+                </Typography>
+              </Box>
+              <Box p={2} width='250px' textAlign='center' role='presentation'>
+                <Box>
+                  <Button
+                    fullWidth={true}
+                    key="HomePage"
+                    sx={{ my: 2, color: 'black', background: '#1051a5', display: 'block' }}
+                    href="/">
+                    Homepage
+                  </Button>
+                </Box>
+                <Box>
+                  <Button
+                    fullWidth={true}
+                    color="inherit"
+                    variant="outlined"
+                    startIcon={<LoginIcon />}
+                    onClick={login}>
+                    Connexion
+                  </Button>
+                  <Button
+                    fullWidth={true}
+                    color="inherit"
+                    variant="outlined"
+                    startIcon={<AppRegistrationIcon />}
+                    onClick={register}>
+                    Enregistrement
+                  </Button>
+                </Box>
+              </Box>
+            </Drawer>
             <Menu
               id="menu-appbar"
               anchorOrigin={{
@@ -174,30 +331,39 @@ export function HomeNavBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-
-              {/* <MenuItem key="Home">
-                <ListItemText>Bonsoir</ListItemText>
-                <Typography textAlign="center">Home</Typography>
-              </MenuItem> */}
             </Menu>
           </Box>
-          <img src="TCArgent_Logo.png" height="50hv" alt="Logo" />
-
+          <a href="/">
+            <img src="TCArgent_Logo.png" height="50hv" alt="Logo" />
+          </a>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} href="#Patrimoine">
-
             <Button
               key="HomePage"
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
+              sx={{ my: 2, color: 'white', display: 'block' }}>
               Homepage
             </Button>
           </Box>
-          <Button color="inherit" variant="outlined" startIcon={<LoginIcon />}
-            onClick={login}>
-            Sign in</Button>
-          <Button color="inherit" variant="outlined" startIcon={<AppRegistrationIcon />}
-            onClick={register}>
-            Register</Button>
+          <Box
+            sx={{
+              flexGrow: 10,
+              display: { xs: 'none', md: 'flex' }
+            }}
+            container
+            justifyContent="flex-end">
+            <Button
+              color="inherit"
+              variant="outlined"
+              startIcon={<LoginIcon />}
+              onClick={login}>
+              Connexion
+            </Button>
+            <Button color="inherit"
+              variant="outlined"
+              startIcon={<AppRegistrationIcon />}
+              onClick={register}>
+              Enregistrement
+            </Button>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
