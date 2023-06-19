@@ -6,7 +6,7 @@ export function HomePage() {
         <div>
             <div className="container mt-2">
                 <header>
-                    <SuccessMessage title="Bienvenue !!" notDismissible={true}><p>{welcome}</p></SuccessMessage>
+                    <SuccessMessage title="Gérez vos économies avec TCArgent !" notDismissible={true}><p>{welcome}</p></SuccessMessage>
                 </header>
             </div>
 
