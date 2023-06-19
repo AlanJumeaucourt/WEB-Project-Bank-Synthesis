@@ -24,31 +24,78 @@ import styled from "@mui/system/styled";
 const Patrimoine = () => {
   const [chartType, setChartType] = useState("line"); // 'line' par défaut
   const [data, setData] = useState([]);
+  const [dataListeCompte, setDataListeCompte] = useState([]);
+  const [selectedAccount, setSelectedAccount] = useState(null);
 
-  const handleChartTypeChange = () => {
+  const handleChartTypeArea = () => {
     setChartType("area");
   };
 
+  const handleChartTypeLine = () => {
+    setChartType("line");
+  };
+
   useEffect(() => {
-    Axios.getSoldePeriode()
+    Axios.getListeComptes()
       .then((response) => {
-        setData(response);
+        setDataListeCompte(response);
+        if (!selectedAccount && dataListeCompte.length > 0) {
+          // Si aucun compte n'est sélectionné, sélectionnez le premier compte par défaut
+          console.log(dataListeCompte);
+          setSelectedAccount(dataListeCompte[0].id);
+        }
+    
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
+  useEffect(() => {
+    if (selectedAccount) {
+      Axios.getSoldePeriode(selectedAccount)
+        .then((response) => {
+          console.log(response);
+          setData(response);
+        })
+        .catch((error) => {
+          console.log(error);
+          // Remettez les données du graphique à null ou une valeur par défaut en cas d'erreur
+          setData(null);
+        });
+    }
+
+  }, [selectedAccount]);
+
+
   const prepareChartData = () => {
     // Traitez les données pour les préparer au format du graphique
     // Assurez-vous d'adapter ces étapes en fonction de la structure des données retournées par l'API
-    const xData = Object.keys(data);
-    const yData = Object.values(data);
+    if (data) {
+      const xData = Object.keys(data);
+      const yData = Object.values(data);
 
-    return { xData, yData };
+      return { xData, yData };
+    }
+
+    return { xData: [], yData: [] };
   };
 
   const { xData, yData } = prepareChartData();
+
+  const handleAccountButtonClick = (accountId) => {
+    setSelectedAccount(accountId);
+  };
+
+  useEffect(() => {
+    Axios.getListeComptes()
+      .then((response) => {
+        setDataListeCompte(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const CardData = ({ number }) => {
     const n = parseInt(number);
@@ -114,9 +161,9 @@ const Patrimoine = () => {
         />
       </div>
 
-      <div style={{ height: "500px", width: "100%" }}>
+      <div style={{ width: "100%" }}>
         Affichage d'un compte courant :
-        <Grid container spacing={1}>
+        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px" }}>
           <Grid xs={12} md={10}>
             <h2>Mon jolie graphique</h2>
             {chartType === "line" ? (
@@ -147,27 +194,20 @@ const Patrimoine = () => {
                 Selectionner le compte à afficher sur le graphique
               </p>
               <Stack style={{ height: "inherit" }}>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 1
-                  </RoundedButton>
-                </div>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 2
-                  </RoundedButton>
-                </div>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 3
-                  </RoundedButton>
-                </div>
-                <div className="p-2">
-                  <RoundedButton style={{ width: "100%" }}>
-                    item 4
-                  </RoundedButton>
-                </div>
+                {dataListeCompte.map((compte) => (
+                  <div className="p-2" key={compte.id}>
+                    <RoundedButton
+                      style={{ width: "100%" }}
+                      onClick={() => handleAccountButtonClick(compte.id)}
+                    >
+                      {compte.account_name}
+                    </RoundedButton>
+                  </div>
+                ))}
               </Stack>
+
+
+
 
               <br></br>
               <div
@@ -183,7 +223,7 @@ const Patrimoine = () => {
                 <Grid container spacing={1}>
                   <Grid xs={6} md={6}>
                     <RoundedButton
-                      onClick={handleChartTypeChange}
+                      onClick={handleChartTypeLine}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
@@ -192,6 +232,7 @@ const Patrimoine = () => {
                   </Grid>
                   <Grid xs={6} md={6}>
                     <RoundedButton
+                      onClick={handleChartTypeArea}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
