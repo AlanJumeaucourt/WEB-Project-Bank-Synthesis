@@ -1,132 +1,203 @@
-import React from 'react';
+import * as React from 'react';
 import { useKeycloak } from "@react-keycloak/web";
-import { ButtonPrimary } from '../ui_components/Buttons'
-import { Drawer } from '../ui_components/Drawer'
-import {
-    Nav,
-    NavLink,
-    Bars,
-    NavMenu,
-    NavBtn,
-    NavBtnLink,
-} from './NavbarElements';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import LoginIcon from '@mui/icons-material/Login';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-export function HomeNavBar() {
-    const { keycloak } = useKeycloak()
-
-    const login = () => {
-        keycloak.login()
-    }
-
-    const register = () => {
-        keycloak.register()
-    }
-
-    return (
-        <div class="position-sticky fixed-top">
-            <Nav>
-                
-                <Bars />
-                <NavMenu>
-                    <NavLink to='' activeStyle>
-                        <img src="TCArgent_Logo.png" height="50hv" alt="Logo" loading="lazy" />
-                    </NavLink>
-                </NavMenu>
-
-                <Drawer id="drawer">
-                <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-home"
-                            style={{ width: "inherit" }}
-                            href="/"> Home </ButtonPrimary>
-                    </div>
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-user-circle-o"
-                            style={{ width: "inherit" }}
-                            onClick={login}> Login </ButtonPrimary>
-                    </div>
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-sign-out"
-                            style={{ width: "inherit" }}
-                            onClick={register}> Register </ButtonPrimary>
-                    </div>
-                </Drawer>
-                <NavMenu>
-                    <NavBtn>
-                        <NavBtnLink onClick={login}>Login</NavBtnLink>
-                    </NavBtn>
-                    <NavBtn class="fixed-end">
-                        <NavBtnLink onClick={register}>Register</NavBtnLink>
-                    </NavBtn>
-                </NavMenu>
-            </Nav>
-        </div>
-    )
-}
+const homepages = ['Home', 'Zeub', 'Blog'];
+const pages = ['Home', 'Patrimoine', 'Import', 'Investissement'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export function NavBar() {
-    const { keycloak } = useKeycloak()
+  const { keycloak } = useKeycloak()
 
-    const logout = () => {
-        keycloak.logout()
-    }
+  const logout = () => {
+    keycloak.logout()
+  }
 
-    const account = () => {
-        keycloak.accountManagement()
-    }
+  const account = () => {
+    keycloak.accountManagement()
+  }
+  return (
+    <AppBar position="sticky">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
 
-    return (
-        <div  class="position-sticky fixed-top">
-            <Nav>
-                
-                <Bars />
-                
-                <NavMenu>
-                    <img src="TCArgent_Logo.png" height="50hv" alt="Logo" loading="lazy"/>
-                    <NavLink to='/dashboard' activeStyle>
-                        Dashboard
-                    </NavLink>
-                    <NavLink to='/patrimoine' activeStyle>
-                        Patrimoine
-                    </NavLink>
-                </NavMenu>
-                <Drawer id="drawer">
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-address-card"
-                            style={{ width: "inherit" }}
-                            href="/dashboard"> DashBoard </ButtonPrimary>
-                    </div>
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-university"
-                            style={{ width: "inherit" }}
-                            href="/patrimoine"> Patrimoine </ButtonPrimary>
-                    </div>
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-user-circle-o"
-                            style={{ width: "inherit" }}
-                            onClick={account}> Account </ButtonPrimary>
-                    </div>
-                    <div className='mt-2 w-100'>
-                        <ButtonPrimary
-                            icon="fa fa-sign-out"
-                            style={{ width: "inherit" }}
-                            onClick={logout}> LogOut </ButtonPrimary>
-                    </div>
-                </Drawer>
-                <NavMenu>
-                    <NavBtn>
-                        <NavBtnLink onClick={account}>Account</NavBtnLink>
-                    </NavBtn>
-                    <NavBtn>
-                        <NavBtnLink onClick={logout}>Logout</NavBtnLink>
-                    </NavBtn>
-                </NavMenu>
-            </Nav>
-        </div>
-    )
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              <MenuItem key="Home">
+                <Typography textAlign="center">Home</Typography>
+              </MenuItem>
+            </Menu>
+          </Box>
+          <img src="TCArgent_Logo.png" height="50hv" alt="Logo" />
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+
+            <Button
+              key="Home"
+              sx={{ my: 2, color: 'white', display: 'block' }}
+              href="/"
+            >
+              Home
+            </Button>
+
+            <Button
+              key="Patrimoine"
+              sx={{ my: 2, color: 'white', display: 'block' }}
+              href="/Patrimoine"
+            >
+              Patrimoine
+            </Button>
+
+            <Button
+              key="Investissement"
+              sx={{ my: 2, color: 'white', display: 'block' }}
+              href="/Investissement"
+            >
+              Investissement
+            </Button>
+
+            <Button
+              key="Imports"
+              sx={{ my: 2, color: 'white', display: 'block' }}
+              href="/Import"
+            >
+              Imports
+            </Button>
+
+          </Box>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" onClick={account} />
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <MenuItem key="Account">
+                <Typography textAlign="center">Account</Typography>
+              </MenuItem>
+            </Menu>
+          </Box>
+          <Button color="inherit" variant="outlined" startIcon={<ExitToAppIcon />}
+            onClick={logout}>
+            Log out</Button>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+}
+
+export function HomeNavBar() {
+  const { keycloak } = useKeycloak()
+
+  const login = () => {
+    keycloak.login()
+  }
+
+  const register = () => {
+    keycloak.register()
+  }
+  return (
+    <AppBar position="sticky">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+
+              <MenuItem key="Home">
+                <Typography textAlign="center">Home</Typography>
+              </MenuItem>
+            </Menu>
+          </Box>
+          <img src="TCArgent_Logo.png" height="50hv" alt="Logo" />
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} href="#Patrimoine">
+
+            <Button
+              key="HomePage"
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Homepage
+            </Button>
+          </Box>
+          <Button color="inherit" variant="outlined" startIcon={<LoginIcon />}
+            onClick={login}>
+            Sign in</Button>
+          <Button color="inherit" variant="outlined" startIcon={<AppRegistrationIcon />}
+            onClick={register}>
+            Register</Button>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 }

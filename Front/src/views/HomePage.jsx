@@ -1,5 +1,4 @@
 import React, { Children, Component } from 'react'
-import { useKeycloak } from "@react-keycloak/web";
 import { HomeNavBar } from '../components/bars/NavBar'
 import { Footer } from '../components/bars/Footer'
 
