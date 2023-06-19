@@ -42,7 +42,6 @@ const Patrimoine = () => {
           console.log(dataListeCompte);
           setSelectedAccount(dataListeCompte[0].id);
         }
-
       })
       .catch((error) => {
         console.log(error);
@@ -62,9 +61,7 @@ const Patrimoine = () => {
           setData(null);
         });
     }
-
   }, [selectedAccount]);
-
 
   const prepareChartData = () => {
     // Traitez les données pour les préparer au format du graphique
@@ -104,17 +101,14 @@ const Patrimoine = () => {
     );
   };
 
-
-
   return (
     <div style={{ padding: "10px 50px 20px" }}>
-
       <Card title="Page Patrimoine">
         <p className="p-3">
           Voici la page résumant votre patrimoine au fil du temps
         </p>
       </Card>
-      <Card style={{ backgroundColor: 'lightblue' }}>
+      <Card style={{ backgroundColor: "lightblue" }}>
         <div class="row">
           <div class="d-flex flex-row"></div>
           <div class="col-sm-3">
@@ -160,7 +154,11 @@ const Patrimoine = () => {
 
       <div style={{ width: "100%" }}>
         Affichage d'un compte courant :
-        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px" }}>
+        <Grid
+          container
+          spacing={1}
+          style={{ height: "100%", minHeight: "500px" }}
+        >
           <Grid xs={12} md={10}>
             <h2>Historique du compte</h2>
             {chartType === "line" ? (
@@ -203,9 +201,6 @@ const Patrimoine = () => {
                 ))}
               </Stack>
 
-
-
-
               <br></br>
               <div
                 className="rounded p-1"
@@ -241,12 +236,17 @@ const Patrimoine = () => {
             </Card>
           </Grid>
         </Grid>
-        <div style={{ height: "500px", width: "100%" }}>
+        <div>
           Affichage d'un compte courant :
           <Grid container spacing={1}>
-            <Grid xs={12} md={10}>
+            <Grid
+              xs={12}
+              md={10}
+              style={{ height: "100%", minHeight: "500px" }}
+            >
               <h2>Répartition du patrimoine</h2>
               <TreeMap
+                style={{ height: "100%"}}
                 data={[1500, 2000, 1000]}
                 names={["PEA", "LEP", "Livret A"]}
                 titre="essai"
@@ -255,7 +255,6 @@ const Patrimoine = () => {
           </Grid>
         </div>
         <div className="h-100" style={{ width: "300px" }}></div>
-        Fin de page
       </div>
     </div>
   );
