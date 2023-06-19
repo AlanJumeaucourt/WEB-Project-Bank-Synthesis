@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Card } from "./Containers"
 import "./css/Tabs.css"
 
 export function Tabs({ tabs }) {
@@ -16,13 +17,13 @@ export function Tabs({ tabs }) {
                     <button key={i} id={tab.id} disabled={currentTab === `${tab.id}`} onClick={(handleClick)}>{tab.tabTitle}</button>
                 )}
             </div>
-            <div className='content'>
+            <Card>
                 {tabs.map((tab, i) =>
                     <div key={i}>
-                        {currentTab === `${tab.id}` && <div><p className='title'>{tab.title}</p><div>{tab.content}</div></div>}
+                        {currentTab === `${tab.id}` && <div className="d-flex flex-column align-items-center"><p className='mt-3 h4'>{tab.title}</p><div>{tab.content}</div></div>}
                     </div>
                 )}
-            </div>
+            </Card>
         </div>
     )
 }

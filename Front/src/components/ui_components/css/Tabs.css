@@ -1,6 +1,7 @@
 .tabs {
     display: flex;
     justify-content: space-between;
+    background-color: lightgrey;
 }
 
 .tabs button {
@@ -22,15 +23,4 @@
 .tabs button:disabled {
     background: linear-gradient(245.39deg, #ff7f50 -35.14%, #3e8bca 143.06%);
     color: white;
-}
-
-@media only screen and (max-width: 960px) {
-
-    .container {
-        width: 100%;
-    }
-
-    .content {
-        padding: 50px;
-    }
 }

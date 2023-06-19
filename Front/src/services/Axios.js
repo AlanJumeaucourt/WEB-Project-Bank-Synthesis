@@ -24,7 +24,12 @@ const getHello = () => {
     instanceAxios.get("/").then((r) => { console.log(r) }).catch((e) => { console.log(e) })
 }
 
+const importsCsv = (payload) => {
+    instanceAxios.post("/imports", payload).then((r) => { console.log(r) }).catch((e) => { console.log(e) })
+}
+
 export const Axios = {
     init,
-    getHello
+    getHello,
+    importsCsv
 }

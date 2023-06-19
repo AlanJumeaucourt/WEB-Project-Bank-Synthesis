@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { ButtonPrimary } from "../components/ui_components/Buttons";
-import { InputFile, InputSelect } from "../components/ui_components/Inputs";
+import { InputCheckbox, InputFile, InputSelect, InputText } from "../components/ui_components/Inputs";
 import { InfoMessage, WarningMessage } from "../components/ui_components/StatusMessage";
 import { Tabs } from "../components/ui_components/Tabs";
+import { Axios } from "../services/Axios";
 
 const tabs = [
     {
@@ -21,8 +22,8 @@ const tabs = [
 
 export function Imports() {
     return (
-        <div className="mt-3 d-flex flex-column align-items-center text-center">
-            <div className="my-2 w-75">
+        <div className="d-flex flex-column align-items-center text-center bg-light">
+            <div className="my-3 w-75 text-justify">
                 <InfoMessage title="Comment visualiser ses transactions ?">{tuto}</InfoMessage>
             </div>
             <div className="my-2 w-75">
@@ -41,19 +42,24 @@ function ApiImports() {
 }
 
 function CsvImports() {
-    const [file, setFile] = useState();
-    const [array, setArray] = useState([]);
+
     const [warning, setWarning] = useState()
+
+    //transactions
+    const [file, setFile] = useState()
+    const [cgu, setCgu] = useState(false)
+    const [array, setArray] = useState([])
     const [csvDivider, setDivider] = useState(";")
+
     //accounts type, tag, establishments, acceptation des CGU, new account
+    const [newAccount, setIsNewAccount] = useState(false)
+    const [accountType, setAccountType] = useState()
+    const [accountTag, setAccountTag] = useState()
+    const [establishment, setEstablishment] = useState()
 
     const fileReader = new FileReader();
 
-    const dividerChanges = (divider) => {
-        setDivider(divider)
-    }
-
-    const handleOnChange = (data) => {
+    const handleOnFileChange = (data) => {
         setWarning(false)
         setFile(data)
     }
@@ -74,28 +80,76 @@ function CsvImports() {
         setArray(array);
     };
 
+    const AccountForm = ({ bool }) => {
+        return bool ? (
+            <div>
+                <div>
+                    <InputSelect id="accountType" icon="fa fa-eur" onInputChange={setAccountType} options={["Compte courant", "Compte titre", "PEA"]}>Type de compte</InputSelect>
+                </div>
+                <div className="mt-2">
+                    <InputText id="accountTag" onInputChange={setAccountTag} icon="fa fa-tag">Tag du compte</InputText>
+                </div>
+                <div className="mt-2">
+                    <InputText id="establishment" onInputChange={setEstablishment} icon="fa fa-building">Banque hebergeant le compte</InputText>
+                </div>
+            </div>
+        ) : (<div>
+            <InputText id="accountTag" onInputChange={setAccountTag} icon="fa fa-tag">Tag du compte</InputText>
+        </div>)
+    }
+
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        if (file) {
+        if (file && cgu) {
             fileReader.onload = function (event) {
                 const text = event.target.result;
                 csvFileToArray(text, csvDivider);
             };
 
-            fileReader.readAsText(file);
+            const account = {
+                newAccount: newAccount,
+                accountType: accountType,
+                accountTag: accountTag,
+                establishment: establishment
+            }
+
+            const payload = {
+                account: account,
+                transactions: array
+            }
+
+            Axios.importsCsv(payload)
         } else {
             setWarning(true);
+            //TODO colorize bad input in red
         }
     };
 
     return (
-        <div className="d-flex justify-content-center text-center">
-            <div style={{ height: "500px", width: "500px" }}>
-                {warning ? <WarningMessage notDismissible={true} footer={""}>Veillez selectionner un fichier</WarningMessage> : <></>}
-                <form>
-                    <InputSelect id="csvdivider" icon="fa fa-file" onInputChange={dividerChanges} options={[";", ",", "|"]} />
-                    <InputFile id="csvInput" onInputChange={handleOnChange} /> <br />
-                    <ButtonPrimary onClick={handleOnSubmit} icon="fa fa-download"> Importer </ButtonPrimary>
+        <div className="mb-5">
+            <div className="w-100">
+                <div className="w-100">
+                    {warning ? <WarningMessage title="Attention" notDismissible={true} footer="">Veuillez selectionner un fichier et completer tous les champs nécéssaires</WarningMessage> : <></>}
+                </div>
+                <form className="w-100">
+                    <div className="mt-2">
+                        <InputCheckbox id="newAccount" onInputChange={setIsNewAccount}>Nouveau Compte ?</InputCheckbox>
+                    </div>
+                    <div className="mt-2">
+                        <AccountForm bool={newAccount} />
+                    </div>
+                    <div className="mt-2">
+                        <InputSelect id="csvdivider" icon="fa fa-minus" onInputChange={setDivider} options={[";", ",", "|"]}>Séparateur CSV</InputSelect>
+                    </div>
+                    <div className="mt-2">
+                        <InputFile id="csvInput" onInputChange={handleOnFileChange} /> <br />
+                    </div>
+                    <div className="mt-2">
+                        <InputCheckbox id="CGU" onInputChange={setCgu}>J'accepte l'import de mes données</InputCheckbox>
+                    </div>
+                    <div className="mt-2">
+                        <ButtonPrimary onClick={handleOnSubmit} icon="fa fa-download"> Importer </ButtonPrimary>
+                    </div>
                 </form>
             </div>
         </div>
