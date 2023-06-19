@@ -15,7 +15,7 @@ from app.utils.sso_utils import retrieve_username
 app = FastAPI()
 security = HTTPBearer()
 
-#CORS configuration
+# CORS configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -25,27 +25,42 @@ app.add_middleware(
 )
 
 
-#test endpoint
+# test endpoint
 @app.get("/")
 def read_root(credentials: HTTPAuthorizationCredentials = Depends(security)):
     if not credentials:
         raise HTTPException(status_code=401, detail="Non Connecté")
-    user = retrieve_username(credentials.credentials)
-    return hello(user)
+    username = retrieve_username(credentials.credentials)
+    return hello(username)
 
-#accounts endpoints
+
+# accounts endpoints
 @app.get("/comptes")
-async def get_accounts():
-    return list_accounts()
+async def get_accounts(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    if not credentials:
+        raise HTTPException(status_code=401, detail="Non Connecté")
+    username = retrieve_username(credentials.credentials)
+    return list_accounts(username)
+
 
 @app.get("/comptes/{compte_id}/solde")
-async def comptesSolde(compte_id: int):
-    return get_account_balance(compte_id)
+async def comptesSolde(compte_id: int, credentials: HTTPAuthorizationCredentials = Depends(security)):
+    if not credentials:
+        raise HTTPException(status_code=401, detail="Non Connecté")
+    username = retrieve_username(credentials.credentials)
+    return get_account_balance(compte_id, username)
+
 
 @app.get("/comptes/{compte_id}/soldeperiode")
-async def comptesSoldecommule(compte_id: int):
-    return get_account_balance_cumulative(compte_id)
+async def comptesSoldecommule(compte_id: int, credentials: HTTPAuthorizationCredentials = Depends(security)):
+    if not credentials:
+        raise HTTPException(status_code=401, detail="Non Connecté")
+    username = retrieve_username(credentials.credentials)
+    return get_account_balance_cumulative(compte_id, username)
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+
+@app.get("/imports")
+async def process_imports(payload: dict):
+    account = payload.get("account")
+    transactions = payload.get("transactions")
+    # TODO
