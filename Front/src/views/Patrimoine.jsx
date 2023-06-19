@@ -153,7 +153,6 @@ const Patrimoine = () => {
       </div>
 
       <div style={{ width: "100%" }}>
-        Affichage d'un compte courant :
         <Grid
           container
           spacing={1}
@@ -254,6 +253,7 @@ const Patrimoine = () => {
           </div>
           <div className="h-100" style={{ width: "300px" }}></div>
         </div>
+      </div>
       </div>
       );
 };
