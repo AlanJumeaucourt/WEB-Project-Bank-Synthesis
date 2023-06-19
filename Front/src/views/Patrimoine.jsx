@@ -164,7 +164,7 @@ const Patrimoine = () => {
           <Grid xs={12} md={10}>
             <h2>Mon jolie graphique</h2>
             {chartType === "line" ? (
-              <BasicLineChart
+              <SmoothedLineChart
                 title="Titre"
                 xData={xData}
                 name="legende"
@@ -172,7 +172,7 @@ const Patrimoine = () => {
                 color="red"
               />
             ) : (
-              <BasicAreaChart
+              <SmoothedAreaChart
                 title="Titre"
                 xData={xData}
                 name="legende"
