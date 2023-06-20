@@ -9,17 +9,15 @@ import { Patrimoine } from './views/Patrimoine'
 import { AboutUs } from './views/AboutUs'
 import { LoginRequired } from './components/auth/LoginRequired'
 import { Imports } from './views/Imports'
-import { keycloak } from './services/Keycloak'
 import { Footer } from './components/bars/Footer'
-import { HomeNavBar, NavBar } from './components/bars/NavBar'
+import { HomeNavBar } from './components/bars/NavBar'
 
 export const Router = () => {
     return (
         <BrowserRouter>
-            {keycloak.authenticated ? <NavBar /> : <HomeNavBar />}
             <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/about-us" element={<AboutUs />} />
+                <Route path="/" element={(<><HomeNavBar/><HomePage/></>)} />
+                <Route path="/about-us" element={(<><HomeNavBar/><AboutUs/></>)} />
                 <Route path="/patrimoine" element={<LoginRequired><Patrimoine /></LoginRequired>} />
                 <Route path="/design-system" element={<LoginRequired><DesignSystem /></LoginRequired>} />
                 <Route path="/imports" element={<LoginRequired><Imports /></LoginRequired>} />
