@@ -1,6 +1,6 @@
 import React from 'react'
 import { SuccessMessage } from '../components/ui_components/StatusMessage'
-import './css/HomePage.css'
+import './css/Homepage.css'
 
 export function HomePage() {
     return (
@@ -16,6 +16,7 @@ export function HomePage() {
                     src="Finance_picture.png"
                     title="Finance tool"
                     width="60%"
+                    alt='image_finance'
                     height="auto" />
             </div>
             <div>

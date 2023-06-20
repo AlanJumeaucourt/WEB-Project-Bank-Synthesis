@@ -21,7 +21,7 @@ export function NavBar() {
   const { keycloak } = useKeycloak()
 
   const logout = () => {
-    keycloak.logout({redirectUri: '/'})
+    keycloak.logout({ redirectUri: '/' })
   }
 
   const account = () => {
@@ -140,28 +140,20 @@ export function NavBar() {
             sx={{
               flexGrow: 10,
               display: { xs: 'none', md: 'flex' }
-            }}
-            container
+            }}          
             justifyContent="flex-end">
-
-            <Box
-              sx={{
-                flexGrow: 0,
-              }}>
               <Tooltip title="Open settings">
-                <Avatar alt="Remy Sharp" src="PP.png" onClick={account} />
+                <Avatar alt="User1" src="PP.png" onClick={account} />
               </Tooltip>
-            <span className='mx-2'/>
-            <Button
-              color="inherit"
-              variant="outlined"
-              startIcon={<ExitToAppIcon />}
-              onClick={logout}>
-              Deconnexion
-            </Button>
-
+              <span className='mx-2' />
+              <Button
+                color="inherit"
+                variant="outlined"
+                startIcon={<ExitToAppIcon />}
+                onClick={logout}>
+                Deconnexion
+              </Button>
           </Box>
-
         </Toolbar>
       </Container>
     </AppBar>
@@ -174,11 +166,11 @@ export function HomeNavBar() {
   const { keycloak } = useKeycloak()
 
   const login = () => {
-    keycloak.login({redirectUri: '/investissement'})
+    keycloak.login({ redirectUri: 'http://localhost:3000/investissement' })
   }
 
   const register = () => {
-    keycloak.register({redirectUri: '/investissement'})
+    keycloak.register({ redirectUri: 'http://localhost:3000/investissement' })
   }
 
   return (

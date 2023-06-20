@@ -40,7 +40,7 @@ export class Unauthorized extends Component {
                         Mais... tu veux pas te connecter d'abord?
                     </p>
                     <p className="lead">
-                        Redirection à la page de <a href="#" className="link-primary" onClick={this.login}>login</a> dans {this.state.timerVal} seconde{this.state.timerVal > 1 && "s"}
+                        Redirection à la page de <button className="p-0 btn btn-link" onClick={this.login}>login</button> dans {this.state.timerVal} seconde{this.state.timerVal > 1 && "s"}
                     </p>
                 </div>
             </div>
