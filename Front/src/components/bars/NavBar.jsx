@@ -5,13 +5,11 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
 import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
@@ -23,7 +21,7 @@ export function NavBar() {
   const { keycloak } = useKeycloak()
 
   const logout = () => {
-    keycloak.logout()
+    keycloak.logout({redirectUri: '/'})
   }
 
   const account = () => {
@@ -70,23 +68,6 @@ export function NavBar() {
                 <Tooltip title="Open settings">
                   <Avatar alt="Remy Sharp" src="PP.png" onClick={account} />
                 </Tooltip>
-                <Menu
-                  sx={{ mt: '45px' }}
-                  id="menu-appbar"
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                >
-                  <MenuItem key="Account">
-                    <Typography textAlign="center">Account</Typography>
-                  </MenuItem>
-                </Menu>
               </Box>
 
               <Box p={2} width='250px' textAlign='center' role='presentation'>
@@ -131,22 +112,6 @@ export function NavBar() {
                 </Box>
               </Box>
             </Drawer>
-            <Menu
-              id="menu-appbar"
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-            </Menu>
           </Box>
           <a href="/">
             <img src="TCArgent_Logo.png" height="50hv" alt="Logo" />
@@ -202,24 +167,6 @@ export function NavBar() {
               <Tooltip title="Open settings">
                 <Avatar alt="Remy Sharp" src="PP.png" onClick={account} />
               </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                <MenuItem key="Account">
-                  <Typography textAlign="center">Account</Typography>
-                </MenuItem>
-              </Menu>
-            </Box>
             <span className='mx-2'/>
             <Button
               color="inherit"
@@ -243,11 +190,11 @@ export function HomeNavBar() {
   const { keycloak } = useKeycloak()
 
   const login = () => {
-    keycloak.login()
+    keycloak.login({redirectUri: '/investissement'})
   }
 
   const register = () => {
-    keycloak.register()
+    keycloak.register({redirectUri: '/investissement'})
   }
 
   return (
@@ -316,22 +263,6 @@ export function HomeNavBar() {
                 </Box>
               </Box>
             </Drawer>
-            <Menu
-              id="menu-appbar"
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-            </Menu>
           </Box>
           <a href="/">
             <img src="TCArgent_Logo.png" height="50hv" alt="Logo" />
@@ -348,7 +279,6 @@ export function HomeNavBar() {
               flexGrow: 10,
               display: { xs: 'none', md: 'flex' }
             }}
-            container
             justifyContent="flex-end">
             <Button
               color="inherit"

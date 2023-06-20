@@ -8,7 +8,6 @@ import { Card, Stack } from "../components/ui_components/Containers";
 import { RoundedButton } from "../components/ui_components/Buttons";
 import { Axios } from "../services/Axios";
 import Grid from "@mui/system/Unstable_Grid";
-import styled from "@mui/system/styled";
 
 export const Patrimoine = () => {
   const [chartType, setChartType] = useState("line"); // 'line' par défaut
@@ -94,24 +93,24 @@ export const Patrimoine = () => {
         </p>
       </Card>
       <Card style={{ backgroundColor: 'lightblue' }}>
-        <div class="row">
-          <div class="d-flex flex-row"></div>
-          <div class="col-sm-3">
+        <div className="row">
+          <div className="d-flex flex-row"></div>
+          <div className="col-sm-3">
             <Card title="Patrimoine Total ">
               <CardData number={42000} />
             </Card>
           </div>
-          <div class="col-sm-3">
+          <div className="col-sm-3">
             <Card title="Prévisions : 1 mois">
               <CardData number={420} />
             </Card>
           </div>
-          <div class="col-sm-3">
+          <div className="col-sm-3">
             <Card title="Prévisions : 6 mois">
               <CardData number={-1000} />
             </Card>
           </div>
-          <div class="col-sm-3">
+          <div className="col-sm-3">
             <Card title="Prévisions : 12 mois">
               <CardData number={1800} />
             </Card>
@@ -144,9 +143,9 @@ export const Patrimoine = () => {
             <h2>Historique du compte</h2>
             {chartType === "line" ? (
               <SmoothedLineChart
-                title="Titre"
+                title="Solde"
                 xData={xData}
-                name="legende"
+                name="compte"
                 yData={yData}
                 color="red"
               />
@@ -166,7 +165,7 @@ export const Patrimoine = () => {
               className="p-2"
               style={{ height: "100%" }}
             >
-              <p class="card-text">
+              <p className="card-text">
                 Selectionner le compte à afficher sur le graphique
               </p>
               <Stack style={{ height: "inherit" }}>
@@ -208,7 +207,7 @@ export const Patrimoine = () => {
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
-                      Bar
+                      Area
                     </RoundedButton>
                   </Grid>
                 </Grid>
@@ -230,17 +229,7 @@ export const Patrimoine = () => {
           </Grid>
         </div>
         <div className="h-100" style={{ width: "300px" }}></div>
-        Fin de page
       </div>
     </div>
   );
 };
-
-const Item = styled("div")(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  border: "1px solid",
-  borderColor: theme.palette.mode === "dark" ? "#444d58" : "#ced7e0",
-  padding: theme.spacing(1),
-  borderRadius: "4px",
-  textAlign: "center",
-}));
