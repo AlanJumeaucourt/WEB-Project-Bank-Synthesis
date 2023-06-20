@@ -10,13 +10,13 @@ export function AboutUs() {
                 <p>Rejoignez-nous dès aujourd'hui et prenez le contrôle de vos finances avec TCArgent. Simplifiez votre vie financière et contribuez à un écosystème financier plus ouvert et transparent.</p>
             </div>
             <div className="container">
-                <h2 className='mb-4'>Co-Founders du projet :</h2>
-                    <p>Harittane Ryadou <a href="https://github.com/Ryad3">@Ryad3</a></p>
-                    <p>Jumeaucourt Dictateur <a href="https://github.com/AlanJumeaucourt">@AlanJumeaucourt</a></p>
-                    <p>Landy Lulu <a href="https://github.com/Zouzzou21">@Zouzzou21</a></p>
-                    <p>Beaufour Mathou <a href="https://github.com/CABANENT">@CABANENT</a></p>
-                    <p>Cambray L'homo <a href="https://github.com/Moovaa2">@Moovaa2</a></p>
-                    <p>Dongmo la MACHINE <a href="https://github.com/dkgmgo">@dkgmgo</a></p>
+                <h2 className='mb-4'>Co-Founder du projet :</h2>
+                    <p>Harittane Ryad <a href="https://github.com/Ryad3">@Ryad3</a></p>
+                    <p>Jumeaucourt Alan <a href="https://github.com/AlanJumeaucourt">@AlanJumeaucourt</a></p>
+                    <p>Landy Lucas <a href="https://github.com/Zouzzou21">@Zouzzou21</a></p>
+                    <p>Beaufour Mathis <a href="https://github.com/CABANENT">@CABANENT</a></p>
+                    <p>Cambray Etienne <a href="https://github.com/Moovaa2">@Moovaa2</a></p>
+                    <p>Dongmo Gausse <a href="https://github.com/dkgmgo">@dkgmgo</a></p>
             </div>
         </div>
     )

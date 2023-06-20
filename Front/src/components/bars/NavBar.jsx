@@ -74,13 +74,6 @@ export function NavBar() {
                 <Box>
                   <Button
                     fullWidth={true}
-                    key="HomePage"
-                    sx={{ my: 2, color: 'black', background: '#1051a5', display: 'block' }}
-                    href="/">
-                    Homepage
-                  </Button>
-                  <Button
-                    fullWidth={true}
                     key="Patrimoine"
                     sx={{ my: 2, color: 'black', background: '#1051a5', display: 'block' }}
                     href="/patrimoine">
@@ -117,15 +110,6 @@ export function NavBar() {
             <img src="TCArgent_Logo.png" height="50hv" alt="Logo" />
           </a>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-
-            <Button
-              key="Home"
-              sx={{ my: 2, color: 'white', display: 'block' }}
-              href="/"
-            >
-              Home
-            </Button>
-
             <Button
               key="Patrimoine"
               sx={{ my: 2, color: 'white', display: 'block' }}
@@ -270,7 +254,8 @@ export function HomeNavBar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} href="#Patrimoine">
             <Button
               key="HomePage"
-              sx={{ my: 2, color: 'white', display: 'block' }}>
+              sx={{ my: 2, color: 'white', display: 'block' }}
+              href="/">
               Homepage
             </Button>
           </Box>
