@@ -11,12 +11,12 @@ export function AboutUs() {
             </div>
             <div class="container">
                 <h2 style={{ marginBottom: '20px' }}>Co-Founder du projet :</h2>
-                    <p>Harittane Ryadou <a href="https://github.com/Ryad3">@Ryad3</a></p>
-                    <p>Jumeaucourt Dictateur <a href="https://github.com/AlanJumeaucourt">@AlanJumeaucourt</a></p>
-                    <p>Landy Lulu <a href="https://github.com/Zouzzou21">@Zouzzou21</a></p>
-                    <p>Beaufour Mathou <a href="https://github.com/CABANENT">@CABANENT</a></p>
-                    <p>Cambray L'homo <a href="https://github.com/Moovaa2">@Moovaa2</a></p>
-                    <p>Dongmo la MACHINE <a href="https://github.com/dkgmgo">@dkgmgo</a></p>
+                    <p>Harittane Ryad <a href="https://github.com/Ryad3">@Ryad3</a></p>
+                    <p>Jumeaucourt Alan <a href="https://github.com/AlanJumeaucourt">@AlanJumeaucourt</a></p>
+                    <p>Landy Lucas <a href="https://github.com/Zouzzou21">@Zouzzou21</a></p>
+                    <p>Beaufour Mathis <a href="https://github.com/CABANENT">@CABANENT</a></p>
+                    <p>Cambray Etienne <a href="https://github.com/Moovaa2">@Moovaa2</a></p>
+                    <p>Dongmo Gausse <a href="https://github.com/dkgmgo">@dkgmgo</a></p>
             </div>
         </div>
     )
