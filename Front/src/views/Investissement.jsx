@@ -1,19 +1,15 @@
-import React, { useEffet, useState, Component } from 'react'
+import React, {useState} from 'react'
 import { ButtonPrimary } from '../components/ui_components/Buttons'
-import { SuccessMessage, WarningMessage, ErrorMessage } from '../components/ui_components/StatusMessage'
-import { Card, Queue, Stack } from '../components/ui_components/Containers'
+import { Card} from '../components/ui_components/Containers'
 
-import { StackedAreaChart, SmoothedLineChart, SmoothedAreaChart } from '../components/charts/Lines'
+import { StackedAreaChart, SmoothedAreaChart } from '../components/charts/Lines'
 import { PieEmpty, PieEmptySpace, PieHalf, PieFull } from '../components/charts/Pie'
 import { TreeMap } from '../components/charts/TreeMap'
-import { CreditSimulation } from '../components/charts/CreditSimulation'
-
-import * as echarts from 'echarts';
 
 import './css/Investissement.css'
 
 
-function Investissement() {
+export function Investissement() {
   const [showChartGlobal, setShowChartGlobal] = useState(true);
   const [showChartAV, setShowChartAV] = useState(false);
   const [showChartPEA, setShowChartPEA] = useState(false);
@@ -48,7 +44,7 @@ function Investissement() {
   };
 
   return (
-    <body className="background">
+    <div className="background">
       <h1>TCArgent - Investissement</h1>
 
       <p className='p-3'>Voici votre page qui résume vos investissements au fil du temps !</p>
@@ -150,8 +146,6 @@ function Investissement() {
         )}
 
       </div>
-    </body>
+    </div>
   );
 }
-
-export { Investissement };

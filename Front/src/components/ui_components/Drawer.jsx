@@ -4,7 +4,7 @@ import './css/Drawer.css';
 
 export function Drawer({ id, title, children }) {
     return (
-        <div class="drawer">
+        <div className="drawer">
             <RoundedButton dataToggle="offcanvas" dataTarget={"#" + id} ariaControls={id} icon="fa fa-bars" />
             <div className="offcanvas offcanvas-start" tabIndex="-1" id={id} aria-labelledby={id + "Label"}>
                 <div className="offcanvas-header">

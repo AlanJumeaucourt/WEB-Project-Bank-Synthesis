@@ -1,14 +1,13 @@
-import React, { Children, Component } from 'react'
-import { HomeNavBar } from '../components/bars/NavBar'
-import { Footer } from '../components/bars/Footer'
+import React from 'react'
 import { SuccessMessage } from '../components/ui_components/StatusMessage'
+import './css/HomePage.css'
 
 export function HomePage() {
     return (
         <div>
             <div className="container mt-2">
                 <header>
-                    <SuccessMessage title="Gérez vos économies avec TCArgent !" notDismissible={true}><p>{welcome}</p></SuccessMessage>
+                    <SuccessMessage title="Gérez vos économies avec TCArgent !" notDismissible={true}>{welcome}</SuccessMessage>
                 </header>
             </div>
 
@@ -20,48 +19,22 @@ export function HomePage() {
                     height="auto" />
             </div>
             <div>
-                <body>
-                    <div id='Ryad' className="container" style={{ marginBottom: '30px' }}>
-                        <div className="bubble">
-                            <h4>Gestion des comptes bancaires</h4>
-                            <p>Ayez une vision globales de vos comptes bancaires même s'ils ne sont pas dans la même banque.</p>
-                        </div>
-
-                        <div className="bubble">
-                            <h4>Monitoring de votre patrimoine</h4>
-                            <p></p>
-                            <p>En plus de gérer vos comptes, visualisé votre patrimoine globales.</p>
-                        </div>
-
-                        <div className="bubble">
-                            <h4>Gestion des investissements</h4>
-                            <p></p>
-                            <p>Ayez une vision globale et de manière durable de vos différents investissements.</p>
-                        </div>
-
-                        <style>
-                            {`
-                            #Ryad {
-                                display: flex;
-                                justify-content: space-around;
-                              }
-
-                            .bubble {
-                            width: 300px;
-                            padding: 20px;
-                            background-color: #f2f2f2;
-                            border-radius: 8px;
-                            margin-right: 20px;
-                            }
-
-                            .bubble h3 {
-                            margin-top: 0;
-                            }
-                            `}
-                        </style>
+                <div className="container d-flex justify-content-around mb-4">
+                    <div className="bubble">
+                        <h4>Gestion des comptes bancaires</h4>
+                        <p>Ayez une vision globales de vos comptes bancaires même s'ils ne sont pas dans la même banque.</p>
                     </div>
-                </body>
 
+                    <div className="bubble">
+                        <h4>Monitoring de votre patrimoine</h4>
+                        <p>En plus de gérer vos comptes, visualisé votre patrimoine globales.</p>
+                    </div>
+
+                    <div className="bubble">
+                        <h4>Gestion des investissements</h4>
+                        <p>Ayez une vision globale et de manière durable de vos différents investissements.</p>
+                    </div>
+                </div>
             </div>
         </div >
     )
