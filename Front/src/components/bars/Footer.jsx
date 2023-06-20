@@ -45,7 +45,7 @@ export function Footer() {
           <Typography variant="body2" color="text.secondary" align="center">
             {"Copyright © "}
             <Link color="inherit" href="https://github.com/Zouzzou21/WEB-Project-Bank-Synthesis">
-              Your Website
+              TCArgent
             </Link>{" "}
             {new Date().getFullYear()}
             {"."}
