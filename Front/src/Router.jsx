@@ -19,12 +19,11 @@ export const Router = () => {
             {keycloak.authenticated ? <NavBar /> : <HomeNavBar />}
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/design-system" element={<DesignSystem />} />
-                <Route path="/Investissement" element={< Investissement />} />
-                <Route path="/Patrimoine" element={<Patrimoine />} />
+                <Route path="/about-us" element={<AboutUs />} />
+                <Route path="/patrimoine" element={<LoginRequired><Patrimoine /></LoginRequired>} />
                 <Route path="/design-system" element={<LoginRequired><DesignSystem /></LoginRequired>} />
                 <Route path="/imports" element={<LoginRequired><Imports /></LoginRequired>} />
-                <Route path="/about-us" element={<AboutUs />} />
+                <Route path="/investissement" element={<LoginRequired>< Investissement /></LoginRequired>} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
             <Footer />

@@ -7,7 +7,6 @@ import { SuccessMessage, WarningMessage, ErrorMessage } from '../components/ui_c
 import { Card, Queue, Stack } from '../components/ui_components/Containers'
 import { Drawer } from '../components/ui_components/Drawer'
 import { Axios } from '../services/Axios'
-import { keycloak } from '../services/Keycloak'
 
 import { PieEmpty, PieEmptySpace, PieHalf, PieFull } from '../components/charts/Pie'
 import { TreeMap } from '../components/charts/TreeMap'
@@ -18,7 +17,7 @@ class DesignSystem extends Component {
         Axios.getHello()
         return (
             <div>
-                <nav className='navbar navbar-dark bg-dark d-flex flex-column'>
+                <nav className='mt-2 navbar navbar-dark bg-dark d-flex flex-column'>
                     <p className="text-white text-center h2 mt-2">Bienvenue sur le pseudo design system du site</p>
                     <p className='text-white h6 text-justify'>Ce site est principalement fait pour les développeurs et il regroupe l'ensemble de composants du site pour standardiser les développements</p>
                 </nav>
@@ -76,8 +75,8 @@ class DesignSystem extends Component {
                     </li>
                     <li className='mt-5'>
                         <div className='mt-2'>
-                            <span>Lines Charts</span>
-                            <p>Voici les Graphiques de lignes, la plupart des lignes héritent de StackedAreaChart</p>
+                            <span>Charts</span>
+                            <p>Voici les Graphiques, la plupart des lignes héritent de StackedAreaChart</p>
                             <div className='mt-2 d-flex flex-row justify-content-between' style={{ height: '300px' }}>
                                 <div className='h-100' style={{ width: '300px' }} >
                                     <BasicLineChart title='Titre' xData={['lun', 'mar', 'mer', 'jeu', 'ven']} name="legende" yData={[10, 50, 30, 60, 40]} color='red' />
@@ -109,19 +108,19 @@ class DesignSystem extends Component {
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <PieHalf data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai'/>
+                                    <PieHalf data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai' />
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <PieFull data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai'/>
+                                    <PieFull data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='Affichage' subtitle='essai' />
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <TreeMap data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='essai'/>
+                                    <TreeMap data={[1500, 2000, 1000]} names={['PEA', 'LEP', 'Livret A']} titre='essai' />
                                 </div>
 
                                 <div className='h-100' style={{ width: '300px' }} >
-                                    <CreditSimulation/>
+                                    <CreditSimulation />
                                 </div>
 
                             </div>

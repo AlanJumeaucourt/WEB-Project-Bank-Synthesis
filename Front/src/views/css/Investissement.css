@@ -15,10 +15,6 @@ div {
     font-family: Calibri;
 }
 
-body.background {
-    background-color: rgba(237, 237, 237, 0.573);
-}
-
 div.background {
     background-color: white;
     border-radius: 10px;

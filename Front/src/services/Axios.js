@@ -2,7 +2,7 @@ import axios from "axios"
 
 const instanceAxios = axios.create({
     baseURL: process.env.REACT_APP_API_BASE_URL
-}
+  }
 )
 
 //automatically add the token to our requests
@@ -27,41 +27,31 @@ const getHello = () => {
 const getSoldePeriode = (accountId) => {
   return instanceAxios.get(`/comptes/${accountId}/soldeperiode`)
     .then((response) => {
-      // Récupérez les données de la réponse
       const data = response.data;
-
-      // Traitez les données si nécessaire
-      // ...
-
-      // Retournez les données
       return data;
     })
     .catch((error) => {
       console.log(error);
-      return null; // Retournez null ou une valeur par défaut en cas d'erreur
+      return null;
     });
-};
-
+}
 
 const getListeComptes = () => {
-    return instanceAxios.get("/comptes")
-      .then((response) => {
-        // Récupérez les données de la réponse
-        const data = response.data;
-  
-        // Traitez les données si nécessaire
-        // ...
-  
-        // Retournez les données
-        return data;
-      })
-      .catch((error) => {
-        console.log(error);
-        return null; // Retournez null ou une valeur par défaut en cas d'erreur
-      });
-  };
+  return instanceAxios.get("/comptes")
+    .then((response) => {
+      const data = response.data;
+      return data;
+    })
+    .catch((error) => {
+      console.log(error);
+      return null;
+    });
+}
+
 const importsCsv = (payload) => {
-    instanceAxios.post("/imports", payload).then((r) => { console.log(r) }).catch((e) => { console.log(e) })
+  return instanceAxios.post("/imports", payload)
+    .then((r) => { return r.data })
+    .catch((e) => { console.log(e); return null })
 }
 
 export const Axios = {
@@ -70,5 +60,4 @@ export const Axios = {
     getSoldePeriode,
     getListeComptes,
     importsCsv
-
 }

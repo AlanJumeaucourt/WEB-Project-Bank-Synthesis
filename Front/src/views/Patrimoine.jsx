@@ -1,48 +1,36 @@
-import React, { Component } from "react";
+import React from "react";
 import {
-  BasicLineChart,
-  StackedAreaChart,
-  SmoothedLineChart,
-  SmoothedAreaChart,
-  BasicAreaChart,
+  StackedAreaChart, SmoothedLineChart, SmoothedAreaChart
 } from "../components/charts/Lines";
 import { TreeMap } from "../components/charts/TreeMap";
 import { useEffect, useState } from "react";
 import { Card, Stack } from "../components/ui_components/Containers";
-import { Queue } from "../components/ui_components/Containers";
-import {
-  ButtonPrimary,
-  CircularButton,
-  RoundedButton,
-} from "../components/ui_components/Buttons";
+import { RoundedButton } from "../components/ui_components/Buttons";
 import { Axios } from "../services/Axios";
 import Grid from "@mui/system/Unstable_Grid";
 import styled from "@mui/system/styled";
 
-const Patrimoine = () => {
+export const Patrimoine = () => {
   const [chartType, setChartType] = useState("line"); // 'line' par défaut
   const [data, setData] = useState([]);
   const [dataListeCompte, setDataListeCompte] = useState([]);
   const [selectedAccount, setSelectedAccount] = useState(null);
 
-  const handleChartTypeArea = () => {
-    setChartType("area");
-  };
-
-  const handleChartTypeLine = () => {
-    setChartType("line");
-  };
-
+  //component did mount
   useEffect(() => {
+    Axios.getSoldePeriode(selectedAccount)
+      .then((response) => {
+        console.log(response);
+        setData(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        setData(null);
+      });
+
     Axios.getListeComptes()
       .then((response) => {
         setDataListeCompte(response);
-        if (!selectedAccount && dataListeCompte.length > 0) {
-          // Si aucun compte n'est sélectionné, sélectionnez le premier compte par défaut
-          console.log(dataListeCompte);
-          setSelectedAccount(dataListeCompte[0].id);
-        }
-
       })
       .catch((error) => {
         console.log(error);
@@ -58,17 +46,20 @@ const Patrimoine = () => {
         })
         .catch((error) => {
           console.log(error);
-          // Remettez les données du graphique à null ou une valeur par défaut en cas d'erreur
           setData(null);
         });
     }
-
   }, [selectedAccount]);
 
+  const handleChartTypeArea = () => {
+    setChartType("area");
+  };
+
+  const handleChartTypeLine = () => {
+    setChartType("line");
+  };
 
   const prepareChartData = () => {
-    // Traitez les données pour les préparer au format du graphique
-    // Assurez-vous d'adapter ces étapes en fonction de la structure des données retournées par l'API
     if (data) {
       const xData = Object.keys(data);
       const yData = Object.values(data);
@@ -85,16 +76,6 @@ const Patrimoine = () => {
     setSelectedAccount(accountId);
   };
 
-  useEffect(() => {
-    Axios.getListeComptes()
-      .then((response) => {
-        setDataListeCompte(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   const CardData = ({ number }) => {
     const n = parseInt(number);
     return (
@@ -103,8 +84,6 @@ const Patrimoine = () => {
       </div>
     );
   };
-
-
 
   return (
     <div style={{ padding: "10px 50px 20px" }}>
@@ -202,10 +181,6 @@ const Patrimoine = () => {
                   </div>
                 ))}
               </Stack>
-
-
-
-
               <br></br>
               <div
                 className="rounded p-1"
@@ -269,5 +244,3 @@ const Item = styled("div")(({ theme }) => ({
   borderRadius: "4px",
   textAlign: "center",
 }));
-
-export { Patrimoine };

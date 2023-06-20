@@ -10,7 +10,7 @@ import { CreditSimulation } from '../components/charts/CreditSimulation'
 
 import * as echarts from 'echarts';
 
-import './css/Affichage.css'
+import './css/Investissement.css'
 
 
 function Investissement() {
@@ -55,25 +55,25 @@ function Investissement() {
 
       <div className="p-4">
         <Card>
-          <div class="row">
-            <div class="d-flex flex-row"></div>
-            <div class="col-sm-3">
-              <div class="card">
+          <div className="row">
+            <div className="d-flex flex-row"></div>
+            <div className="col-sm-3">
+              <div className="card">
                 <ButtonPrimary onClick={handleGlobalClick}>Récapitulatif</ButtonPrimary>
               </div>
             </div>
-            <div class="col-sm-3">
-              <div class="card">
+            <div className="col-sm-3">
+              <div className="card">
                 <ButtonPrimary onClick={handleAVClick}>Assurance Vie</ButtonPrimary>
               </div>
             </div>
-            <div class="col-sm-3">
-              <div class="card">
+            <div className="col-sm-3">
+              <div className="card">
                 <ButtonPrimary onClick={handlePEAClick}>PEA</ButtonPrimary>
               </div>
             </div>
-            <div class="col-sm-3">
-              <div class="card">
+            <div className="col-sm-3">
+              <div className="card">
                 <ButtonPrimary onClick={handleCTOClick}>CTO</ButtonPrimary>
               </div>
             </div>
@@ -84,7 +84,7 @@ function Investissement() {
       <div className="container">
 
         {showChartGlobal && (
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+          <div className="d-flex flex-row justify-content-between">
             <div style={{ height: "500px", width: "100%", margin: "1.5em" }} className="background">
               <SmoothedAreaChart title='Évolution globale' dispositionTitre='left' xData={['2019', '2020', '2021', '2022', '2023']} name="Évolution de vos investissements globaux" yData={[3400, 5000, 7000, 3800, 4500]} />
             </div>
@@ -94,7 +94,7 @@ function Investissement() {
         )}
 
         {showChartGlobal && (
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+          <div className="d-flex flex-row justify-content-between">
             <div style={{ height: "500px", width: "100%", margin: "1.5em" }} className="background">
               <PieEmptySpace data={[1500, 2000, 1000]} names={['PEA', 'Assurance Vie', 'CTO']} titre='Répartition des investissements' dispositionTitre='center' subtitle='Détails des comptes' />
             </div>
@@ -105,7 +105,7 @@ function Investissement() {
         )}
 
         {showChartAV && (
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+          <div className="d-flex flex-row justify-content-between">
             <div style={{ height: "500px", width: "100%", margin: "1.5em" }} className="background">
               <SmoothedAreaChart title='Développement du placement Assurance Vie' dispositionTitre='center' xData={['2019', '2020', '2021', '2022', '2023']} name="Évolution de l'Assurance Vie" yData={[2000, 1500, 1800, 3700, 2000]} />
             </div>
@@ -122,7 +122,7 @@ function Investissement() {
         )}
 
         {showChartPEA && (
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+          <div className="d-flex flex-row justify-content-between">
             <div style={{ height: "500px", width: "100%", margin: "1.5em" }} className="background">
               <PieFull data={[200, 100, 400, 100, 200, 120, 130, 250]} names={['Orange', 'Air Luiquid', 'Alstom', 'BNP Paribas', 'Crédit Agricole', 'Société Générale', 'SFR', 'Totale Energies']} titre='Répartition des investissements' dispositionTitre='center' subtitle='Détails des actions' />
             </div>
@@ -139,7 +139,7 @@ function Investissement() {
         )}
 
         {showChartCTO && (
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+          <div className="d-flex flex-row justify-content-between">
             <div style={{ height: "500px", width: "100%", margin: "1.5em" }} className="background">
               <PieHalf data={[250, 400, 350]} names={['S&P500', 'NASDAQ', 'MSCI World']} titre='Répartition des investissements' dispositionTitre='center' subtitle='Détails des fonds' />
             </div>
