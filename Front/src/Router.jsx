@@ -16,8 +16,8 @@ export const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={(<><HomeNavBar/><HomePage/></>)} />
-                <Route path="/about-us" element={(<><HomeNavBar/><AboutUs/></>)} />
+                <Route path="/" element={(<><HomeNavBar /><HomePage /></>)} />
+                <Route path="/about-us" element={(<><HomeNavBar /><AboutUs /></>)} />
                 <Route path="/patrimoine" element={<LoginRequired><Patrimoine /></LoginRequired>} />
                 <Route path="/design-system" element={<LoginRequired><DesignSystem /></LoginRequired>} />
                 <Route path="/imports" element={<LoginRequired><Imports /></LoginRequired>} />

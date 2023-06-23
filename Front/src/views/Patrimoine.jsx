@@ -31,7 +31,7 @@ export const Patrimoine = () => {
         console.log(error);
       });
   }, []);
-  
+
   useEffect(() => {
     if (selectedAccount) {
       Axios.getSoldePeriode(selectedAccount)
@@ -45,8 +45,8 @@ export const Patrimoine = () => {
         });
     }
   }, [selectedAccount]);
-  
-  
+
+
 
 
   const prepareChartData = () => {
