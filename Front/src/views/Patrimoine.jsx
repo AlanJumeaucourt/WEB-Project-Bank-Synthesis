@@ -18,27 +18,20 @@ export const Patrimoine = () => {
   const [dataListeCompte, setDataListeCompte] = useState([]);
   const [selectedAccount, setSelectedAccount] = useState(null);
 
-  //component did mount
   useEffect(() => {
-    Axios.getSoldePeriode(selectedAccount)
-      .then((response) => {
-        console.log(response);
-        setData(response);
-      })
-      .catch((error) => {
-        console.log(error);
-        setData(null);
-      });
-
     Axios.getListeComptes()
       .then((response) => {
         setDataListeCompte(response);
+        console.log('data:', response); // Utiliser la nouvelle valeur de response
+        if (!selectedAccount && response.length > 0) {
+          setSelectedAccount(response[0].id);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
+  
   useEffect(() => {
     if (selectedAccount) {
       Axios.getSoldePeriode(selectedAccount)
@@ -52,6 +45,8 @@ export const Patrimoine = () => {
         });
     }
   }, [selectedAccount]);
+  
+  
 
 
   const prepareChartData = () => {
@@ -67,10 +62,9 @@ export const Patrimoine = () => {
 
   const { xData, yData } = prepareChartData();
 
-
-  const handleChartTypeArea = () => {
-    setChartType("area");
-  };
+  function handleChartType(typeOfChart) {
+    setChartType(typeOfChart)
+  }
 
   const handleChartTypeLine = () => {
     setChartType("line");
@@ -88,6 +82,41 @@ export const Patrimoine = () => {
       </div>
     );
   };
+
+  const AccountChart = () => {
+    if (chartType === "line") {
+      return (<>
+        <SmoothedLineChart
+          title="Solde"
+          xData={xData}
+          name="compte"
+          yData={yData}
+          color="red"
+        />
+      </>
+      )
+    } else if (chartType === "bar") {
+      return (
+        <SmoothedBarChart
+          title="Solde"
+          xData={xData}
+          name="compte"
+          yData={yData}
+          color="red"
+        />
+      )
+    } else if (chartType === "area") {
+      return (
+        <SmoothedAreaChart
+          title="Solde"
+          xData={xData}
+          name="compte"
+          yData={yData}
+          color="red"
+        />
+      )
+    }
+  }
 
   return (
     <div style={{ padding: "10px 50px 20px" }}>
@@ -145,23 +174,7 @@ export const Patrimoine = () => {
           style={{ height: "100%", minHeight: "500px" }}
         >
           <Grid xs={12} md={10}>
-            {chartType === "line" ? (
-              <SmoothedBarChart
-                title="Solde"
-                xData={xData}
-                name="compte"
-                yData={yData}
-                color="red"
-              />
-            ) : (
-              <SmoothedAreaChart
-                title="Historique du compte"
-                xData={xData}
-                name="legende"
-                yData={yData}
-                color="red"
-              />
-            )}
+            {AccountChart()}
           </Grid>
           <Grid xs={12} md={2}>
             <Card
@@ -184,6 +197,8 @@ export const Patrimoine = () => {
                   </div>
                 ))}
               </Stack>
+              <br></br>
+
 
 
 
@@ -200,22 +215,31 @@ export const Patrimoine = () => {
               >
                 Type de graphique :
                 <Grid container spacing={1}>
-                  <Grid xs={6} md={6}>
+                  <Grid xs={4} md={4}>
                     <RoundedButton
-                      onClick={handleChartTypeLine}
+                      onClick={() => handleChartType('line')}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
                       Line
                     </RoundedButton>
                   </Grid>
-                  <Grid xs={6} md={6}>
+                  <Grid xs={4} md={4}>
                     <RoundedButton
-                      onClick={handleChartTypeArea}
+                      onClick={() => handleChartType('area')}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
                       Area
+                    </RoundedButton>
+                  </Grid>
+                  <Grid xs={4} md={4}>
+                    <RoundedButton
+                      onClick={() => handleChartType('bar')}
+                      color={"light"}
+                      style={{ padding: "5%", margin: "5px", height: "75%" }}
+                    >
+                      Bar
                     </RoundedButton>
                   </Grid>
                 </Grid>
