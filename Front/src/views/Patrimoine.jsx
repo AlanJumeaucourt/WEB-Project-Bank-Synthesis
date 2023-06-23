@@ -2,6 +2,9 @@ import React from "react";
 import {
   StackedAreaChart, SmoothedLineChart, SmoothedAreaChart
 } from "../components/charts/Lines";
+import {
+  StackedBarChart, SmoothedBaChart, SmoothedBarChart
+} from "../components/charts/Bar";
 import { TreeMap } from "../components/charts/TreeMap";
 import { useEffect, useState } from "react";
 import { Card, Stack } from "../components/ui_components/Containers";
@@ -63,6 +66,15 @@ export const Patrimoine = () => {
   };
 
   const { xData, yData } = prepareChartData();
+
+
+  const handleChartTypeArea = () => {
+    setChartType("area");
+  };
+
+  const handleChartTypeLine = () => {
+    setChartType("line");
+  };
 
   const handleAccountButtonClick = (accountId) => {
     setSelectedAccount(accountId);
@@ -134,7 +146,7 @@ export const Patrimoine = () => {
         >
           <Grid xs={12} md={10}>
             {chartType === "line" ? (
-              <SmoothedLineChart
+              <SmoothedBarChart
                 title="Solde"
                 xData={xData}
                 name="compte"
