@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 import mariadb
 from datetime import datetime, timedelta
 
+
 def list_accounts():
     try:
         # Connexion à la base de données MariaDB
@@ -48,7 +49,8 @@ def get_account_balance(compte_id: int):
         )
 
         cursor = conn.cursor()
-        cursor.execute("SELECT SUM(amount) FROM Transactions WHERE source_account_id = ? OR destination_account_id = ?", (compte_id, compte_id))
+        cursor.execute(
+            "SELECT SUM(amount) FROM Transactions WHERE source_account_id = ? OR destination_account_id = ?", (compte_id, compte_id))
         balance = cursor.fetchone()[0]
         cursor.close()
 
@@ -59,6 +61,7 @@ def get_account_balance(compte_id: int):
     except mariadb.Error as e:
         print(f"Erreur lors de la récupération du solde du compte : {e}")
         return JSONResponse(content={"message": "Erreur lors de la récupération du solde du compte"}, status_code=500)
+
 
 def get_account_balance_cumulative(compte_id: int):
     try:
@@ -78,7 +81,8 @@ def get_account_balance_cumulative(compte_id: int):
 
         current_date = start_date
         while current_date <= end_date:
-            cursor.execute("SELECT COALESCE(SUM(amount), 0) FROM Transactions WHERE (source_account_id = ? OR destination_account_id = ?) AND transaction_date <= ?", (compte_id, compte_id, current_date))
+            cursor.execute("SELECT COALESCE(SUM(amount), 0) FROM Transactions WHERE (source_account_id = ? OR destination_account_id = ?) AND transaction_date <= ?",
+                           (compte_id, compte_id, current_date))
             balance = cursor.fetchone()[0]
 
             balances_per_day[current_date.strftime("%Y-%m-%d")] = balance

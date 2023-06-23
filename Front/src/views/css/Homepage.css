@@ -1,0 +1,11 @@
+.bubble {
+    width: 300px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    margin-right: 20px;
+    }
+
+.bubble h3 {
+    margin-top: 0;
+}
