@@ -2,6 +2,9 @@ import React from "react";
 import {
   StackedAreaChart, SmoothedLineChart, SmoothedAreaChart
 } from "../components/charts/Lines";
+import {
+  StackedBarChart, SmoothedBaChart, SmoothedBarChart
+} from "../components/charts/Bar";
 import { TreeMap } from "../components/charts/TreeMap";
 import { useEffect, useState } from "react";
 import { Card, Stack } from "../components/ui_components/Containers";
@@ -15,21 +18,14 @@ export const Patrimoine = () => {
   const [dataListeCompte, setDataListeCompte] = useState([]);
   const [selectedAccount, setSelectedAccount] = useState(null);
 
-  //component did mount
   useEffect(() => {
-    Axios.getSoldePeriode(selectedAccount)
-      .then((response) => {
-        console.log(response);
-        setData(response);
-      })
-      .catch((error) => {
-        console.log(error);
-        setData(null);
-      });
-
     Axios.getListeComptes()
       .then((response) => {
         setDataListeCompte(response);
+        console.log('data:', response); // Utiliser la nouvelle valeur de response
+        if (!selectedAccount && response.length > 0) {
+          setSelectedAccount(response[0].id);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -50,13 +46,8 @@ export const Patrimoine = () => {
     }
   }, [selectedAccount]);
 
-  const handleChartTypeArea = () => {
-    setChartType("area");
-  };
 
-  const handleChartTypeLine = () => {
-    setChartType("line");
-  };
+
 
   const prepareChartData = () => {
     if (data) {
@@ -71,6 +62,14 @@ export const Patrimoine = () => {
 
   const { xData, yData } = prepareChartData();
 
+  function handleChartType(typeOfChart) {
+    setChartType(typeOfChart)
+  }
+
+  const handleChartTypeLine = () => {
+    setChartType("line");
+  };
+
   const handleAccountButtonClick = (accountId) => {
     setSelectedAccount(accountId);
   };
@@ -84,13 +83,45 @@ export const Patrimoine = () => {
     );
   };
 
+  const AccountChart = () => {
+    if (chartType === "line") {
+      return (<>
+        <SmoothedLineChart
+          title="Solde"
+          xData={xData}
+          name="compte"
+          yData={yData}
+          color="red"
+        />
+      </>
+      )
+    } else if (chartType === "bar") {
+      return (
+        <SmoothedBarChart
+          title="Solde"
+          xData={xData}
+          name="compte"
+          yData={yData}
+          color="red"
+        />
+      )
+    } else if (chartType === "area") {
+      return (
+        <SmoothedAreaChart
+          title="Solde"
+          xData={xData}
+          name="compte"
+          yData={yData}
+          color="red"
+        />
+      )
+    }
+  }
+
   return (
     <div style={{ padding: "10px 50px 20px" }}>
-
-      <Card title="Page Patrimoine">
-        <p className="p-3">
-        Voici votre page qui résume votre patrimoine au fil du temps !
-        </p>
+      <Card style={{ fontSize: "40px" }}>
+        <p className="p-3">Page Patrimoine</p>
       </Card>
       <Card style={{ backgroundColor: 'lightblue' }}>
         <div className="row">
@@ -137,27 +168,13 @@ export const Patrimoine = () => {
       </div>
 
       <div style={{ width: "100%" }}>
-        Affichage d'un compte courant :
-        <Grid container spacing={1} style={{ height: "100%", minHeight: "500px" }}>
+        <Grid
+          container
+          spacing={1}
+          style={{ height: "100%", minHeight: "500px" }}
+        >
           <Grid xs={12} md={10}>
-            <h2>Historique du compte</h2>
-            {chartType === "line" ? (
-              <SmoothedLineChart
-                title="Solde"
-                xData={xData}
-                name="compte"
-                yData={yData}
-                color="red"
-              />
-            ) : (
-              <SmoothedAreaChart
-                title="Titre"
-                xData={xData}
-                name="legende"
-                yData={yData}
-                color="red"
-              />
-            )}
+            {AccountChart()}
           </Grid>
           <Grid xs={12} md={2}>
             <Card
@@ -181,6 +198,12 @@ export const Patrimoine = () => {
                 ))}
               </Stack>
               <br></br>
+
+
+
+
+
+              <br></br>
               <div
                 className="rounded p-1"
                 style={{
@@ -192,22 +215,31 @@ export const Patrimoine = () => {
               >
                 Type de graphique :
                 <Grid container spacing={1}>
-                  <Grid xs={6} md={6}>
+                  <Grid xs={4} md={4}>
                     <RoundedButton
-                      onClick={handleChartTypeLine}
+                      onClick={() => handleChartType('line')}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
                       Line
                     </RoundedButton>
                   </Grid>
-                  <Grid xs={6} md={6}>
+                  <Grid xs={4} md={4}>
                     <RoundedButton
-                      onClick={handleChartTypeArea}
+                      onClick={() => handleChartType('area')}
                       color={"light"}
                       style={{ padding: "5%", margin: "5px", height: "75%" }}
                     >
                       Area
+                    </RoundedButton>
+                  </Grid>
+                  <Grid xs={4} md={4}>
+                    <RoundedButton
+                      onClick={() => handleChartType('bar')}
+                      color={"light"}
+                      style={{ padding: "5%", margin: "5px", height: "75%" }}
+                    >
+                      Bar
                     </RoundedButton>
                   </Grid>
                 </Grid>
@@ -229,6 +261,7 @@ export const Patrimoine = () => {
           </Grid>
         </div>
         <div className="h-100" style={{ width: "300px" }}></div>
+        Fin de page
       </div>
     </div>
   );

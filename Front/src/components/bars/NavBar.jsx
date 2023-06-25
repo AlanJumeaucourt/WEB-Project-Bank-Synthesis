@@ -140,19 +140,19 @@ export function NavBar() {
             sx={{
               flexGrow: 10,
               display: { xs: 'none', md: 'flex' }
-            }}          
+            }}
             justifyContent="flex-end">
-              <Tooltip title="Open settings">
-                <Avatar alt="User1" src="PP.png" onClick={account} />
-              </Tooltip>
-              <span className='mx-2' />
-              <Button
-                color="inherit"
-                variant="outlined"
-                startIcon={<ExitToAppIcon />}
-                onClick={logout}>
-                Deconnexion
-              </Button>
+            <Tooltip title="Open settings">
+              <Avatar alt="User1" src="PP.png" onClick={account} />
+            </Tooltip>
+            <span className='mx-2' />
+            <Button
+              color="inherit"
+              variant="outlined"
+              startIcon={<ExitToAppIcon />}
+              onClick={logout}>
+              Deconnexion
+            </Button>
           </Box>
         </Toolbar>
       </Container>

@@ -11,12 +11,12 @@ export function AboutUs() {
             </div>
             <div className="container">
                 <h2 className='mb-4'>Co-Founder du projet :</h2>
-                    <p>Harittane Ryad <a href="https://github.com/Ryad3">@Ryad3</a></p>
-                    <p>Jumeaucourt Alan <a href="https://github.com/AlanJumeaucourt">@AlanJumeaucourt</a></p>
-                    <p>Landy Lucas <a href="https://github.com/Zouzzou21">@Zouzzou21</a></p>
-                    <p>Beaufour Mathis <a href="https://github.com/CABANENT">@CABANENT</a></p>
-                    <p>Cambray Etienne <a href="https://github.com/Moovaa2">@Moovaa2</a></p>
-                    <p>Dongmo Gausse <a href="https://github.com/dkgmgo">@dkgmgo</a></p>
+                <p>Harittane Ryad <a href="https://github.com/Ryad3">@Ryad3</a></p>
+                <p>Jumeaucourt Alan <a href="https://github.com/AlanJumeaucourt">@AlanJumeaucourt</a></p>
+                <p>Landy Lucas <a href="https://github.com/Zouzzou21">@Zouzzou21</a></p>
+                <p>Beaufour Mathis <a href="https://github.com/CABANENT">@CABANENT</a></p>
+                <p>Cambray Etienne <a href="https://github.com/Moovaa2">@Moovaa2</a></p>
+                <p>Dongmo Gausse <a href="https://github.com/dkgmgo">@dkgmgo</a></p>
             </div>
         </div>
     )

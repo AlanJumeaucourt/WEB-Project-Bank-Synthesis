@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { ButtonPrimary } from '../components/ui_components/Buttons'
-import { Card} from '../components/ui_components/Containers'
+import { Card } from '../components/ui_components/Containers'
 
 import { StackedAreaChart, SmoothedAreaChart } from '../components/charts/Lines'
 import { PieEmpty, PieEmptySpace, PieHalf, PieFull } from '../components/charts/Pie'
