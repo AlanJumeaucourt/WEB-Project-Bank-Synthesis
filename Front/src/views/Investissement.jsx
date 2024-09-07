@@ -44,38 +44,30 @@ export function Investissement() {
   };
 
   return (
-    <div className="background">
-      <h1>TCArgent - Investissement</h1>
+    <div className="background p-4">
+      <h1 className="text-center mb-4 text-primary">TCArgent - Investissement</h1>
 
-      <p className='p-3'>Voici votre page qui résume vos investissements au fil du temps !</p>
+      <p className='text-center mb-4 text-muted'>Voici votre page qui résume vos investissements au fil du temps !</p>
 
-      <div className="p-4">
-        <Card>
-          <div className="row">
-            <div className="d-flex flex-row"></div>
-            <div className="col-sm-3">
-              <div className="card">
-                <ButtonPrimary onClick={handleGlobalClick}>Récapitulatif</ButtonPrimary>
-              </div>
+      <Card className="mb-4 shadow-sm">
+        <div className="row g-3">
+          {[
+            { label: "Récapitulatif", onClick: handleGlobalClick, active: showChartGlobal },
+            { label: "Assurance Vie", onClick: handleAVClick, active: showChartAV },
+            { label: "PEA", onClick: handlePEAClick, active: showChartPEA },
+            { label: "CTO", onClick: handleCTOClick, active: showChartCTO }
+          ].map((button, index) => (
+            <div key={index} className="col-sm-3">
+              <ButtonPrimary 
+                onClick={button.onClick} 
+                className={`w-100 ${button.active ? 'active' : ''}`}
+              >
+                {button.label}
+              </ButtonPrimary>
             </div>
-            <div className="col-sm-3">
-              <div className="card">
-                <ButtonPrimary onClick={handleAVClick}>Assurance Vie</ButtonPrimary>
-              </div>
-            </div>
-            <div className="col-sm-3">
-              <div className="card">
-                <ButtonPrimary onClick={handlePEAClick}>PEA</ButtonPrimary>
-              </div>
-            </div>
-            <div className="col-sm-3">
-              <div className="card">
-                <ButtonPrimary onClick={handleCTOClick}>CTO</ButtonPrimary>
-              </div>
-            </div>
-          </div>
-        </Card>
-      </div>
+          ))}
+        </div>
+      </Card>
 
       <div className="container">
 

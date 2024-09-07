@@ -8,6 +8,7 @@ import { Card, Stack } from "../components/ui_components/Containers";
 import { RoundedButton } from "../components/ui_components/Buttons";
 import { Axios } from "../services/Axios";
 import Grid from "@mui/system/Unstable_Grid";
+import { Typography, Box, Paper } from "@mui/material";
 
 export const Patrimoine = () => {
   const [chartType, setChartType] = useState("line"); // 'line' par défaut
@@ -17,6 +18,18 @@ export const Patrimoine = () => {
 
   //component did mount
   useEffect(() => {
+    Axios.getListeComptes()
+      .then((response) => {
+        setDataListeCompte(response);
+        // Sélectionner automatiquement le premier compte
+        if (response.length > 0) {
+          setSelectedAccount(response[0].id);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     Axios.getSoldePeriode(selectedAccount)
       .then((response) => {
         console.log(response);
@@ -25,14 +38,6 @@ export const Patrimoine = () => {
       .catch((error) => {
         console.log(error);
         setData(null);
-      });
-
-    Axios.getListeComptes()
-      .then((response) => {
-        setDataListeCompte(response);
-      })
-      .catch((error) => {
-        console.log(error);
       });
   }, []);
 
@@ -85,38 +90,49 @@ export const Patrimoine = () => {
   };
 
   return (
-    <div style={{ padding: "10px 50px 20px" }}>
+    <Box sx={{ padding: "20px 50px 40px", backgroundColor: "#f5f5f5" }}>
+      <Typography variant="h4" gutterBottom sx={{ marginBottom: "20px", color: "#333", textShadow: "1px 1px 2px rgba(0,0,0,0.1)" }}>
+        Votre Patrimoine
+      </Typography>
 
-      <Card title="Page Patrimoine">
-        <p className="p-3">
-        Voici votre page qui résume votre patrimoine au fil du temps !
-        </p>
-      </Card>
-      <Card style={{ backgroundColor: 'lightblue' }}>
-        <div className="row">
-          <div className="d-flex flex-row"></div>
-          <div className="col-sm-3">
-            <Card title="Patrimoine Total ">
-              <CardData number={42000} />
-            </Card>
-          </div>
-          <div className="col-sm-3">
-            <Card title="Prévisions : 1 mois">
-              <CardData number={420} />
-            </Card>
-          </div>
-          <div className="col-sm-3">
-            <Card title="Prévisions : 6 mois">
-              <CardData number={-1000} />
-            </Card>
-          </div>
-          <div className="col-sm-3">
-            <Card title="Prévisions : 12 mois">
-              <CardData number={1800} />
-            </Card>
-          </div>
-        </div>
-      </Card>
+      <Paper elevation={3} sx={{ padding: "20px", marginBottom: "20px", borderRadius: "15px" }}>
+        <Typography variant="body1">
+          Voici votre page qui résume votre patrimoine au fil du temps !
+        </Typography>
+      </Paper>
+
+      <Grid container spacing={3} sx={{ marginBottom: "30px" }}>
+        {[
+          { title: "Patrimoine Total", value: 42000 },
+          { title: "Prévisions : 1 mois", value: 420 },
+          { title: "Prévisions : 6 mois", value: -1000 },
+          { title: "Prévisions : 12 mois", value: 1800 }
+        ].map((item, index) => (
+          <Grid item xs={12} sm={6} md={3} key={index}>
+            <Paper elevation={2} sx={{ 
+              padding: "15px", 
+              height: "100%", 
+              borderRadius: "12px",
+              transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
+              "&:hover": {
+                transform: "translateY(-5px)",
+                boxShadow: "0 10px 20px rgba(0,0,0,0.1)"
+              }
+            }}>
+              <Typography variant="h6" gutterBottom>{item.title}</Typography>
+              <Typography 
+                variant="h4" 
+                sx={{ 
+                  color: item.value > 0 ? "green" : "red",
+                  fontWeight: "bold"
+                }}
+              >
+                {item.value} €
+              </Typography>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
 
       <div
         style={{ height: "500px", width: "100%" }}
@@ -163,7 +179,7 @@ export const Patrimoine = () => {
             <Card
               title="Comptes à afficher :"
               className="p-2"
-              style={{ height: "100%" }}
+              style={{ height: "100%", borderRadius: "15px", boxShadow: "0 4px 6px rgba(0,0,0,0.1)" }}
             >
               <p className="card-text">
                 Selectionner le compte à afficher sur le graphique
@@ -230,6 +246,6 @@ export const Patrimoine = () => {
         </div>
         <div className="h-100" style={{ width: "300px" }}></div>
       </div>
-    </div>
+    </Box>
   );
 };

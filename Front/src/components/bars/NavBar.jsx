@@ -28,7 +28,7 @@ export function NavBar() {
     keycloak.accountManagement()
   }
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{ borderRadius: '0 0 16px 16px' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
@@ -110,30 +110,24 @@ export function NavBar() {
             <img src="TCArgent_Logo.png" height="50hv" alt="Logo" />
           </a>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              key="Patrimoine"
-              sx={{ my: 2, color: 'white', display: 'block' }}
-              href="/patrimoine"
-            >
-              Patrimoine
-            </Button>
-
-            <Button
-              key="Investissement"
-              sx={{ my: 2, color: 'white', display: 'block' }}
-              href="/investissement"
-            >
-              Investissement
-            </Button>
-
-            <Button
-              key="Imports"
-              sx={{ my: 2, color: 'white', display: 'block' }}
-              href="/imports"
-            >
-              Imports
-            </Button>
-
+            {['Patrimoine', 'Investissement', 'Imports'].map((page) => (
+              <Button
+                key={page}
+                sx={{
+                  my: 2,
+                  color: 'white',
+                  display: 'block',
+                  borderRadius: '20px',
+                  mx: 1,
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  },
+                }}
+                href={`/${page.toLowerCase()}`}
+              >
+                {page}
+              </Button>
+            ))}
           </Box>
 
           <Box
@@ -143,14 +137,20 @@ export function NavBar() {
             }}          
             justifyContent="flex-end">
               <Tooltip title="Open settings">
-                <Avatar alt="User1" src="PP.png" onClick={account} />
+                <Avatar alt="User1" src="PP.png" onClick={account} sx={{ cursor: 'pointer' }} />
               </Tooltip>
               <span className='mx-2' />
               <Button
                 color="inherit"
                 variant="outlined"
                 startIcon={<ExitToAppIcon />}
-                onClick={logout}>
+                onClick={logout}
+                sx={{
+                  borderRadius: '20px',
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  },
+                }}>
                 Deconnexion
               </Button>
           </Box>
@@ -174,8 +174,8 @@ export function HomeNavBar() {
   }
 
   return (
-    <AppBar position="sticky">
-      <Container maxWidth="xl">
+    <AppBar position="sticky" sx={{ borderRadius: '0 0 16px 16px' }}>
+        <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box
             sx={{

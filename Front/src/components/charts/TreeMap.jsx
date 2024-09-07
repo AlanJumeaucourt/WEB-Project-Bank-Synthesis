@@ -3,37 +3,74 @@ import { EchartComponent } from "./EchartComponent.";
 
 //just a function because we will just do a render 
 export function TreeMap({data, names, titre, dispositionTitre}) {
-  let values = [] 
-  data.forEach((el, index)=>{
-    values.push({
-      value: el,
-      name: names[index]
-    })
-  })
+  let values = data.map((el, index) => ({
+    value: el,
+    name: names[index]
+  }));
 
   const option = {
     title: {
       text: titre,
-      left: dispositionTitre
+      left: dispositionTitre,
+      textStyle: {
+        fontSize: 18,
+        fontWeight: 'bold'
+      }
     },
     tooltip: {
-      trigger: 'item'
-    },
-    legend: {
-      left: 'center'
+      formatter: '{b}: {c}'
     },
     series: [
       {
         type: 'treemap',
-        visibleMin: 150,
+        data: values,
+        visibleMin: 300,
         label: {
           show: true,
-          formatter: '{b}'
+          formatter: '{b}',
+          fontSize: 14
+        },
+        upperLabel: {
+          show: true,
+          height: 30
         },
         itemStyle: {
-          borderColor: '#fff'
+          borderColor: '#fff',
+          borderWidth: 1,
+          gapWidth: 1
         },
-        data: values
+        levels: [
+          {
+            itemStyle: {
+              borderColor: '#777',
+              borderWidth: 0,
+              gapWidth: 1
+            },
+            upperLabel: {
+              show: false
+            }
+          },
+          {
+            itemStyle: {
+              borderColor: '#555',
+              borderWidth: 5,
+              gapWidth: 1
+            },
+            emphasis: {
+              itemStyle: {
+                borderColor: '#ddd'
+              }
+            }
+          },
+          {
+            colorSaturation: [0.35, 0.5],
+            itemStyle: {
+              borderWidth: 5,
+              gapWidth: 1,
+              borderColorSaturation: 0.6
+            }
+          }
+        ]
       }
     ]
   };

@@ -20,14 +20,23 @@ export function PieEmpty({ data, names, titre, dispositionTitre, subtitle }) {
   const option = {
     title: {
       text: titre,
-      left: dispositionTitre
+      left: dispositionTitre,
+      textStyle: {
+        fontSize: 18,
+        fontWeight: 'bold'
+      }
     },
     tooltip: {
-      trigger: 'item'
+      trigger: 'item',
+      formatter: '{a} <br/>{b}: {c} ({d}%)'
     },
     legend: {
-      top: '7.5%',
-      left: 'center'
+      orient: 'vertical',
+      right: '5%',
+      top: 'center',
+      textStyle: {
+        fontSize: 12
+      }
     },
     series: [
       {
@@ -44,6 +53,11 @@ export function PieEmpty({ data, names, titre, dispositionTitre, subtitle }) {
             show: true,
             fontSize: 25,
             fontWeight: 'bold'
+          },
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)'
           }
         },
 
@@ -64,14 +78,23 @@ export function PieEmptySpace({ data, names, titre, dispositionTitre, subtitle }
   const option = {
     title: {
       text: titre,
-      left: dispositionTitre
+      left: dispositionTitre,
+      textStyle: {
+        fontSize: 18,
+        fontWeight: 'bold'
+      }
     },
     tooltip: {
-      trigger: 'item'
+      trigger: 'item',
+      formatter: '{a} <br/>{b}: {c} ({d}%)'
     },
     legend: {
-      top: '7.5%',
-      left: 'center'
+      orient: 'vertical',
+      right: '5%',
+      top: 'center',
+      textStyle: {
+        fontSize: 12
+      }
     },
     series: [
       {
@@ -93,6 +116,11 @@ export function PieEmptySpace({ data, names, titre, dispositionTitre, subtitle }
             show: true,
             fontSize: 25,
             fontWeight: 'bold'
+          },
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)'
           }
         },
 
@@ -113,14 +141,23 @@ export function PieHalf({ data, names, titre, dispositionTitre, subtitle }) {
   const option = {
     title: {
       text: titre,
-      left: dispositionTitre
+      left: dispositionTitre,
+      textStyle: {
+        fontSize: 18,
+        fontWeight: 'bold'
+      }
     },
     tooltip: {
-      trigger: 'item'
+      trigger: 'item',
+      formatter: '{a} <br/>{b}: {c} ({d}%)'
     },
     legend: {
-      top: '7.5%',
-      left: 'center',
+      orient: 'vertical',
+      right: '5%',
+      top: 'center',
+      textStyle: {
+        fontSize: 12
+      }
     },
     series: [
       {
@@ -168,14 +205,22 @@ export function PieFull({ data, names, titre, dispositionTitre, subtitle }) {
     title: {
       text: titre,
       left: dispositionTitre,
+      textStyle: {
+        fontSize: 18,
+        fontWeight: 'bold'
+      }
     },
     tooltip: {
-      trigger: 'item'
+      trigger: 'item',
+      formatter: '{a} <br/>{b}: {c} ({d}%)'
     },
     legend: {
-      top: '7.5%',
-      left: 'center',
-      // doesn't perfectly work with our tricks, disable it
+      orient: 'vertical',
+      right: '5%',
+      top: 'center',
+      textStyle: {
+        fontSize: 12
+      }
     },
     series: [
       {
