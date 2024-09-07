@@ -134,7 +134,7 @@ export function NavBar() {
             sx={{
               flexGrow: 10,
               display: { xs: 'none', md: 'flex' }
-            }}          
+            }}
             justifyContent="flex-end">
               <Tooltip title="Open settings">
                 <Avatar alt="User1" src="PP.png" onClick={account} sx={{ cursor: 'pointer' }} />

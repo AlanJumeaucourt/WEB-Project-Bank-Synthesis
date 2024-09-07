@@ -73,8 +73,8 @@ def get_account_balance_cumulative(compte_id: int):
             port=3306,
             database="User1"
         )
-        start_date = datetime(2021, 1, 1)
-        end_date = datetime(2021, 12, 31)
+        start_date = datetime(2021, 6, 1)
+        end_date = datetime(2022, 6, 30)
 
         cursor = conn.cursor()
         balances_per_day = {}

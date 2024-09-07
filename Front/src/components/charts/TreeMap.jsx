@@ -74,6 +74,6 @@ export function TreeMap({data, names, titre, dispositionTitre}) {
       }
     ]
   };
-      
-   return <EchartComponent option={option}></EchartComponent>
+
+  return <EchartComponent option={option}></EchartComponent>
 }
